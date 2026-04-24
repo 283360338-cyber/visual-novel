@@ -311,7 +311,7 @@ window.impWb=function(){pickFile(function(d){if(Array.isArray(d)){d.forEach(func
 // ===== TEMPLATES =====
 var BTPL={
 'B站直播':{desc:'B站直播间界面',vars:'主播名: 主播昵称\n主播头像: 主播头像图片链接\n粉丝数: 关注数\n观看人数: 当前在线人数\n直播标题: 直播间标题\n弹幕: 格式 用户名:内容 用多个|分隔\n礼物: 格式 用户名:礼物名×数量 用|分隔'},
-QQ聊天':{desc:'QQ风格粉色聊天界面',vars:'联系人名: 对方名字\n联系人头像: 对方头像图片链接\n我的头像: 我的头像图片链接\n聊天背景: 聊天背景图片链接（可选）\n时间: 消息时间\n消息: 格式 对方:内容 或 我:内容 用|分隔多条'},
+'QQ聊天':{desc:'QQ风格粉色聊天界面',vars:'联系人名: 对方名字\n联系人头像: 对方头像图片链接\n我的头像: 我的头像图片链接\n聊天背景: 聊天背景图片链接（可选）\n时间: 消息时间\n消息: 格式 对方:内容 或 我:内容 用|分隔多条'},
 '朋友圈':{desc:'微信朋友圈界面（白色底）',vars:'用户名: 当前查看者名字\n用户头像: 查看者头像链接\n封面图: 朋友圈封面图链接（可选）\n动态: 多条动态用;;分隔 每条格式 发布者名|发布者头像|时间|内容|图片逗号分隔|点赞人逗号分隔|评论格式 用户名-内容 逗号分隔 回复格式 用户名-内容-被回复者'},
 '微博':{desc:'微博界面',vars:'博主名: 发微博的人\n博主头像: 头像链接\n认证: 如 音乐人/演员（可选）\n时间: 发布时间\n内容: 微博正文\n话题: 话题标签逗号分隔\n图片: 图片链接逗号分隔\n转发数: 数字\n评论数: 数字\n点赞数: 数字\n评论: 格式 用户名:头像链接:内容:点赞数 多条用|分隔'}
 };
@@ -327,7 +327,7 @@ h+='<div style="display:flex;align-items:center;padding:10px 14px;background:rgb
 h+='<div style="width:100%;aspect-ratio:16/9;background:linear-gradient(180deg,#0d0d1a,#1a1a2e);position:relative"><div style="position:absolute;top:8px;left:10px;background:rgba(0,0,0,0.55);padding:3px 8px;border-radius:4px;font-size:10px;color:#fff">'+title+'</div>';
 for(var i=0;i<Math.min(danmaku.length,4);i++){var top=(20+i*16)+'%';var pl=(10+i*25)+'%';var p=danmaku[i].split(':');var u=p[0]||'';var c=p.slice(1).join(':')||'';h+='<div style="position:absolute;top:'+top+';left:'+pl+';color:rgba(255,255,255,0.75);font-size:12px;white-space:nowrap">'+c+'</div>'}
 h+='<div style="position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,rgba(0,0,0,0.5))"></div></div>';
-h+='<div style="max-height:140px;overflow-y:auto-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:8px 14px">';
+h+='<div style="max-height:140px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:8px 14px">';
 h+='<div style="margin-bottom:5px;font-size:12px"><span style="color:#FB7299;font-weight:500">系统提示</span><span style="color:#888"> 欢迎来到直播间！</span></div>';
 for(var i=0;i<danmaku.length;i++){var p=danmaku[i].split(':');var u=p[0]?p[0].trim():'';var c=p.slice(1).join(':').trim()||'';var cl=colors[i%colors.length];h+='<div style="margin-bottom:5px;font-size:12px"><span style="color:'+cl+';font-weight:500">'+u+'：</span><span style="color:#ddd">'+c+'</span></div>'}
 for(var i=0;i<gifts.length;i++){var p=gifts[i].split(':');var u=p[0]?p[0].trim():'';var g=p.slice(1).join(':').trim()||'';h+='<div style="margin-bottom:5px;font-size:12px"><span style="color:#FFD700;font-weight:500">'+u+'</span><span style="color:#aaa;font-size:11px"> 送出了 </span><span style="color:#FFD700;font-size:11px;font-weight:500">'+g+'</span></div>'}
@@ -344,7 +344,7 @@ var bgStyle=chatBg?'background-image:url('+chatBg+');background-size:cover;backg
 var h='<div style="background:#FFF5F7;border-radius:20px;overflow:hidden;font-family:system-ui,sans-serif;border:2px solid #FFD6DE">';
 h+='<div style="background:linear-gradient(135deg,#FFB6C1,#FF9AB0);padding:6px 18px;display:flex;justify-content:space-between;align-items:center"><span style="color:rgba(255,255,255,0.85);font-size:10px">'+time+'</span><div style="width:12px;height:8px;border:1.5px solid rgba(255,255,255,0.8);border-radius:2px"></div></div>';
 h+='<div style="background:linear-gradient(135deg,#FFB6C1,#FFA5B5);padding:10px 16px;display:flex;align-items:center;gap:10px"><div style="color:rgba(255,255,255,0.85);font-size:13px">←</div><div style="flex:1;text-align:center;color:#fff;font-size:14px;font-weight:600">'+name+'</div><div style="color:rgba(255,255,255,0.7);font-size:16px">⋯</div></div>';
-h+='<div style="height:320px;overflow-y:auto-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:12px 14px;'+bgStyle+';display:flex;flex-direction:column;gap:8px">';
+h+='<div style="height:320px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:12px 14px;'+bgStyle+';display:flex;flex-direction:column;gap:8px">';
 if(time)h+='<div style="text-align:center;margin:4px 0"><span style="background:rgba(0,0,0,0.06);color:#bbb;font-size:10px;padding:2px 10px;border-radius:4px">'+time+'</span></div>';
 for(var i=0;i<msgs.length;i++){var p=msgs[i].split(':');var who=p[0]?p[0].trim():'';var txt=p.slice(1).join(':').trim()||'';var isMe=who==='我';
 if(isMe){h+='<div style="display:flex;gap:8px;align-items:flex-start;flex-direction:row-reverse">'+mAv+'<div style="max-width:65%"><div style="background:#FFD6DE;padding:10px 14px;border-radius:16px 4px 16px 16px;font-size:14px;color:#5a3040;line-height:1.55;box-shadow:0 1px 3px rgba(255,150,170,0.1)">'+txt+'</div></div></div>'}
