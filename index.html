@@ -312,7 +312,7 @@ window.swM=function(i,b){document.querySelectorAll('.mt').forEach(function(t){t.
 window.swMU=function(b){document.querySelectorAll('.mt').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.mpg').forEach(function(p){p.classList.remove('on')});b.classList.add('on');$('m_user').classList.add('on');initUser()};
 
 // API
-async function callAPI(msgs){var url=api.url.replace(/\/+$/,'')+'/chat/completions';var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+api.key},body:JSON.stringify({model:api.model,messages:msgs,max_tokens:8192,temperature:0.85})});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,150))}var d=await r.json();return d.choices[0].message.content}
+async function callAPI(msgs){var url=api.url.replace(/\/+$/,'')+'/chat/completions';var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+api.key},body:JSON.stringify({model:api.model,messages:msgs,max_tokens:16384,temperature:0.85})});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,150))}var d=await r.json();return d.choices[0].message.content}
 
 // CHARACTERS
 window.addCard=function(){var n=$('rc_n').value.trim();if(!n)return toast('请填角色名');cards[n]={name:n,personality:$('rc_p').value,appearance:$('rc_a').value,background:$('rc_b').value,style:$('rc_s').value,opening:$('rc_o').value};SV('cards',cards);['rc_n','rc_p','rc_a','rc_b','rc_s','rc_o'].forEach(function(id){$(id).value=''});rdrCards();toast(n+' 已创建')};
