@@ -9,7 +9,7 @@
 body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;background:#f7f3ef;color:#3a3632;height:100vh;width:100vw;overflow:hidden}
 #app{width:100%;height:100vh;position:relative}
 #home{width:100%;height:100vh;display:flex;flex-direction:column;background:#f7f3ef}
-.hh{padding:24px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.hh{padding:24px 20px 0;display:flex;align-items:center;gap:12px}
 .hht{font-size:22px;font-weight:700;color:#3a3632;letter-spacing:1px}
 .hhb{display:flex;gap:8px}
 .hhb button{background:#fff;border:1px solid rgba(200,190,180,.35);border-radius:10px;padding:8px 16px;font-size:12px;color:#8b7355;cursor:pointer;font-weight:500}
@@ -131,6 +131,20 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 .sve{color:#ccc5be;font-style:italic}
 .sva{margin-top:8px;display:flex;gap:6px}
 .sva button{font-size:11px;padding:5px 12px;border-radius:6px;cursor:pointer}
+#hamburger{width:36px;height:36px;background:rgba(255,252,249,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(200,190,180,.25);border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;flex-shrink:0}
+#hamburger span{display:block;width:16px;height:1.5px;background:#8b7355;border-radius:1px}
+#sb-ov{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.3);backdrop-filter:blur(2px);z-index:40}
+#sb-ov.on{display:block}
+#sidebar{position:fixed;top:0;left:-75%;width:72%;max-width:300px;height:100vh;background:#fff;z-index:50;transition:left .3s cubic-bezier(.2,.9,.3,1);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:4px 0 20px rgba(0,0,0,.1)}
+#sidebar.on{left:0}
+.sb-hd{padding:50px 20px 16px;font-size:18px;font-weight:700;color:#3a3632;border-bottom:1px solid rgba(200,190,180,.15);display:flex;align-items:center;gap:10px;letter-spacing:.5px}
+.sb-back{font-size:13px;color:#8b7355;cursor:pointer;font-weight:500}
+.sb-sec{padding:18px 20px 6px;font-size:11px;color:#a09890;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.sb-item{padding:15px 20px;font-size:14px;color:#3a3632;cursor:pointer;border-bottom:1px solid rgba(200,190,180,.06);display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.sb-item:active{background:rgba(200,190,180,.1)}
+.sb-r{color:#a09890;font-size:12px}
+.sb-tag{font-size:10px;color:#a09890;background:rgba(200,190,180,.15);padding:2px 8px;border-radius:6px}
+.sb-val{font-size:12px;color:#8b7355;font-weight:500}
 .toast{position:fixed;top:40px;left:50%;transform:translateX(-50%);background:rgba(58,54,50,.88);color:#fff;padding:8px 22px;border-radius:20px;font-size:12px;z-index:200;animation:ti .3s}
 @keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .empty{color:#ccc5be;font-size:12px;text-align:center;padding:30px 0;font-style:italic}
@@ -139,8 +153,8 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 <body>
 <div id="app">
 <div id="home">
-<div class="hh"><span class="hht">我的故事</span><div class="hhb"><button onclick="tgHapi()">API 设置</button><button class="pr" onclick="showNsf()">新建故事</button></div></div>
-<div id="hapi"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">模型名称</label><input class="inp" id="ha_m" placeholder="claude-sonnet-4-20250514"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="svHA()">保存</button><button class="btn o" onclick="tsHA()">测试连接</button></div></div>
+<div class="hh"><button id="hamburger" onclick="openSB()"><span></span><span></span><span></span></button><span class="hht">我的故事</span></div> <div id="sb-ov" onclick="closeSB()"></div> <div id="sidebar"> <div id="sb-main"> <div class="sb-hd">菜单</div> <div class="sb-sec">操作</div> <div class="sb-item" onclick="sbApi()">API 配置<span class="sb-r">▸</span></div> <div class="sb-item" onclick="sbNew()">新建故事<span class="sb-r">+</span></div> <div class="sb-sec">系统</div> <div class="sb-item" onclick="sbSet()">设置<span class="sb-r">▸</span></div> </div> <div id="sb-set" style="display:none"> <div class="sb-hd"><span class="sb-back" onclick="sbBack()">← 返回</span></div> <div class="sb-sec">数据</div> <div class="sb-item" onclick="expAllGlobal()">导出全部数据<span class="sb-r">↓</span></div> <div class="sb-item" onclick="impAllGlobal()">导入全部数据<span class="sb-r">↑</span></div> <div class="sb-item" id="sb-stor">储存空间<span class="sb-r sb-val" id="sb-stor-v">计算中</span></div> <div class="sb-sec">外观</div> <div class="sb-item">夜间模式<span class="sb-tag">开发中</span></div> <div class="sb-item">主题皮肤<span class="sb-tag">开发中</span></div> <div class="sb-sec">其他</div> <div class="sb-item">关于<span class="sb-tag">开发中</span></div> </div> </div>
+<div id="hapi"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="if(this.value)$('ha_m').value=this.value"><option value="">点右侧拉取模型列表</option></select><button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="fetchModels()">拉取</button></div><input class="inp" id="ha_m" placeholder="或手动输入模型名称"><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="svHA()">保存预设</button><button class="btn o" onclick="tsHA()">测试连接</button></div></div>
 <div id="nsf"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
 <div class="hsl" id="storyList"></div>
 </div>
@@ -292,10 +306,10 @@ function LD(k,d){var v=CACHE[SK()+k];return v!==undefined?v:d}
 function SV(k,v){CACHE[SK()+k]=v;idbSet(SK()+k,v)}
 var $=function(id){return document.getElementById(id)};
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
-var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP;
+var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP,apiPresets;
 var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw='';
 var callMode=false,ntfTpl=null,ntfTimer=null;
-function loadGlobal(){api=GLD('api',{url:'',model:'',key:''});stories=GLD('stories',[])}
+function loadGlobal(){api=GLD('api',{url:'',model:'',key:''});stories=GLD('stories',[]);apiPresets=GLD('apiPresets',[])}
 function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{});bgs=LD('bg',{});bgDesc=LD('bgd',{});wb=LD('wb',[]);wbId=LD('wbid',1);mem=LD('mem',{shortLen:6,autoEnabled:true,autoInterval:5,auto:[],manual:[],sumTo:0});upr=LD('upr','');hi=LD('hi',[]);rp=LD('rp',[]);svs=LD('svs',[null,null,null,null,null]);tc=LD('tc',0);tpls=LD('tpls',{});userP=LD('userp',{name:'',gender:'',appearance:'',personality:'',background:'',relation:'',style:'',other:''})}
 
 // HOME
@@ -306,9 +320,22 @@ window.createStory=function(){var t=$('ns_t').value.trim();if(!t)return toast('�
 window.delStory=function(id){if(!confirm('删除这个故事？'))return;stories=stories.filter(function(s){return s.id!==id});GSV('stories',stories);var pfx='vs_'+id+'_';Object.keys(CACHE).forEach(function(k){if(k.indexOf(pfx)===0){delete CACHE[k];idbDel(k)}});rdrHome();toast('已删除')};
 window.enterStory=function(id){sid=id;GSV('cur',id);for(var i=0;i<stories.length;i++)if(stories[i].id===id)stories[i].lastPlayed=new Date().toLocaleString('zh-CN');GSV('stories',stories);loadStory();$('home').style.display='none';$('gv').style.display='block';sc=[];si=0;dq=[];di=0;acCh={};cBg='';lastRaw='';callMode=false;$('chl').innerHTML='';$('dlg').style.display='none';$('rawb').style.display='none';$('rawx').style.display='none';$('bgl').style.backgroundImage='';var sm=$('smsg');if(sm)sm.style.display='block'};
 window.goHome=function(){callMode=false;$('gv').style.display='none';$('mv').style.display='none';$('mv').classList.remove('open');$('home').style.display='flex';rdrHome()};
-window.tgHapi=function(){$('hapi').style.display=$('hapi').style.display==='block'?'none':'block';$('ha_u').value=api.url;$('ha_m').value=api.model;$('ha_k').value=api.key};
-window.svHA=function(){api={url:$('ha_u').value.trim(),model:$('ha_m').value.trim(),key:$('ha_k').value.trim()};GSV('api',api);toast('已保存')};
-window.tsHA=async function(){if(!api.url||!api.key||!api.model)return toast('请先填完');toast('测试中...');try{await callAPI([{role:'user',content:'回复ok'}]);toast('连接成功')}catch(e){toast('失败: '+e.message)}};
+window.openSB=function(){$('sb-ov').classList.add('on');$('sidebar').classList.add('on');$('sb-main').style.display='block';$('sb-set').style.display='none'};
+window.closeSB=function(){$('sb-ov').classList.remove('on');$('sidebar').classList.remove('on')};
+window.sbApi=function(){closeSB();setTimeout(function(){$('hapi').style.display=$('hapi').style.display==='block'?'none':'block';if($('hapi').style.display==='block'){rdrPresets();$('ha_name').value='';$('ha_u').value=api.url||'';$('ha_m').value=api.model||'';$('ha_k').value=api.key||'';var sel=$('ha_sel');for(var i=0;i<apiPresets.length;i++){if(apiPresets[i].url===api.url&&apiPresets[i].key===api.key&&apiPresets[i].model===api.model){sel.value=i;$('ha_name').value=apiPresets[i].name||'';break}}}},200)};
+window.sbNew=function(){closeSB();setTimeout(function(){showNsf()},200)};
+window.sbSet=function(){$('sb-main').style.display='none';$('sb-set').style.display='block';calcStorage()};
+window.sbBack=function(){$('sb-set').style.display='none';$('sb-main').style.display='block'};
+window.calcStorage=function(){try{var total=0;var keys=Object.keys(CACHE);for(var i=0;i<keys.length;i++){total+=JSON.stringify(CACHE[keys[i]]).length+keys[i].length}var kb=total/1024;var display=kb<1024?(kb.toFixed(1)+' KB'):(kb/1024).toFixed(2)+' MB';$('sb-stor-v').textContent=display}catch(e){$('sb-stor-v').textContent='无法计算'}};
+window.expAllGlobal=function(){dl('all_stories_data.json',JSON.stringify(CACHE,null,2));closeSB();toast('已导出全部数据')};
+window.impAllGlobal=function(){pickFile(function(d){var count=0;for(var k in d){CACHE[k]=d[k];idbSet(k,d[k]);count++}loadGlobal();rdrHome();closeSB();toast('已导入 '+count+' 条数据')})};
+window.tgHapi=function(){$('hapi').style.display=$('hapi').style.display==='block'?'none':'block';if($('hapi').style.display==='block'){rdrPresets();$('ha_u').value=api.url;$('ha_m').value=api.model;$('ha_k').value=api.key;var sel=$('ha_sel');for(var i=0;i<apiPresets.length;i++){if(apiPresets[i].url===api.url&&apiPresets[i].key===api.key&&apiPresets[i].model===api.model){sel.value=i;$('ha_name').value=apiPresets[i].name||'';break}}}};
+function rdrPresets(){var sel=$('ha_sel');var h='<option value="">-- 新建预设 --</option>';for(var i=0;i<apiPresets.length;i++)h+='<option value="'+i+'">'+apiPresets[i].name+'</option>';sel.innerHTML=h}
+window.ldPreset=function(){var sel=$('ha_sel');if(sel.value===''){$('ha_name').value='';$('ha_u').value='';$('ha_m').value='';$('ha_k').value='';return}var p=apiPresets[parseInt(sel.value)];if(!p)return;$('ha_name').value=p.name||'';$('ha_u').value=p.url||'';$('ha_m').value=p.model||'';$('ha_k').value=p.key||''};
+window.dlPreset=function(){var sel=$('ha_sel');if(sel.value==='')return toast('请先选择一个预设');var idx=parseInt(sel.value);if(!confirm('删除预设「'+apiPresets[idx].name+'」？'))return;apiPresets.splice(idx,1);GSV('apiPresets',apiPresets);rdrPresets();toast('已删除')};
+window.svHA=function(){var name=$('ha_name').value.trim()||'未命名';var u=$('ha_u').value.trim(),m=$('ha_m').value.trim(),k=$('ha_k').value.trim();if(!u||!k)return toast('请填API地址和Key');api={url:u,model:m,key:k};GSV('api',api);var sel=$('ha_sel');if(sel.value!==''){var idx=parseInt(sel.value);apiPresets[idx]={name:name,url:u,model:m,key:k}}else{apiPresets.push({name:name,url:u,model:m,key:k})}GSV('apiPresets',apiPresets);rdrPresets();sel.value=apiPresets.length-1;toast('已保存：'+name)};
+window.tsHA=async function(){if(!api.url||!api.key||!api.model)return toast('请先保存配置');toast('测试中...');try{await callAPI([{role:'user',content:'回复ok'}]);toast('连接成功')}catch(e){toast('失败: '+e.message)}};
+window.fetchModels=async function(){var u=$('ha_u').value.trim(),k=$('ha_k').value.trim();if(!u||!k)return toast('请先填API地址和Key');toast('拉取中...');try{var url=u.replace(/\/+$/,'')+'/models';var r=await fetch(url,{headers:{'Authorization':'Bearer '+k}});if(!r.ok)throw new Error(r.status);var d=await r.json();var models=d.data||d;if(!Array.isArray(models))throw new Error('返回格式异常');models.sort(function(a,b){return(a.id||'').localeCompare(b.id||'')});var sel=$('ha_ml');var h='<option value="">选择模型 (共'+models.length+'个)</option>';for(var i=0;i<models.length;i++){var id=models[i].id||models[i].name||'';if(id)h+='<option value="'+id+'">'+id+'</option>'}sel.innerHTML=h;toast('已拉取 '+models.length+' 个模型')}catch(e){toast('拉取失败: '+e.message)}};
 
 // VIEWS
 window.openMgmt=function(){$('gv').style.display='none';$('mv').style.display='flex';$('mv').classList.add('open');rdrAll();initMem();initUpr()};
