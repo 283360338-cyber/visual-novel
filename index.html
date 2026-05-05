@@ -319,12 +319,12 @@ body.dark .sb-val{color:#c4a882}
 <div class="sec"><div class="sech">我的角色卡</div>
 <div id="up_card"></div>
 <div id="up_form">
-<label class="lb">角色名</label><input class="inp" id="up_n" placeholder="谢意">
-<label class="lb">性别</label><input class="inp" id="up_g" placeholder="男/女">
+<label class="lb">角色名</label><input class="inp" id="up_n" placeholder="小孟">
+<label class="lb">性别</label><input class="inp" id="up_g" placeholder="女/男">
 <label class="lb">外貌</label><textarea class="ta" id="up_a" placeholder="黑色长发..." style="height:60px"></textarea>
 <label class="lb">性格</label><textarea class="ta" id="up_p" placeholder="温柔体贴..." style="height:60px"></textarea>
 <label class="lb">背景</label><textarea class="ta" id="up_b" placeholder="大学生..." style="height:60px"></textarea>
-<label class="lb">与角色的关系</label><textarea class="ta" id="up_r" placeholder="方亦楷的女朋友..." style="height:60px"></textarea>
+<label class="lb">与角色的关系</label><textarea class="ta" id="up_r" placeholder="小明的朋友..." style="height:60px"></textarea>
 <label class="lb">说话风格</label><input class="inp" id="up_s" placeholder="活泼，爱用语气词">
 <label class="lb">其他补充</label><textarea class="ta" id="up_o" placeholder="任何额外设定..." style="height:60px"></textarea>
 <button class="btn" onclick="svUser()">保存</button>
@@ -366,7 +366,7 @@ body.dark .sb-val{color:#c4a882}
 var GK='vng_',sid=null;
 function SK(){return 'vs_'+sid+'_'}
 var DB=null,CACHE={};
-function openDB(){return new Promise(function(ok,no){var r=indexedDB.open('vndb',1);r.onupgradeneeded=function(e){e.target.result.createObjectStore('kv')};r.onsuccess=function(e){DB=e.target.result;ok()};r.onerror=function(){no(r.error)}})}
+function openDB(){return new Promise(function(ok,no){try{var timer=setTimeout(function(){no(new Error('timeout'))},3000);var r=indexedDB.open('vndb',1);r.onupgradeneeded=function(e){e.target.result.createObjectStore('kv')};r.onsuccess=function(e){clearTimeout(timer);DB=e.target.result;ok()};r.onerror=function(){clearTimeout(timer);no(r.error)};r.onblocked=function(){clearTimeout(timer);no(new Error('blocked'))}}catch(e){no(e)}})}
 function idbSet(k,v){try{var tx=DB.transaction('kv','readwrite');tx.objectStore('kv').put(v,k)}catch(e){}}
 function idbDel(k){try{var tx=DB.transaction('kv','readwrite');tx.objectStore('kv').delete(k)}catch(e){}}
 function idbAll(){return new Promise(function(ok){var tx=DB.transaction('kv','readonly');var s=tx.objectStore('kv');var data={};var c=s.openCursor();c.onsuccess=function(e){var cur=e.target.result;if(cur){data[cur.key]=cur.value;cur.continue()}else{ok(data)}};c.onerror=function(){ok({})}})}
@@ -374,7 +374,7 @@ function GLD(k,d){var v=CACHE[GK+k];return v!==undefined?v:d}
 function GSV(k,v){CACHE[GK+k]=v;idbSet(GK+k,v)}
 function LD(k,d){var v=CACHE[SK()+k];return v!==undefined?v:d}
 function SV(k,v){CACHE[SK()+k]=v;idbSet(SK()+k,v)}
-var $=function(id){return document.getElementById(id)};
+var $=function(id){return document.getElementById(id)};window.$=$;
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
 var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP,apiPresets;
 var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw='';
@@ -399,7 +399,7 @@ window.calcStorage=function(){try{var total=0;var keys=Object.keys(CACHE);for(
 window.expAllGlobal=function(){dl('all_stories_data.json',JSON.stringify(CACHE,null,2));closeSB();toast('已导出全部数据')};
 window.impAllGlobal=function(){pickFile(function(d){var count=0;for(var k in d){CACHE[k]=d[k];idbSet(k,d[k]);count++}loadGlobal();rdrHome();closeSB();toast('已导入 '+count+' 条数据')})};
 window.tglDark=function(v){if(v){document.body.classList.add('dark')}else{document.body.classList.remove('dark')}GSV('darkMode',v)};
-function syncModel(val){$('ha_m').value=val||'';var sel=$('ha_ml');if(!val)return;for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.value=val;return}}var opt=document.createElement('option');opt.value=val;opt.textContent=val;sel.appendChild(opt);sel.value=val}
+window.syncModel=function syncModel(val){$('ha_m').value=val||'';var sel=$('ha_ml');if(!val)return;for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===val){sel.value=val;return}}var opt=document.createElement('option');opt.value=val;opt.textContent=val;sel.appendChild(opt);sel.value=val}
 function fillApiForm(){$('ha_name').value='';$('ha_u').value=api.url||'';$('ha_k').value=api.key||'';syncModel(api.model||'');$('ha_temp').value=Math.round((api.temp!=null?api.temp:0.85)*100);$('ha_tv').textContent=(api.temp!=null?api.temp:0.85).toFixed(2);$('ha_tp').value=Math.round((api.topP!=null?api.topP:1)*100);$('ha_tpv').textContent=(api.topP!=null?api.topP:1).toFixed(2);$('ha_mt').value=api.maxTokens||4096;$('ha_cl').value=api.contextLen||6;rdrPresets();var sel=$('ha_sel');for(var i=0;i<apiPresets.length;i++){if(apiPresets[i].url===api.url&&apiPresets[i].key===api.key&&apiPresets[i].model===api.model){sel.value=i;$('ha_name').value=apiPresets[i].name||'';break}}}
 window.sbApi=function(){closeSB();setTimeout(function(){$('hapi').style.display=$('hapi').style.display==='block'?'none':'block';if($('hapi').style.display==='block')fillApiForm()},200)};
 window.tgHapi=function(){$('hapi').style.display=$('hapi').style.display==='block'?'none':'block';if($('hapi').style.display==='block')fillApiForm()};
@@ -578,7 +578,7 @@ $('mi').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){
 
 // INIT
 function rdrAll(){rdrCards();rdrBgs();rdrWb();rdrBuiltinTpls();rdrTpls();rdrSvs();rdrRp();rdrAutoMem();rdrManMem()}
-async function boot(){try{await openDB();var all=await idbAll();var hasData=Object.keys(all).length>0;if(!hasData){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{var v=JSON.parse(localStorage.getItem(k));CACHE[k]=v;idbSet(k,v)}catch(e){}}}}else{CACHE=all}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}catch(e){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{CACHE[k]=JSON.parse(localStorage.getItem(k))}catch(e2){}}}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}}
+async function boot(){function fallback(){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{CACHE[k]=JSON.parse(localStorage.getItem(k))}catch(e){}}}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}try{await openDB();var all=await idbAll();var hasData=Object.keys(all).length>0;if(!hasData){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{var v=JSON.parse(localStorage.getItem(k));CACHE[k]=v;idbSet(k,v)}catch(e){}}}}else{CACHE=all}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}catch(e){console.error('boot error:',e);fallback()}}
 boot();
 })();
 </script>
