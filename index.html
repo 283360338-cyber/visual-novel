@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;background:#f7f3ef;color:#3a3632;height:100vh;width:100vw;overflow:hidden}
 #app{width:100%;height:100vh;position:relative}
-#home{width:100%;height:100vh;display:flex;flex-direction:column;background:#f7f3ef}
+#home{width:100%;height:100vh;display:flex;flex-direction:column;background:#f7f3ef;overflow:hidden}
 .hh{padding:24px 20px 0;display:flex;align-items:center;gap:12px}
 .hht{font-size:22px;font-weight:700;color:#3a3632;letter-spacing:1px}
 .hhb{display:flex;gap:8px}
@@ -135,8 +135,7 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 #hamburger span{display:block;width:16px;height:1.5px;background:#8b7355;border-radius:1px}
 #sb-ov{display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.3);backdrop-filter:blur(2px);z-index:40}
 #sb-ov.on{display:block}
-#sidebar{position:fixed;top:0;left:-75%;width:72%;max-width:300px;height:100vh;background:#fff;z-index:50;transition:left .3s cubic-bezier(.2,.9,.3,1);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:4px 0 20px rgba(0,0,0,.1)}
-#sidebar.on{left:0}
+#sidebar{display:none;position:fixed;top:0;left:0;width:72%;max-width:300px;height:100vh;background:#fff;z-index:50;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:4px 0 20px rgba(0,0,0,.1)}
 .sb-hd{padding:50px 20px 16px;font-size:18px;font-weight:700;color:#3a3632;border-bottom:1px solid rgba(200,190,180,.15);display:flex;align-items:center;gap:10px;letter-spacing:.5px}
 .sb-back{font-size:13px;color:#8b7355;cursor:pointer;font-weight:500}
 .sb-sec{padding:18px 20px 6px;font-size:11px;color:#a09890;font-weight:600;letter-spacing:1px;text-transform:uppercase}
@@ -390,8 +389,8 @@ window.createStory=function(){var t=$('ns_t').value.trim();if(!t)return toast('�
 window.delStory=function(id){if(!confirm('删除这个故事？'))return;stories=stories.filter(function(s){return s.id!==id});GSV('stories',stories);var pfx='vs_'+id+'_';Object.keys(CACHE).forEach(function(k){if(k.indexOf(pfx)===0){delete CACHE[k];idbDel(k)}});rdrHome();toast('已删除')};
 window.enterStory=function(id){sid=id;GSV('cur',id);for(var i=0;i<stories.length;i++)if(stories[i].id===id)stories[i].lastPlayed=new Date().toLocaleString('zh-CN');GSV('stories',stories);loadStory();$('home').style.display='none';$('gv').style.display='block';sc=[];si=0;dq=[];di=0;acCh={};cBg='';lastRaw='';callMode=false;$('chl').innerHTML='';$('dlg').style.display='none';$('rawb').style.display='none';$('rawx').style.display='none';$('bgl').style.backgroundImage='';var sm=$('smsg');if(sm)sm.style.display='block'};
 window.goHome=function(){callMode=false;$('gv').style.display='none';$('mv').style.display='none';$('mv').classList.remove('open');$('home').style.display='flex';rdrHome()};
-window.openSB=function(){$('sb-ov').classList.add('on');$('sidebar').classList.add('on');$('sb-main').style.display='block';$('sb-set').style.display='none'};
-window.closeSB=function(){$('sb-ov').classList.remove('on');$('sidebar').classList.remove('on')};
+window.openSB=function(){$('sb-ov').classList.add('on');$('sidebar').style.display='block';$('sb-main').style.display='block';$('sb-set').style.display='none'};
+window.closeSB=function(){$('sb-ov').classList.remove('on');$('sidebar').style.display='none'};
 window.sbNew=function(){closeSB();setTimeout(function(){showNsf()},200)};
 window.sbSet=function(){$('sb-main').style.display='none';$('sb-set').style.display='block';calcStorage();$('darkTgl').checked=document.body.classList.contains('dark')};
 window.sbBack=function(){$('sb-set').style.display='none';$('sb-main').style.display='block'};
