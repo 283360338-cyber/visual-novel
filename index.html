@@ -212,23 +212,35 @@ body.dark .sb-val{color:#c4a882}
 </style>
 </head>
 <body>
+<div id="sb-ov" onclick="closeSB()"></div>
+<div id="sidebar">
+<div id="sb-main">
+<div class="sb-hd">菜单</div>
+<div class="sb-sec">操作</div>
+<div class="sb-item" onclick="sbApi()">API 配置<span class="sb-r">▸</span></div>
+<div class="sb-item" onclick="sbNew()">新建故事<span class="sb-r">+</span></div>
+<div class="sb-sec">系统</div>
+<div class="sb-item" onclick="sbSet()">设置<span class="sb-r">▸</span></div>
+</div>
+<div id="sb-set" style="display:none">
+<div class="sb-hd"><span class="sb-back" onclick="sbBack()">← 返回</span></div>
+<div class="sb-sec">数据</div>
+<div class="sb-item" onclick="expAllGlobal()">导出全部数据<span class="sb-r">↓</span></div>
+<div class="sb-item" onclick="impAllGlobal()">导入全部数据<span class="sb-r">↑</span></div>
+<div class="sb-item" id="sb-stor">储存空间<span class="sb-r sb-val" id="sb-stor-v">计算中</span></div>
+<div class="sb-sec">外观</div>
+<div class="sb-item" style="cursor:default">夜间模式<label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" id="darkTgl" onchange="window.tglDark(this.checked)"><span class="sl"></span></label></div>
+<div class="sb-item">主题皮肤<span class="sb-tag">开发中</span></div>
+<div class="sb-sec">其他</div>
+<div class="sb-item">关于<span class="sb-tag">开发中</span></div>
+</div>
+</div>
+
 <div id="app">
 <div id="home">
-<div class="hh"><button id="hamburger" onclick="openSB()"><span></span><span></span><span></span></button><span class="hht">我的故事</span></div> <div id="sb-ov" onclick="closeSB()"></div> <div id="sidebar"> <div id="sb-main"> <div class="sb-hd">菜单</div> <div class="sb-sec">操作</div> <div class="sb-item" onclick="sbApi()">API 配置<span class="sb-r">▸</span></div> <div class="sb-item" onclick="sbNew()">新建故事<span class="sb-r">+</span></div> <div class="sb-sec">系统</div> <div class="sb-item" onclick="sbSet()">设置<span class="sb-r">▸</span></div> </div> <div id="sb-set" style="display:none">
-<div class="sb-hd"><span class="sb-back" onclick="sbBack()">← 返回</span></div>
-<div class="sb-sec">数据</div>
-<div class="sb-item" onclick="expAllGlobal()">导出全部数据<span class="sb-r">↓</span></div>
-<div class="sb-item" onclick="impAllGlobal()">导入全部数据<span class="sb-r">↑</span></div>
-<div class="sb-item" id="sb-stor">储存空间<span class="sb-r sb-val" id="sb-stor-v">计算中</span></div>
-<div class="sb-sec">外观</div>
-<div class="sb-item" style="cursor:default">夜间模式<label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" id="darkTgl" onchange="tglDark(this.checked)"><span class="sl"></span></label></div>
-<div class="sb-item">主题皮肤<span class="sb-tag">开发中</span></div>
-<div class="sb-sec">其他</div>
-<div class="sb-item">关于<span class="sb-tag">开发中</span></div>
-</div>
-</div>
-<div id="hapi"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="syncModel(this.value)"><option value="">点右侧拉取模型列表</option></select><button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="fetchModels()">拉取</button></div><input type="hidden" id="ha_m"><label class="lb">温度 (Temperature) <span id="ha_tv" style="color:#8b7355;font-weight:600">0.85</span></label><input type="range" min="0" max="200" value="85" id="ha_temp" style="width:100%;margin-bottom:10px" oninput="$('ha_tv').textContent=(this.value/100).toFixed(2)"><label class="lb">Top-P <span id="ha_tpv" style="color:#8b7355;font-weight:600">1.00</span></label><input type="range" min="0" max="100" value="100" id="ha_tp" style="width:100%;margin-bottom:10px" oninput="$('ha_tpv').textContent=(this.value/100).toFixed(2)"><div style="display:flex;gap:10px;margin-bottom:10px"><div style="flex:1"><label class="lb">最大输出Token</label><input class="inp" id="ha_mt" type="number" value="4096" style="margin-bottom:0"></div><div style="flex:1"><label class="lb">上下文轮数</label><input class="inp" id="ha_cl" type="number" value="6" min="1" max="50" style="margin-bottom:0"></div></div><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="svHA()">保存预设</button><button class="btn o" onclick="tsHA()">测试连接</button></div></div>
-<div id="nsf"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
+<div class="hh"><button id="hamburger" onclick="openSB()"><span></span><span></span><span></span></button><span class="hht">我的故事</span></div>
+<div id="hapi" style="display:none"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="window.ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="window.syncModel(this.value)"><option value="">点右侧拉取模型列表</option></select><button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.fetchModels()">拉取</button></div><input type="hidden" id="ha_m"><label class="lb">温度 <span id="ha_tv" style="color:#8b7355;font-weight:600">0.85</span></label><input type="range" min="0" max="200" value="85" id="ha_temp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tv').textContent=(this.value/100).toFixed(2)"><label class="lb">Top-P <span id="ha_tpv" style="color:#8b7355;font-weight:600">1.00</span></label><input type="range" min="0" max="100" value="100" id="ha_tp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tpv').textContent=(this.value/100).toFixed(2)"><div style="display:flex;gap:10px;margin-bottom:10px"><div style="flex:1"><label class="lb">最大输出Token</label><input class="inp" id="ha_mt" type="number" value="4096" style="margin-bottom:0"></div><div style="flex:1"><label class="lb">上下文轮数</label><input class="inp" id="ha_cl" type="number" value="6" min="1" max="50" style="margin-bottom:0"></div></div><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svHA()">保存预设</button><button class="btn o" onclick="window.tsHA()">测试连接</button></div></div>
+<div id="nsf" style="display:none"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
 <div class="hsl" id="storyList"></div>
 </div>
 
@@ -240,7 +252,7 @@ body.dark .sb-val{color:#c4a882}
 <div id="ntf" onclick="ntfClick()"><div class="ni"></div><div class="nt"><div class="na"></div><div class="nc"></div><div class="nm">现在</div></div></div>
 <div id="ld">思考中...</div>
 <div id="smsg">点击右上角「设置」配置角色和场景<br>在下方输入框开始你的故事</div>
-<div id="tplo" onclick="if(event.target===this)closeTpl()"><button id="tplx" onclick="tplClose()">✕</button><div id="tplc"></div></div>
+<div id="tplo" onclick="if(event.target===this)tplClose()"><button id="tplx" onclick="tplClose()">✕</button><div id="tplc"></div></div>
 </div>
 <button class="gt" id="bkb" onclick="goHome()">返回</button>
 <button class="gt" id="rawb" onclick="tgRaw()">原文</button>
@@ -263,7 +275,6 @@ body.dark .sb-val{color:#c4a882}
 <button class="mt" onclick="swM(7,this)">数据</button>
 </div>
 <div class="mp">
-
 <div class="mpg on" id="m0">
 <div class="sec"><div class="sech">创建角色卡</div>
 <label class="lb">角色名</label><input class="inp" id="rc_n" placeholder="小明">
@@ -283,7 +294,6 @@ body.dark .sb-val{color:#c4a882}
 <button class="btn" onclick="addSp()">添加立绘</button>
 </div>
 </div>
-
 <div class="mpg" id="m1">
 <div class="sec"><div class="sech">添加场景背景</div>
 <label class="lb">场景名</label><input class="inp" id="bg_n" placeholder="教室">
@@ -292,7 +302,6 @@ body.dark .sb-val{color:#c4a882}
 <button class="btn" onclick="addBg()">添加</button></div>
 <div class="sec"><div class="sech">场景列表</div><div id="bgList"></div></div>
 </div>
-
 <div class="mpg" id="m2">
 <div class="sec"><div class="sech">创建条目</div>
 <label class="lb">条目名称</label><input class="inp" id="wb_n" placeholder="魔法系统">
@@ -302,7 +311,6 @@ body.dark .sb-val{color:#c4a882}
 <button class="btn" onclick="addWb()">添加</button><button class="btn o" onclick="impWb()">导入</button><button class="btn o" onclick="expWb()">导出</button></div>
 <div class="sec"><div class="sech">条目列表</div><div id="wbList"></div></div>
 </div>
-
 <div class="mpg" id="m3">
 <div class="sec"><div class="sech">内置模板</div><div id="builtinTplList"></div></div>
 <div class="sec"><div class="sech">自定义模板</div>
@@ -313,51 +321,45 @@ body.dark .sb-val{color:#c4a882}
 </div>
 <div class="sec"><div class="sech">自定义模板列表</div><div id="tplList"></div></div>
 </div>
-
 <div class="mpg" id="m_user">
 <div class="sec"><div class="sech">我的角色卡</div>
 <div id="up_card"></div>
 <div id="up_form">
-<label class="lb">角色名</label><input class="inp" id="up_n" placeholder="小孟">
-<label class="lb">性别</label><input class="inp" id="up_g" placeholder="女/男">
+<label class="lb">角色名</label><input class="inp" id="up_n" placeholder="谢意">
+<label class="lb">性别</label><input class="inp" id="up_g" placeholder="男/女">
 <label class="lb">外貌</label><textarea class="ta" id="up_a" placeholder="黑色长发..." style="height:60px"></textarea>
 <label class="lb">性格</label><textarea class="ta" id="up_p" placeholder="温柔体贴..." style="height:60px"></textarea>
 <label class="lb">背景</label><textarea class="ta" id="up_b" placeholder="大学生..." style="height:60px"></textarea>
-<label class="lb">与角色的关系</label><textarea class="ta" id="up_r" placeholder="小明的朋友..." style="height:60px"></textarea>
+<label class="lb">与角色的关系</label><textarea class="ta" id="up_r" placeholder="方亦楷的女朋友..." style="height:60px"></textarea>
 <label class="lb">说话风格</label><input class="inp" id="up_s" placeholder="活泼，爱用语气词">
 <label class="lb">其他补充</label><textarea class="ta" id="up_o" placeholder="任何额外设定..." style="height:60px"></textarea>
 <button class="btn" onclick="svUser()">保存</button>
 </div>
 </div>
 </div>
-
-<div class="mpg" id="m4">
+<div class="mpg" id="m4">
 <div class="sec"><div class="sech">自动摘要</div>
 <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="font-size:12px;color:#6b6460">启用自动摘要</span><label class="tgl"><input type="checkbox" id="mem_ae" onchange="svMemCfg()"><span class="sl"></span></label></div>
 <label class="lb">每隔几轮自动摘要</label><input class="inp" id="mem_ai" type="number" value="5" min="2" max="20" style="width:80px">
-<button class="btn" onclick="manualSum()">立即摘要</button><button class="btn o" onclick="expAutoMem()">导出摘要</button><div id="autoMemList"></div></div>
+<button class="btn" onclick="manualSum()">立即摘要</button><button class="btn o" onclick="expAutoMem()">导出摘要</button><div id="autoMemList"></div></div>
 <div class="sec"><div class="sech">手动笔记</div>
 <textarea class="ta" id="mem_mt" placeholder="记下重要信息..." style="height:60px"></textarea>
 <button class="btn" onclick="addManualMem()">添加</button><div id="manMemList"></div></div>
 </div>
-
 <div class="mpg" id="m5">
 <div class="sec"><div class="sech">自定义提示词</div>
-<p style="font-size:11px;color:#a09890;margin-bottom:10px;line-height:1.6">插入到系统提示词之后、世界书之前</p>
+<p style="font-size:11px;color:#a09890;margin-bottom:10px;line-height:1.6">插入到系统提示词之后、世界书之前</p >
 <textarea class="ta" id="upr" placeholder="- 文风要求&#10;- 字数限制" style="height:200px"></textarea>
 <button class="btn" onclick="svUpr()">保存</button></div>
 </div>
-
 <div class="mpg" id="m6">
 <div class="sec"><div class="sech">存档管理</div><div id="svList"></div></div>
 <div class="sec"><div class="sech">剧情回放</div><div id="rpList"></div></div>
 </div>
-
 <div class="mpg" id="m7">
 <div class="sec"><div class="sech">故事数据</div>
 <button class="btn o" onclick="expAll()">导出全部数据</button><button class="btn o" onclick="impAll()">导入全部数据</button><button class="btn o" onclick="clrChat()">清空对话</button><button class="btn d" onclick="rstStory()">重置本故事</button></div>
 </div>
-
 </div></div></div>
 
 <script>
@@ -373,7 +375,7 @@ function GLD(k,d){var v=CACHE[GK+k];return v!==undefined?v:d}
 function GSV(k,v){CACHE[GK+k]=v;idbSet(GK+k,v)}
 function LD(k,d){var v=CACHE[SK()+k];return v!==undefined?v:d}
 function SV(k,v){CACHE[SK()+k]=v;idbSet(SK()+k,v)}
-var $=function(id){return document.getElementById(id)};window.$=$;
+var $=function(id){return document.getElementById(id)};window.$=$;window.syncModel=syncModel;
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
 var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP,apiPresets;
 var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw='';
