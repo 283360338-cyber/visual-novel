@@ -375,7 +375,7 @@ function GLD(k,d){var v=CACHE[GK+k];return v!==undefined?v:d}
 function GSV(k,v){CACHE[GK+k]=v;idbSet(GK+k,v)}
 function LD(k,d){var v=CACHE[SK()+k];return v!==undefined?v:d}
 function SV(k,v){CACHE[SK()+k]=v;idbSet(SK()+k,v)}
-var $=function(id){return document.getElementById(id)};window.$=$;window.syncModel=syncModel;
+var $=function(id){return document.getElementById(id)};window.$=$;
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
 var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP,apiPresets;
 var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw='';
