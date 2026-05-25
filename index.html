@@ -736,13 +736,7 @@ if(hs||hb)base+=at;
 var tplInfo='\n## 可用模板\n\n';var hasTpl=false;for(var n in BTPL){hasTpl=true;tplInfo+='模板名：'+n+'\n'+BTPL[n].vars+'\n\n'}for(var n in tpls){hasTpl=true;tplInfo+='模板名：'+n+'\n'+(tpls[n].vars||'')+'\n\n'}if(hasTpl)base+=tplInfo;
 return base}
 
-function buildMsgs(userMsg){var msgs=[{role:'system',content:buildSys()}];var stCtx='';if(gameState){var d=new Date(gameState.time);stCtx='## 当前故事时间
-'+d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 '+WEEK_NAMES[d.getDay()]+' '+MONTH_PAD(d.getHours())+':'+MONTH_PAD(d.getMinutes())+'
-
-';var pending=gameState.todos.filter(function(t){return !t.done});if(pending.length){stCtx+='## 当前待办事项
-';for(var ti=0;ti<pending.length;ti++)stCtx+='- '+pending[ti].text+'
-';stCtx+='
-'}}if(stCtx)msgs.push({role:'system',content:stCtx});var mc='';if(mem.auto.length)mc+='## 剧情摘要\n'+mem.auto.join('\n\n')+'\n\n';if(mem.manual.length)mc+='## 重要信息\n'+mem.manual.join('\n')+'\n\n';if(mc)msgs.push({role:'system',content:mc});var cl=api.contextLen||6;var s=Math.max(0,hi.length-cl*2);msgs=msgs.concat(hi.slice(s));msgs.push({role:'user',content:userMsg});return msgs}
+function buildMsgs(userMsg){var msgs=[{role:'system',content:buildSys()}];var stCtx='';if(gameState){var d=new Date(gameState.time);stCtx='## 当前故事时间\n'+d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 '+WEEK_NAMES[d.getDay()]+' '+MONTH_PAD(d.getHours())+':'+MONTH_PAD(d.getMinutes())+'\n\n';var pending=gameState.todos.filter(function(t){return !t.done});if(pending.length){stCtx+='## 当前待办事项\n';for(var ti=0;ti<pending.length;ti++)stCtx+='- '+pending[ti].text+'\n';stCtx+='\n'}}if(stCtx)msgs.push({role:'system',content:stCtx});var mc='';if(mem.auto.length)mc+='## 剧情摘要\n'+mem.auto.join('\n\n')+'\n\n';if(mc)msgs.push({role:'system',content:mc});var cl=api.contextLen||6;var s=Math.max(0,hi.length-cl*2);msgs=msgs.concat(hi.slice(s));msgs.push({role:'user',content:userMsg});return msgs}
 
 // STATUS BAR
 var WEEK_NAMES=['周日','周一','周二','周三','周四','周五','周六'];
