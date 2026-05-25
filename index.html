@@ -147,155 +147,153 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 .toast{position:fixed;top:40px;left:50%;transform:translateX(-50%);background:rgba(45,52,54,.88);color:#fff;padding:8px 22px;border-radius:20px;font-size:12px;z-index:200;animation:ti .3s}
 @keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .empty{color:#C5CCD3;font-size:12px;text-align:center;padding:30px 0;font-style:italic}
-/* ===== 模式切换 Tab ===== */
-.mode-tabs{display:flex;background:rgba(184,210,216,.1);border:1px solid rgba(184,210,216,.2);border-radius:14px;padding:4px;margin:16px 20px 0;gap:4px}
-.mode-tab{flex:1;padding:10px 0;border:none;background:transparent;font-size:13px;color:#9CA3AF;font-weight:500;cursor:pointer;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px}
-.mode-tab.on{background:#fff;color:#2D3436;box-shadow:0 1px 3px rgba(184,210,216,.25);font-weight:600}
-.mode-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+/* ===== 模式 Tab ===== */
+.mtb{display:flex;background:rgba(184,210,216,.08);border:1px solid rgba(184,210,216,.18);border-radius:14px;padding:4px;margin:14px 20px 0;gap:4px}
+.mtb button{flex:1;padding:9px 0;border:none;background:transparent;font-size:13px;color:#9CA3AF;font-weight:500;cursor:pointer;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px;letter-spacing:.5px}
+.mtb button.on{background:#fff;color:#2D3436;box-shadow:0 1px 3px rgba(184,210,216,.25);font-weight:600}
+.mtb button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+body.dark .mtb{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+body.dark .mtb button.on{background:#1a1a1d;color:#e8e8ea}
 
-/* ===== 小手机 ===== */
-#phone{display:none;width:100%;height:100vh;flex-direction:column;background:linear-gradient(180deg,#F8F8F6 0%,#E5EDEF 50%,#D4E2E5 100%);overflow:hidden;position:relative}
-#phone.on{display:flex}
-#phone::before{content:'';position:absolute;top:-120px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(184,210,216,.45),transparent 70%);pointer-events:none}
-#phone::after{content:'';position:absolute;bottom:-100px;left:-100px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);pointer-events:none}
-
-.ph-stat{padding:18px 22px 0;display:flex;justify-content:space-between;align-items:center;z-index:2;position:relative}
-.ph-stat-l{font-size:14px;font-weight:600;color:#2D3436;letter-spacing:.3px}
-.ph-stat-r{display:flex;align-items:center;gap:6px}
-.ph-sig{display:flex;gap:2px;align-items:flex-end;height:10px}
-.ph-sig span{width:3px;background:#2D3436;border-radius:.5px;opacity:.85}
-.ph-sig span:nth-child(1){height:3px}
-.ph-sig span:nth-child(2){height:5px}
-.ph-sig span:nth-child(3){height:7px}
-.ph-sig span:nth-child(4){height:9px}
-.ph-batt{width:24px;height:11px;border:1px solid rgba(45,52,54,.55);border-radius:3px;position:relative;padding:1px}
-.ph-batt::after{content:'';position:absolute;right:-3px;top:3px;width:2px;height:5px;background:rgba(45,52,54,.55);border-radius:0 1px 1px 0}
-.ph-batt-fill{height:100%;width:78%;background:rgba(45,52,54,.85);border-radius:1px}
-
-.ph-back{position:absolute;top:48px;left:14px;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.3);border-radius:18px;padding:7px 14px 7px 10px;display:flex;align-items:center;gap:5px;cursor:pointer;z-index:5;font-size:11px;color:#7A9DA8;font-weight:600;box-shadow:0 2px 8px rgba(139,170,181,.1)}
-.ph-back:active{background:rgba(255,255,255,.85);transform:scale(.96)}
-.ph-back svg{width:13px;height:13px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
-
-.ph-clock{padding:50px 24px 0;text-align:center;z-index:2;position:relative}
-.ph-time{font-size:78px;font-weight:200;color:#2D3436;letter-spacing:-3px;line-height:1;font-family:-apple-system,'SF Pro Display',sans-serif}
-.ph-date{font-size:14px;color:rgba(45,52,54,.6);margin-top:10px;font-weight:500;letter-spacing:1px}
-
-.ph-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:24px;z-index:2;position:relative}
-.ph-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px 8px;padding:0 22px 28px}
-.ph-app{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:transform .15s}
+/* ===== 手机主屏 ===== */
+#ph{display:none;width:100%;height:100vh;flex-direction:column;background:linear-gradient(165deg,#F5F2EE 0%,#E8EFF1 45%,#D9E5E8 100%);overflow:hidden;position:relative}
+#ph.on{display:flex}
+#ph::before{content:'';position:absolute;top:-140px;right:-100px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(184,210,216,.5),transparent 65%);pointer-events:none}
+#ph::after{content:'';position:absolute;bottom:-120px;left:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,240,.55),transparent 65%);pointer-events:none}
+.ph-sb{padding:16px 24px 0;display:flex;justify-content:space-between;align-items:center;z-index:3;position:relative}
+.ph-sbl{font-size:14px;font-weight:600;color:#2D3436;letter-spacing:.3px}
+.ph-sbr{display:flex;align-items:center;gap:6px}
+.ph-sg{display:flex;gap:2px;align-items:flex-end;height:10px}
+.ph-sg i{display:block;width:3px;background:#2D3436;border-radius:.5px;opacity:.85}
+.ph-sg i:nth-child(1){height:3px}.ph-sg i:nth-child(2){height:5px}.ph-sg i:nth-child(3){height:7px}.ph-sg i:nth-child(4){height:9px}
+.ph-bt{width:24px;height:11px;border:1px solid rgba(45,52,54,.55);border-radius:3px;position:relative;padding:1px}
+.ph-bt::after{content:'';position:absolute;right:-3px;top:3px;width:2px;height:5px;background:rgba(45,52,54,.55);border-radius:0 1px 1px 0}
+.ph-bt i{display:block;height:100%;width:78%;background:rgba(45,52,54,.85);border-radius:1px}
+.ph-hb{position:absolute;top:46px;left:14px;background:rgba(255,255,255,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:7px 13px 7px 9px;display:flex;align-items:center;gap:5px;cursor:pointer;z-index:5;font-size:11px;color:#7A9DA8;font-weight:600;box-shadow:0 2px 10px rgba(139,170,181,.12)}
+.ph-hb:active{background:rgba(255,255,255,.85);transform:scale(.96)}
+.ph-hb svg{width:13px;height:13px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
+.ph-cl{padding:60px 24px 0;text-align:center;z-index:2;position:relative}
+.ph-clt{font-size:82px;font-weight:200;color:#2D3436;letter-spacing:-3.5px;line-height:1;font-family:-apple-system,'SF Pro Display',sans-serif}
+.ph-cld{font-size:14px;color:rgba(45,52,54,.6);margin-top:12px;font-weight:500;letter-spacing:1.2px}
+.ph-bd{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:22px;z-index:2;position:relative}
+.ph-ag{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 8px;padding:0 24px 30px}
+.ph-app{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:transform .15s}
 .ph-app:active{transform:scale(.9)}
-.ph-app-ic{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 14px rgba(139,170,181,.12);display:flex;align-items:center;justify-content:center;transition:all .2s}
-.ph-app-ic svg{width:28px;height:28px;stroke:#7A9DA8;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ph-app-nm{font-size:11px;color:#2D3436;font-weight:500}
+.ph-aic{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.85);box-shadow:0 4px 16px rgba(139,170,181,.13);display:flex;align-items:center;justify-content:center}
+.ph-aic svg{width:28px;height:28px;stroke:#7A9DA8;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ph-an{font-size:11px;color:#2D3436;font-weight:500}
+.ph-dk{margin:0 18px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.65);border-radius:26px;padding:12px 8px;display:flex;justify-content:space-around;box-shadow:0 8px 28px rgba(139,170,181,.16)}
+.ph-dk .ph-app{gap:0}
+.ph-dk .ph-aic{width:52px;height:52px;background:rgba(255,255,255,.55);border:none}
+.ph-dk .ph-an{display:none}
 
-.ph-dock{margin:0 18px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.6);border-radius:26px;padding:12px 8px;display:flex;justify-content:space-around;box-shadow:0 8px 28px rgba(139,170,181,.15)}
-.ph-dock .ph-app{gap:0}
-.ph-dock .ph-app-ic{width:52px;height:52px;background:rgba(255,255,255,.5);border:none}
-.ph-dock .ph-app-nm{display:none}
+/* App 屏幕通用骨架 */
+.aps{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#FAFAF8 0%,#F0F4F5 100%);z-index:10;flex-direction:column}
+.aps.on{display:flex}
+.ap-hd{padding:46px 14px 12px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,210,216,.15);position:relative;z-index:2}
+.ap-bk{background:none;border:none;cursor:pointer;display:flex;align-items:center;color:#7A9DA8;padding:5px 4px}
+.ap-bk:active{opacity:.5}
+.ap-bk svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ap-tt{flex:1;text-align:center;font-size:16px;font-weight:600;color:#2D3436;margin-right:38px;letter-spacing:.3px}
+.ap-bd{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ap-bd::-webkit-scrollbar{width:0}
+.ap-add{position:absolute;right:14px;top:46px;background:rgba(184,210,216,.18);border:none;border-radius:18px;width:32px;height:32px;cursor:pointer;color:#7A9DA8;display:flex;align-items:center;justify-content:center}
+.ap-add:active{background:rgba(184,210,216,.35);transform:scale(.93)}
+.ap-add svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4}
 
-/* ===== 手机 App 通用骨架 ===== */
-.ph-app-screen{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#F8F8F6 0%,#EDF3F4 100%);z-index:10;flex-direction:column}
-.ph-app-screen.on{display:flex}
-.ph-app-hdr{padding:48px 16px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,210,216,.18);position:relative;z-index:2}
-.ph-app-bk{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:3px;color:#7A9DA8;font-size:14px;padding:4px 6px;font-weight:500}
-.ph-app-bk:active{opacity:.6}
-.ph-app-bk svg{width:18px;height:18px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
-.ph-app-ttl{flex:1;text-align:center;font-size:16px;font-weight:600;color:#2D3436;margin-right:40px}
-.ph-app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 0 20px}
-.ph-app-body::-webkit-scrollbar{width:0}
-
-/* ===== 联系人列表 ===== */
-.ct-empty{padding:80px 30px;text-align:center;color:#9CA3AF;font-size:13px;line-height:2}
-.ct-empty .em-ic{font-size:42px;margin-bottom:16px;opacity:.4}
-.ct-empty .em-tip{margin-top:14px;font-size:11px;color:#C5CCD3}
-
-.ct-item{display:flex;align-items:center;gap:13px;padding:13px 18px;cursor:pointer;transition:background .15s;position:relative}
-.ct-item:active{background:rgba(184,210,216,.1)}
-.ct-item::after{content:'';position:absolute;bottom:0;left:75px;right:18px;height:1px;background:rgba(184,210,216,.13)}
-.ct-item:last-child::after{display:none}
-
-.ct-av{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:600;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);box-shadow:0 2px 6px rgba(139,170,181,.25);overflow:hidden}
+/* 联系人 */
+.ct-emp{padding:90px 30px 30px;text-align:center;color:#9CA3AF;font-size:13px;line-height:1.9}
+.ct-emp .em-ic{font-size:48px;margin-bottom:18px;opacity:.5}
+.ct-emp .em-tip{margin-top:14px;font-size:11px;color:#C5CCD3;line-height:1.7}
+.ct-it{display:flex;align-items:center;gap:13px;padding:13px 18px;cursor:pointer;transition:background .15s;position:relative}
+.ct-it:active{background:rgba(184,210,216,.12)}
+.ct-it::after{content:'';position:absolute;bottom:0;left:75px;right:18px;height:1px;background:rgba(184,210,216,.12)}
+.ct-it:last-child::after{display:none}
+.ct-av{width:50px;height:50px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;font-weight:600;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);box-shadow:0 2px 8px rgba(139,170,181,.22);overflow:hidden;position:relative}
 .ct-av img{width:100%;height:100%;object-fit:cover}
-
+.ct-av .dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;border-radius:50%;background:#7BC47F;border:2px solid #FAFAF8;box-shadow:0 0 4px rgba(123,196,127,.4)}
 .ct-info{flex:1;min-width:0}
-.ct-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
-.ct-name{font-size:15px;font-weight:600;color:#2D3436;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
-.ct-time{font-size:10px;color:#C5CCD3;flex-shrink:0;font-weight:500}
-.ct-preview{font-size:12px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px;line-height:1.4}
-.ct-unread{background:#E88080;color:#fff;font-size:10px;font-weight:600;border-radius:9px;padding:1px 6px;min-width:18px;text-align:center;margin-left:6px}
+.ct-rw{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;gap:8px}
+.ct-nm{font-size:15px;font-weight:600;color:#2D3436;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ct-tm{font-size:10px;color:#B5BAC0;flex-shrink:0;font-weight:500}
+.ct-pv{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ct-pt{font-size:12.5px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;line-height:1.45}
+.ct-ur{background:#FF6B6B;color:#fff;font-size:10px;font-weight:600;border-radius:10px;padding:1px 7px;min-width:18px;text-align:center;flex-shrink:0;box-shadow:0 1px 3px rgba(255,107,107,.3)}
 
-/* ===== 联系人列表头部按钮 ===== */
-.ph-app-add{position:absolute;right:14px;top:48px;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.3);border-radius:18px;padding:6px 10px;cursor:pointer;color:#7A9DA8;display:flex;align-items:center;gap:3px;font-size:18px;font-weight:300;line-height:1}
-.ph-app-add:active{background:rgba(255,255,255,.85);transform:scale(.95)}
-
-/* ===== 通讯录（添加好友） ===== */
-.cb-tip{font-size:11px;color:#9CA3AF;text-align:center;padding:14px 20px 6px;line-height:1.7}
-.cb-item{display:flex;align-items:center;gap:13px;padding:13px 18px;cursor:pointer;transition:background .15s}
-.cb-item:active{background:rgba(184,210,216,.1)}
+/* 通讯录 */
+.cb-tip{font-size:11.5px;color:#9CA3AF;text-align:center;padding:16px 22px 8px;line-height:1.7;background:rgba(184,210,216,.05)}
+.cb-it{display:flex;align-items:center;gap:13px;padding:13px 18px;border-bottom:1px solid rgba(184,210,216,.1)}
 .cb-info{flex:1;min-width:0}
-.cb-name{font-size:14px;font-weight:600;color:#2D3436;margin-bottom:2px}
-.cb-desc{font-size:11px;color:#9CA3AF;line-height:1.4;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical}
-.cb-add{background:linear-gradient(135deg,#B8D2D8,#8BAAB5);color:#fff;border:none;border-radius:14px;padding:6px 14px;font-size:11px;font-weight:600;cursor:pointer;flex-shrink:0;box-shadow:0 2px 6px rgba(139,170,181,.3)}
-.cb-add:active{transform:scale(.93)}
-.cb-added{background:rgba(184,210,216,.15);color:#9CA3AF;border:1px solid rgba(184,210,216,.3);border-radius:14px;padding:5px 12px;font-size:11px;font-weight:500;flex-shrink:0;cursor:default}
+.cb-nm{font-size:14.5px;font-weight:600;color:#2D3436;margin-bottom:3px}
+.cb-ds{font-size:11.5px;color:#9CA3AF;line-height:1.45;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical}
+.cb-bn{background:linear-gradient(135deg,#9EC3CC,#7BA7B3);color:#fff;border:none;border-radius:14px;padding:7px 16px;font-size:11.5px;font-weight:600;cursor:pointer;flex-shrink:0;box-shadow:0 2px 6px rgba(139,170,181,.3);letter-spacing:.5px}
+.cb-bn:active{transform:scale(.93)}
+.cb-bn.added{background:rgba(184,210,216,.18);color:#9CA3AF;box-shadow:none;cursor:default}
 
-/* ===== 聊天页 ===== */
-#ph-chat{background:linear-gradient(180deg,#F8F8F6,#EDF3F4)}
-.cht-hdr{padding:48px 14px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.75);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,210,216,.18)}
-.cht-bk{background:none;border:none;cursor:pointer;color:#7A9DA8;display:flex;align-items:center;padding:4px 6px}
-.cht-bk svg{width:20px;height:20px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
-.cht-name{flex:1;text-align:center;font-size:15px;font-weight:600;color:#2D3436;margin-right:32px}
-.cht-name .st{display:block;font-size:10px;font-weight:400;color:#9CA3AF;margin-top:1px}
+/* 聊天 */
+.ch-hd{padding:46px 14px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,210,216,.15)}
+.ch-tt{flex:1;text-align:center;font-size:15.5px;font-weight:600;color:#2D3436;margin-right:32px;line-height:1.2}
+.ch-tt .st{display:block;font-size:10.5px;font-weight:400;color:#9CA3AF;margin-top:2px;letter-spacing:.3px}
+.ch-bd{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 14px 8px;display:flex;flex-direction:column;gap:4px}
+.ch-bd::-webkit-scrollbar{width:0}
+.ch-tm{text-align:center;font-size:10.5px;color:#B5BAC0;margin:14px 0 6px;font-weight:500}
+.ch-rw{display:flex;align-items:flex-end;gap:7px;max-width:80%;margin-top:5px}
+.ch-rw.me{align-self:flex-end;flex-direction:row-reverse}
+.ch-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);overflow:hidden;align-self:flex-start;margin-top:1px;box-shadow:0 1px 3px rgba(139,170,181,.2)}
+.ch-av img{width:100%;height:100%;object-fit:cover}
+.ch-rw.me .ch-av{background:linear-gradient(135deg,#A8C8D2,#88AEB8)}
+.ch-bb{padding:9px 14px;border-radius:18px;font-size:14.5px;line-height:1.55;color:#2D3436;background:#fff;box-shadow:0 1px 2px rgba(139,170,181,.08);word-wrap:break-word;animation:bbIn .28s ease}
+.ch-rw.me .ch-bb{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff}
+@keyframes bbIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.ch-img{max-width:200px;max-height:240px;border-radius:14px;display:block;cursor:pointer}
+.ch-bb.imb{padding:3px;background:transparent !important;box-shadow:none}
+.ch-emp{flex:1;display:flex;align-items:center;justify-content:center;color:#C5CCD3;font-size:12.5px;font-style:italic;padding:30px}
+.ch-typ{align-self:flex-start;display:flex;gap:4px;background:#fff;border-radius:14px;padding:11px 14px;margin:5px 0 0 41px;box-shadow:0 1px 2px rgba(139,170,181,.08)}
+.ch-typ i{display:block;width:6px;height:6px;border-radius:50%;background:#B8D2D8;animation:tpd 1.4s infinite}
+.ch-typ i:nth-child(2){animation-delay:.2s}
+.ch-typ i:nth-child(3){animation-delay:.4s}
+@keyframes tpd{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+.ch-ib{padding:9px 12px 22px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-top:1px solid rgba(184,210,216,.15);display:flex;gap:8px;align-items:flex-end}
+.ch-pl{width:34px;height:34px;border-radius:50%;background:rgba(184,210,216,.18);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#7A9DA8}
+.ch-pl:active{transform:scale(.9)}
+.ch-pl svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.ch-in{flex:1;background:rgba(184,210,216,.1);border:1px solid rgba(184,210,216,.22);border-radius:18px;padding:9px 14px;font-size:14px;color:#2D3436;outline:none;resize:none;line-height:1.45;max-height:90px;font-family:inherit}
+.ch-in:focus{border-color:#8BAAB5;background:#fff}
+.ch-sd{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);border:none;color:#fff;border-radius:50%;width:36px;height:36px;cursor:pointer;flex-shrink:0;box-shadow:0 2px 8px rgba(139,170,181,.3);display:flex;align-items:center;justify-content:center;padding:0}
+.ch-sd:active{transform:scale(.92)}
+.ch-sd svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ch-tl{display:none;background:rgba(255,255,255,.97);border-top:1px solid rgba(184,210,216,.15);padding:14px 22px 22px;gap:22px}
+.ch-tl.on{display:flex}
+.ch-tli{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.ch-tlc{width:48px;height:48px;border-radius:14px;background:rgba(184,210,216,.13);display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.ch-tli:active .ch-tlc{transform:scale(.92)}
+.ch-tlc svg{width:22px;height:22px;stroke:#7A9DA8;fill:none;stroke-width:1.8}
+.ch-tln{font-size:10.5px;color:#6B7280}
 
-.cht-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 12px 8px;display:flex;flex-direction:column;gap:3px}
-.cht-body::-webkit-scrollbar{width:0}
+/* 图片预览 */
+.ph-iv{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:200;align-items:center;justify-content:center;cursor:pointer;padding:20px}
+.ph-iv.on{display:flex}
+.ph-iv img{max-width:100%;max-height:100%;border-radius:6px}
 
-.cht-tm{text-align:center;font-size:10px;color:#C5CCD3;margin:14px 0 6px;font-weight:500}
-
-.cht-row{display:flex;align-items:flex-end;gap:7px;max-width:78%;margin-top:4px}
-.cht-row.me{align-self:flex-end;flex-direction:row-reverse}
-.cht-av{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);overflow:hidden;align-self:flex-start;margin-top:1px}
-.cht-row.me .cht-av{background:linear-gradient(135deg,#9EC3CC,#7BA7B3)}
-
-.cht-bub{padding:9px 14px;border-radius:18px;font-size:14px;line-height:1.55;color:#2D3436;background:#fff;border:1px solid rgba(184,210,216,.15);box-shadow:0 1px 2px rgba(139,170,181,.06);word-wrap:break-word;animation:bubIn .3s ease}
-.cht-row.me .cht-bub{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff;border-color:transparent}
-@keyframes bubIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-.cht-img{max-width:200px;max-height:240px;border-radius:14px;display:block;cursor:pointer}
-.cht-row.me .cht-bub.img-bub{padding:3px;background:transparent;border:none;box-shadow:none}
-.cht-bub.img-bub{padding:3px;background:transparent;border:none;box-shadow:none}
-
-.cht-empty{flex:1;display:flex;align-items:center;justify-content:center;color:#C5CCD3;font-size:12px;font-style:italic}
-
-.cht-typing{align-self:flex-start;display:flex;gap:4px;background:#fff;border:1px solid rgba(184,210,216,.15);border-radius:14px;padding:9px 14px;margin-top:4px}
-.cht-typing span{width:6px;height:6px;border-radius:50%;background:#B8D2D8;animation:tdot 1.4s infinite}
-.cht-typing span:nth-child(2){animation-delay:.2s}
-.cht-typing span:nth-child(3){animation-delay:.4s}
-@keyframes tdot{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
-
-.cht-ibar{padding:8px 12px 22px;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-top:1px solid rgba(184,210,216,.18);display:flex;gap:8px;align-items:flex-end}
-.cht-plus{width:34px;height:34px;border-radius:50%;background:rgba(184,210,216,.15);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#7A9DA8;font-size:22px;font-weight:300;line-height:1}
-.cht-plus:active{transform:scale(.9)}
-.cht-inp{flex:1;background:rgba(184,210,216,.1);border:1px solid rgba(184,210,216,.25);border-radius:18px;padding:9px 14px;font-size:14px;color:#2D3436;outline:none;resize:none;line-height:1.4;max-height:90px;font-family:inherit}
-.cht-inp:focus{border-color:#8BAAB5;background:#fff}
-.cht-snd{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);border:none;color:#fff;border-radius:18px;padding:0 16px;height:34px;font-size:13px;cursor:pointer;font-weight:500;flex-shrink:0;box-shadow:0 2px 6px rgba(139,170,181,.25)}
-.cht-snd:active{transform:scale(.95)}
-.cht-snd:disabled{opacity:.5}
-
-/* + 号展开的工具面板 */
-.cht-tools{display:none;background:rgba(255,255,255,.95);border-top:1px solid rgba(184,210,216,.18);padding:14px 18px 24px;gap:18px}
-.cht-tools.on{display:flex}
-.cht-tool{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
-.cht-tool-ic{width:48px;height:48px;border-radius:14px;background:rgba(184,210,216,.15);display:flex;align-items:center;justify-content:center;transition:transform .15s}
-.cht-tool:active .cht-tool-ic{transform:scale(.92)}
-.cht-tool-ic svg{width:22px;height:22px;stroke:#7A9DA8;fill:none;stroke-width:1.8}
-.cht-tool-nm{font-size:10px;color:#6B7280}
-
-/* 图片预览全屏 */
-.cht-imgview{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:200;align-items:center;justify-content:center;cursor:pointer;padding:20px}
-.cht-imgview.on{display:flex}
-.cht-imgview img{max-width:100%;max-height:100%;border-radius:6px}
-
+/* 设置 */
+.st-sec{padding:20px 16px 6px;font-size:11px;color:#9CA3AF;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.st-grp{background:#fff;margin:0 14px 6px;border-radius:12px;overflow:hidden;border:1px solid rgba(184,210,216,.13)}
+.st-it{padding:13px 14px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#2D3436;cursor:pointer;border-bottom:1px solid rgba(184,210,216,.1)}
+.st-it:last-child{border-bottom:none}
+.st-it:active{background:rgba(184,210,216,.07)}
+.st-it .v{color:#9CA3AF;font-size:12.5px;display:flex;align-items:center;gap:4px}
+.st-it .v.on{color:#7BC47F}
+.st-it svg{width:14px;height:14px;stroke:#C5CCD3;fill:none;stroke-width:2.2}
+.st-form{padding:14px;background:#fff;margin:0 14px 6px;border-radius:12px;border:1px solid rgba(184,210,216,.13);display:none}
+.st-form.on{display:block}
+.st-form label{display:block;font-size:11px;color:#9CA3AF;margin-bottom:5px;margin-top:10px;letter-spacing:.3px}
+.st-form label:first-child{margin-top:0}
+.st-form input{width:100%;background:#FAFAF8;border:1px solid rgba(184,210,216,.25);border-radius:9px;padding:9px 12px;font-size:13px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box}
+.st-form input:focus{border-color:#8BAAB5;background:#fff}
+.st-fbn{display:flex;gap:8px;margin-top:14px}
+.st-fbn button{flex:1;padding:9px 0;border-radius:10px;font-size:13px;cursor:pointer;border:none;font-weight:500}
+.st-fbn .pr{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff;box-shadow:0 2px 6px rgba(139,170,181,.25)}
+.st-fbn .se{background:rgba(184,210,216,.15);color:#7A9DA8}
 
 /* ===== 状态栏 ===== */
 #statbar{position:absolute;top:12px;left:54px;right:54px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.25);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:10px;z-index:9;cursor:pointer;transition:all .2s;font-size:11px;color:#6B7280}
@@ -553,102 +551,64 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div id="app">
 <div id="home">
 <div class="hh"><button id="hamburger" onclick="openSB()" title="菜单"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#8BAAB5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><span class="hht">我的故事</span></div>
-<div class="mode-tabs">
-<button class="mode-tab on" id="mt-home" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>故事</button>
-<button class="mode-tab" id="mt-phone" onclick="switchMode('phone')"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>手机</button>
+<div class="mtb">
+<button id="mt-h" class="on" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>故事</button>
+<button id="mt-p" onclick="switchMode('phone')"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>手机</button>
 </div>
+
+
 
 <div id="hapi" style="display:none"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="window.ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型 <span style="color:#9CA3AF;font-size:10px;font-weight:normal">（点列表自动填入下方，可再编辑）</span></label> <div style="display:flex;gap:6px;margin-bottom:6px"> <select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="window.pickModel(this.value)"><option value="">点拉取后从此选择</option></select> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.fetchModels()">拉取</button> </div> <div style="display:flex;gap:6px;margin-bottom:10px"> <input class="inp" id="ha_m" placeholder="实际使用的模型名（可手动编辑）" style="margin-bottom:0;flex:1"> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.copyModel()">复制</button> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.clearModel()">清空</button> </div><label class="lb">温度 <span id="ha_tv" style="color:#8BAAB5;font-weight:600">0.85</span></label><input type="range" min="0" max="200" value="85" id="ha_temp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tv').textContent=(this.value/100).toFixed(2)"><label class="lb">Top-P <span id="ha_tpv" style="color:#8BAAB5;font-weight:600">1.00</span></label><input type="range" min="0" max="100" value="100" id="ha_tp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tpv').textContent=(this.value/100).toFixed(2)"><div style="display:flex;gap:10px;margin-bottom:10px"><div style="flex:1"><label class="lb">最大输出Token</label><input class="inp" id="ha_mt" type="number" value="4096" style="margin-bottom:0"></div><div style="flex:1"><label class="lb">上下文轮数</label><input class="inp" id="ha_cl" type="number" value="6" min="1" max="50" style="margin-bottom:0"></div></div><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svHA()">保存预设</button><button class="btn o" onclick="window.tsHA()">测试连接</button></div> <div style="margin-top:16px;padding-top:14px;border-top:1px dashed rgba(184,210,216,.3)"> <label class="lb" style="font-weight:600;color:#6B7280">摘要专用 API（可选，省钱）</label> <p style="font-size:11px;color:#9CA3AF;line-height:1.6;margin-bottom:8px">用便宜的小模型做摘要，主模型留给剧情。留空则和主模型共用</p> <label class="lb">摘要预设</label> <select class="inp" id="sum_sel" onchange="window.ldSumPreset()"><option value="">不启用 · 与主 API 共用</option></select> <label class="lb">API 地址</label><input class="inp" id="sum_u" placeholder="https://your-relay.com/v1"> <label class="lb">API Key</label><input class="inp" id="sum_k" type="password" placeholder="sk-..."> <label class="lb">模型名</label><input class="inp" id="sum_m" placeholder="gpt-4o-mini 或 gemini-2.5-flash"> <div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svSum()">保存摘要API</button><button class="btn o" onclick="window.tsSum()">测试摘要API</button><button class="btn d" onclick="window.dlSum()">清空</button></div> </div> </div>
 <div id="nsf" style="display:none"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
 <div class="hsl" id="storyList"></div>
 </div>
-<div id="phone">
-<div class="ph-stat">
-<div class="ph-stat-l" id="ph-stat-time">--:--</div>
-<div class="ph-stat-r"><div class="ph-sig"><span></span><span></span><span></span><span></span></div><div class="ph-batt"><div class="ph-batt-fill"></div></div></div>
+
+<div id="ph">
+<div class="ph-sb"><div class="ph-sbl" id="ph-st">--:--</div><div class="ph-sbr"><div class="ph-sg"><i></i><i></i><i></i><i></i></div><div class="ph-bt"><i></i></div></div></div>
+<button class="ph-hb" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>故事</button>
+<div class="ph-cl"><div class="ph-clt" id="ph-ct">--:--</div><div class="ph-cld" id="ph-cd">-- · --月--日</div></div>
+<div class="ph-bd">
+<div class="ph-ag">
+<div class="ph-app" onclick="phApp('msg')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="ph-an">消息</div></div>
+<div class="ph-app" onclick="phApp('cb')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="ph-an">通讯录</div></div>
+<div class="ph-app" onclick="phApp('photo')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="ph-an">相册</div></div>
+<div class="ph-app" onclick="phApp('set')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="ph-an">设置</div></div>
 </div>
-<button class="ph-back" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>故事</button>
-<div class="ph-clock">
-<div class="ph-time" id="ph-time-big">--:--</div>
-<div class="ph-date" id="ph-date-big">-- · --月--日</div>
+<div class="ph-dk">
+<div class="ph-app" onclick="phApp('call')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>
+<div class="ph-app" onclick="phApp('msg')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+<div class="ph-app" onclick="phApp('camera')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
 </div>
-<div class="ph-body">
-<div class="ph-apps">
-<div class="ph-app" onclick="phoneApp('msg')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="ph-app-nm">消息</div></div>
-<div class="ph-app" onclick="phoneApp('photo')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="ph-app-nm">相册</div></div>
-<div class="ph-app" onclick="phoneApp('note')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div><div class="ph-app-nm">备忘</div></div>
-<div class="ph-app" onclick="phoneApp('set')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="ph-app-nm">设置</div></div>
-</div>
-<div class="ph-dock">
-<div class="ph-app" onclick="phoneApp('call')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>
-<div class="ph-app" onclick="phoneApp('msg')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-<div class="ph-app" onclick="phoneApp('camera')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
-</div>
-</div>
-<div id="ph-msg" class="ph-app-screen">
-<div class="ph-app-hdr">
-<button class="ph-app-bk" onclick="closePhoneApp('ph-msg')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6"/></svg></button>
-<div class="ph-app-ttl">消息</div>
-<button class="ph-app-add" onclick="openPhoneApp('ph-cb');renderContactBook()" title="添加好友">+</button>
-</div>
-<div class="ph-app-body" id="ct-list"></div>
 </div>
 
-<div id="ph-cb" class="ph-app-screen">
-<div class="ph-app-hdr">
-<button class="ph-app-bk" onclick="closePhoneApp('ph-cb')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6"/></svg></button>
-<div class="ph-app-ttl">通讯录</div>
-</div>
-<div class="cb-tip">从所有故事的角色中挑选你想聊天的人</div>
-<div class="ph-app-body" id="cb-list"></div>
+<div id="a-msg" class="aps">
+<div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-msg')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">消息</div><button class="ap-add" onclick="phApp('cb')"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
+<div class="ap-bd" id="ct-list"></div>
 </div>
 
-<div id="ph-chat" class="ph-app-screen">
-<div class="cht-hdr">
-<button class="cht-bk" onclick="closePhoneApp('ph-chat')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6"/></svg></button>
-<div class="cht-name" id="cht-name">角色名<span class="st" id="cht-st">在线</span></div>
-</div>
-<div class="cht-body" id="cht-body"></div>
-<div class="cht-tools" id="cht-tools">
-<div class="cht-tool" onclick="chtPickImg()"><div class="cht-tool-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="cht-tool-nm">图片</div></div>
-<div class="cht-tool" onclick="chtClearChat()"><div class="cht-tool-ic"><svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></div><div class="cht-tool-nm">清空</div></div>
-</div>
-<div class="cht-ibar">
-<button class="cht-plus" onclick="chtToggleTools()">+</button>
-<textarea class="cht-inp" id="cht-inp" placeholder="说点什么..." rows="1"></textarea>
-<button class="cht-snd" id="cht-snd" onclick="chtSend()">发送</button>
-</div>
-<input type="file" id="cht-file" accept="image/*" style="display:none">
+<div id="a-cb" class="aps">
+<div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-cb')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">通讯录</div></div>
+<div class="cb-tip">从文游创建的所有角色中<br>挑选你想聊天的人</div>
+<div class="ap-bd" id="cb-list"></div>
 </div>
 
-<div class="cht-imgview" id="cht-imgview" onclick="this.classList.remove('on')"><img id="cht-imgview-src"></div>
+<div id="a-ch" class="aps">
+<div class="ch-hd"><button class="ap-bk" onclick="closeApp('a-ch')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ch-tt" id="ch-tt">角色名<span class="st">在线</span></div></div>
+<div class="ch-bd" id="ch-bd"></div>
+<div class="ch-tl" id="a-ch-tl">
+<div class="ch-tli" onclick="chPickImg()"><div class="ch-tlc"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="ch-tln">图片</div></div>
+<div class="ch-tli" onclick="chClear()"><div class="ch-tlc"><svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></div><div class="ch-tln">清空</div></div>
+</div>
+<div class="ch-ib"><button class="ch-pl" onclick="chTl()"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><textarea class="ch-in" id="ch-in" placeholder="说点什么..." rows="1"></textarea><button class="ch-sd" onclick="chSend()" title="发送"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
+<input type="file" id="ch-file" accept="image/*" style="display:none">
 </div>
 
-
-<div id="ph-chat" class="ph-app-screen">
-<div class="cht-hdr">
-<button class="cht-bk" onclick="closePhoneApp('ph-chat')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6"/></svg></button>
-<div class="cht-name" id="cht-name">角色名<span class="st" id="cht-st">在线</span></div>
-</div>
-<div class="cht-body" id="cht-body"></div>
-<div class="cht-tools" id="cht-tools">
-<div class="cht-tool" onclick="chtPickImg()"><div class="cht-tool-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="cht-tool-nm">图片</div></div>
-<div class="cht-tool" onclick="chtClearChat()"><div class="cht-tool-ic"><svg viewBox="0 0 24 24" fill="none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></div><div class="cht-tool-nm">清空</div></div>
-</div>
-<div class="cht-ibar">
-<button class="cht-plus" onclick="chtToggleTools()">+</button>
-<textarea class="cht-inp" id="cht-inp" placeholder="说点什么..." rows="1"></textarea>
-<button class="cht-snd" id="cht-snd" onclick="chtSend()">发送</button>
-</div>
-<input type="file" id="cht-file" accept="image/*" style="display:none">
+<div id="a-set" class="aps">
+<div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-set')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">设置</div></div>
+<div class="ap-bd" id="a-set-bd"></div>
 </div>
 
-<div class="cht-imgview" id="cht-imgview" onclick="this.classList.remove('on')"><img id="cht-imgview-src"></div>
-
-
-
-<div class="ph-app-body" id="ct-list"></div>
-</div>
+<div class="ph-iv" id="ph-iv" onclick="this.classList.remove('on')"><img id="ph-iv-src"></div>
 </div>
 
 <div id="gv">
@@ -798,49 +758,63 @@ var callMode=false,ntfTpl=null,ntfTimer=null;
 function loadGlobal(){api=GLD('api',{url:'',model:'',key:'',temp:0.85,topP:1,maxTokens:4096,contextLen:6});stories=GLD('stories',[]);apiPresets=GLD('apiPresets',[])}
 function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{});bgs=LD('bg',{});bgDesc=LD('bgd',{});wb=LD('wb',[]);wbId=LD('wbid',1);mem=LD('mem',{shortLen:6,autoEnabled:true,autoInterval:5,auto:[],manual:[],sumTo:0});upr=LD('upr','');hi=LD('hi',[]);rp=LD('rp',[]);svs=LD('svs',[null,null,null,null,null]);tc=LD('tc',0);tpls=LD('tpls',{});userP=LD('userp',{name:'',gender:'',appearance:'',personality:'',background:'',relation:'',style:'',other:''});gameState=LD('gameState',{time:Date.now(),todos:[],todoId:1})}
 
-// MODE SWITCH (文游 / 手机)
-window.switchMode=function(m){if(m==='phone'){$('home').style.display='none';$('phone').classList.add('on');$('mt-home').classList.remove('on');$('mt-phone').classList.add('on');updPhoneTime()}else{$('phone').classList.remove('on');$('home').style.display='flex';$('mt-home').classList.add('on');$('mt-phone').classList.remove('on')}};
-window.phoneApp=function(name){if(name==='msg'){openPhoneApp('ph-msg');renderContacts();return}var nm={photo:'相册',note:'备忘',set:'设置',call:'电话',camera:'相机'}[name]||name;toast('「'+nm+'」即将上线 ✨')}; window.openPhoneApp=function(id){$(id).classList.add('on')}; window.closePhoneApp=function(id){$(id).classList.remove('on')};
-// 手机聊天数据：所有故事共享，按角色名为 key
-function loadPhoneChats(){return GLD('phoneChats',{})}
-function savePhoneChats(d){GSV('phoneChats',d)}
-function getAllChars(){var allChars={};for(var i=0;i<stories.length;i++){var stCards=CACHE['vs_'+stories[i].id+'_cards'];if(stCards){for(var n in stCards)if(!allChars[n])allChars[n]=stCards[n]}}if(sid&&cards){for(var n in cards)if(!allChars[n])allChars[n]=cards[n]}return allChars}
+// ============ 小手机 ============
+window.switchMode=function(m){if(m==='phone'){$('home').style.display='none';$('ph').classList.add('on');$('mt-h').classList.remove('on');$('mt-p').classList.add('on');updPhTime()}else{$('ph').classList.remove('on');$('home').style.display='flex';$('mt-h').classList.add('on');$('mt-p').classList.remove('on')}};
+window.openApp=function(id){$(id).classList.add('on')};
+window.closeApp=function(id){$(id).classList.remove('on')};
+window.phApp=function(name){if(name==='msg'){openApp('a-msg');renderCT();return}if(name==='cb'){openApp('a-cb');renderCB();return}if(name==='set'){openApp('a-set');renderSet();return}toast(({photo:'相册',call:'电话',camera:'相机'}[name]||name)+' 暂未上线 ✨')};
 
-function renderContacts(){var allChars=getAllChars();var friends=GLD('phoneFriends',[]);var pc=loadPhoneChats();var fNames=friends.filter(function(n){return allChars[n]});if(fNames.length===0){$('ct-list').innerHTML='<div class="ct-empty"><div class="em-ic">💭</div>还没有好友<br>点右上角 + 从通讯录添加<div class="em-tip">先去「故事」里创建角色卡</div></div>';return}fNames.sort(function(a,b){var ta=pc[a]&&pc[a].msgs&&pc[a].msgs.length?pc[a].msgs[pc[a].msgs.length-1].t:0;var tb=pc[b]&&pc[b].msgs&&pc[b].msgs.length?pc[b].msgs[pc[b].msgs.length-1].t:0;return tb-ta});var h='';for(var i=0;i<fNames.length;i++){var n=fNames[i],chat=pc[n];var last='点击开始聊天',ts='';if(chat&&chat.msgs&&chat.msgs.length){var lm=chat.msgs[chat.msgs.length-1];if(lm.type==='img')last=(lm.from==='me'?'我：':'')+'[图片]';else last=(lm.from==='me'?'我：':'')+lm.text;if(last.length>30)last=last.substring(0,30)+'...';ts=fmtChatTime(lm.t)}var safeN=n.replace(/'/g,"\\'");h+='<div class="ct-item" onclick="openChat(\''+safeN+'\')"><div class="ct-av">'+n.charAt(0)+'</div><div class="ct-info"><div class="ct-row"><div class="ct-name">'+n+'</div><div class="ct-time">'+ts+'</div></div><div class="ct-preview">'+last+'</div></div></div>'}$('ct-list').innerHTML=h}
+function updPhTime(){var d=new Date(),pd=function(n){return n<10?'0'+n:''+n};var t=pd(d.getHours())+':'+pd(d.getMinutes());var w=['周日','周一','周二','周三','周四','周五','周六'];if($('ph-st'))$('ph-st').textContent=t;if($('ph-ct'))$('ph-ct').textContent=t;if($('ph-cd'))$('ph-cd').textContent=w[d.getDay()]+' · '+(d.getMonth()+1)+'月'+d.getDate()+'日'}
+setInterval(updPhTime,30000);
 
-function fmtChatTime(t){if(!t)return '';var d=new Date(t),now=new Date();var pd=function(n){return n<10?'0'+n:''+n};if(d.toDateString()===now.toDateString())return pd(d.getHours())+':'+pd(d.getMinutes());var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天';if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()}
+function loadCh(){return GLD('phChats',{})}
+function saveCh(d){GSV('phChats',d)}
+function loadFr(){return GLD('phFriends',[])}
+function saveFr(d){GSV('phFriends',d)}
+function loadAv(){return GLD('phAvs',{})}
+function loadPhApi(){return GLD('phApi',null)}
+function savePhApi(d){GSV('phApi',d)}
 
-window.renderContactBook=function(){var allChars=getAllChars();var friends=GLD('phoneFriends',[]);var names=Object.keys(allChars);if(names.length===0){$('cb-list').innerHTML='<div class="ct-empty"><div class="em-ic">📂</div>还没有任何角色<div class="em-tip">去「故事」→ 设置 → 角色，先创建角色卡</div></div>';return}var h='';for(var i=0;i<names.length;i++){var n=names[i],c=allChars[n];var isFriend=friends.indexOf(n)!==-1;var desc=c.personality||c.background||'';if(desc.length>40)desc=desc.substring(0,40)+'...';var safeN=n.replace(/'/g,"\\'");h+='<div class="cb-item"><div class="ct-av">'+n.charAt(0)+'</div><div class="cb-info"><div class="cb-name">'+n+'</div>'+(desc?'<div class="cb-desc">'+desc+'</div>':'')+'</div>';if(isFriend){h+='<button class="cb-added">已添加</button>'}else{h+='<button class="cb-add" onclick="addFriend(\''+safeN+'\')">添加</button>'}h+='</div>'}$('cb-list').innerHTML=h};
+function getAllChars(){var all={};for(var i=0;i<stories.length;i++){var c=CACHE['vs_'+stories[i].id+'_cards'];if(c){for(var n in c)if(!all[n])all[n]=c[n]}}if(sid&&cards){for(var n in cards)if(!all[n])all[n]=cards[n]}return all}
+function avHTML(name){var avs=loadAv();if(avs[name])return '<img src="'+avs[name]+'">';return name.charAt(0)}
+function fmtTm(t){if(!t)return '';var d=new Date(t),now=new Date(),pd=function(n){return n<10?'0'+n:''+n};if(d.toDateString()===now.toDateString())return pd(d.getHours())+':'+pd(d.getMinutes());var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天';if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()}
+function fmtFTm(t){var d=new Date(t),now=new Date(),pd=function(n){return n<10?'0'+n:''+n};var hm=pd(d.getHours())+':'+pd(d.getMinutes());if(d.toDateString()===now.toDateString())return hm;var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天 '+hm;if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()]+' '+hm;return (d.getMonth()+1)+'月'+d.getDate()+'日 '+hm}
+function escH(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
 
-window.addFriend=function(n){var friends=GLD('phoneFriends',[]);if(friends.indexOf(n)===-1){friends.push(n);GSV('phoneFriends',friends);toast(n+' 已添加为好友');renderContactBook()}};
+function renderCT(){var all=getAllChars(),frs=loadFr(),pc=loadCh();var fns=frs.filter(function(n){return all[n]});if(!fns.length){$('ct-list').innerHTML='<div class="ct-emp"><div class="em-ic">💌</div>还没有联系人<br>点右上角 + 从通讯录添加<div class="em-tip">先在「故事」里创建角色，<br>ta 们就会出现在通讯录中</div></div>';return}fns.sort(function(a,b){var ta=pc[a]&&pc[a].msgs&&pc[a].msgs.length?pc[a].msgs[pc[a].msgs.length-1].t:0;var tb=pc[b]&&pc[b].msgs&&pc[b].msgs.length?pc[b].msgs[pc[b].msgs.length-1].t:0;return tb-ta});var h='';for(var i=0;i<fns.length;i++){var n=fns[i],ch=pc[n],last='点击开始聊天',ts='',unread=0;if(ch&&ch.msgs&&ch.msgs.length){var lm=ch.msgs[ch.msgs.length-1];last=lm.type==='img'?(lm.from==='me'?'我：':'')+'[图片]':(lm.from==='me'?'我：':'')+lm.text;if(last.length>30)last=last.substring(0,30)+'...';ts=fmtTm(lm.t);unread=ch.unread||0}var sn=n.replace(/'/g,"\\'");h+='<div class="ct-it" onclick="openCh(\''+sn+'\')"><div class="ct-av">'+avHTML(n)+'<span class="dot"></span></div><div class="ct-info"><div class="ct-rw"><div class="ct-nm">'+n+'</div><div class="ct-tm">'+ts+'</div></div><div class="ct-pv"><div class="ct-pt">'+escH(last)+'</div>'+(unread?'<div class="ct-ur">'+unread+'</div>':'')+'</div></div></div>'}$('ct-list').innerHTML=h}
 
-var curChat=null;
-window.openChat=function(name){curChat=name;$('cht-name').firstChild.textContent=name;$('cht-st').textContent='在线';openPhoneApp('ph-chat');renderChatMessages();setTimeout(function(){var b=$('cht-body');b.scrollTop=b.scrollHeight},50);$('cht-tools').classList.remove('on')};
+window.renderCB=function(){var all=getAllChars(),frs=loadFr(),names=Object.keys(all);if(!names.length){$('cb-list').innerHTML='<div class="ct-emp"><div class="em-ic">📂</div>还没有任何角色<div class="em-tip">去「故事」→ 设置 → 角色，<br>先创建角色卡</div></div>';return}var h='';for(var i=0;i<names.length;i++){var n=names[i],c=all[n],isF=frs.indexOf(n)!==-1;var ds=c.personality||c.background||'';if(ds.length>42)ds=ds.substring(0,42)+'...';var sn=n.replace(/'/g,"\\'");h+='<div class="cb-it"><div class="ct-av">'+avHTML(n)+'</div><div class="cb-info"><div class="cb-nm">'+n+'</div>'+(ds?'<div class="cb-ds">'+escH(ds)+'</div>':'')+'</div>';h+=isF?'<button class="cb-bn added">已添加</button>':'<button class="cb-bn" onclick="addFr(\''+sn+'\')">添加</button>';h+='</div>'}$('cb-list').innerHTML=h};
+window.addFr=function(n){var frs=loadFr();if(frs.indexOf(n)===-1){frs.push(n);saveFr(frs);toast(n+' 已加为好友');renderCB()}};
 
-function renderChatMessages(){var pc=loadPhoneChats();var chat=pc[curChat];if(!chat||!chat.msgs||!chat.msgs.length){$('cht-body').innerHTML='<div class="cht-empty">还没有消息，发个 hi 吧～</div>';return}var h='',lastTime=0;for(var i=0;i<chat.msgs.length;i++){var m=chat.msgs[i];if(!lastTime||m.t-lastTime>5*60*1000){h+='<div class="cht-tm">'+fmtFullTime(m.t)+'</div>'}lastTime=m.t;var avLetter=m.from==='me'?'我':curChat.charAt(0);var bubClass=m.type==='img'?'cht-bub img-bub':'cht-bub';var content=m.type==='img'?'<img class="cht-img" src="'+m.text+'" onclick="chtViewImg(this.src)">':escapeHtml(m.text);h+='<div class="cht-row '+(m.from==='me'?'me':'')+'"><div class="cht-av">'+avLetter+'</div><div class="'+bubClass+'">'+content+'</div></div>'}$('cht-body').innerHTML=h}
+var curC=null;
+window.openCh=function(name){curC=name;$('ch-tt').innerHTML=name+'<span class="st">在线</span>';openApp('a-ch');var pc=loadCh();if(pc[name]){pc[name].unread=0;saveCh(pc)}renderMsgs();setTimeout(function(){var b=$('ch-bd');b.scrollTop=b.scrollHeight},60);$('a-ch-tl').classList.remove('on')};
 
-function escapeHtml(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+function renderMsgs(){var pc=loadCh(),ch=pc[curC];if(!ch||!ch.msgs||!ch.msgs.length){$('ch-bd').innerHTML='<div class="ch-emp">还没有消息，发个 hi 试试 💭</div>';return}var h='',lt=0;for(var i=0;i<ch.msgs.length;i++){var m=ch.msgs[i];if(!lt||m.t-lt>5*60*1000)h+='<div class="ch-tm">'+fmtFTm(m.t)+'</div>';lt=m.t;var av=m.from==='me'?(userP&&userP.name?userP.name.charAt(0):'我'):avHTML(curC);var bc=m.type==='img'?'ch-bb imb':'ch-bb';var ct=m.type==='img'?'<img class="ch-img" src="'+m.text+'" onclick="phViewImg(this.src)">':escH(m.text);h+='<div class="ch-rw '+(m.from==='me'?'me':'')+'"><div class="ch-av">'+av+'</div><div class="'+bc+'">'+ct+'</div></div>'}$('ch-bd').innerHTML=h}
 
-function fmtFullTime(t){var d=new Date(t),now=new Date();var pd=function(n){return n<10?'0'+n:''+n};var hm=pd(d.getHours())+':'+pd(d.getMinutes());if(d.toDateString()===now.toDateString())return hm;var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天 '+hm;if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()]+' '+hm;return (d.getMonth()+1)+'月'+d.getDate()+'日 '+hm}
+window.chTl=function(){$('a-ch-tl').classList.toggle('on')};
+window.chSend=async function(){var inp=$('ch-in'),tx=inp.value.trim();if(!tx||!curC)return;inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');pushMsg({from:'me',text:tx,t:Date.now()});await chAI()};
+function pushMsg(m){var pc=loadCh();if(!pc[curC])pc[curC]={msgs:[]};if(!m.type)m.type='text';pc[curC].msgs.push(m);saveCh(pc);renderMsgs();setTimeout(function(){var b=$('ch-bd');b.scrollTop=b.scrollHeight},30)}
 
-window.chtToggleTools=function(){$('cht-tools').classList.toggle('on')};
+async function callPhAPI(msgs){var pa=loadPhApi(),use=pa&&pa.url&&pa.key&&pa.model?pa:api;if(!use.url||!use.key||!use.model)throw new Error('请先在「设置」里配置 API');var url=cleanURL(use.url)+'/chat/completions';var body={model:use.model,messages:msgs,max_tokens:1024,temperature:.85};var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+cleanKey(use.key)},body:JSON.stringify(body)});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,150))}var d=await r.json();if(!d.choices||!d.choices[0])throw new Error('返回异常');return d.choices[0].message.content}
 
-window.chtSend=async function(){var inp=$('cht-inp'),txt=inp.value.trim();if(!txt||!curChat)return;inp.value='';inp.style.height='auto';$('cht-tools').classList.remove('on');pushChatMsg({from:'me',text:txt,t:Date.now()});await chtCallAI()};
+async function chAI(){var all=getAllChars(),c=all[curC];if(!c){toast('角色卡未找到');return}var b=$('ch-bd');var typ=document.createElement('div');typ.className='ch-typ';typ.innerHTML='<i></i><i></i><i></i>';b.appendChild(typ);b.scrollTop=b.scrollHeight;try{var sys='你正在和用户通过即时通讯软件聊天，扮演下方角色。\n\n## 你扮演的角色：'+curC+'\n';if(c.personality)sys+='性格：'+c.personality+'\n';if(c.appearance)sys+='外貌：'+c.appearance+'\n';if(c.background)sys+='背景：'+c.background+'\n';if(c.style)sys+='说话风格：'+c.style+'\n';if(userP&&userP.name){sys+='\n## 用户角色：'+userP.name+'\n';if(userP.gender)sys+='性别：'+userP.gender+'\n';if(userP.personality)sys+='性格：'+userP.personality+'\n';if(userP.relation)sys+='与你的关系：'+userP.relation+'\n';if(userP.style)sys+='说话风格：'+userP.style+'\n'}sys+='\n## 严格规则\n1. 这是真实手机聊天，回复要简短自然，像发微信一样\n2. 一次回复最多 1-3 条短消息，绝对不要长篇大论\n3. 多条消息用换行分隔，每行就是一条独立气泡\n4. 不要写任何动作描写、不要用括号旁白、不要用 *动作* 格式\n5. 直接说话，纯对话内容\n6. 严禁替用户回复，严禁生成"'+(userP&&userP.name||'用户')+'：xxx" 这样的内容\n7. 严禁假装用户在做什么、说什么\n8. 当前真实时间：'+new Date().toLocaleString('zh-CN')+'\n';var pc=loadCh(),hist=(pc[curC].msgs||[]).slice(-20);var msgs=[{role:'system',content:sys}];for(var i=0;i<hist.length;i++){var m=hist[i];if(m.type==='img')continue;msgs.push({role:m.from==='me'?'user':'assistant',content:m.text})}var r=await callPhAPI(msgs);typ.remove();var un=userP&&userP.name||'';var lines=r.split('\n').map(function(l){return l.trim()}).filter(function(l){if(!l)return false;if(un&&(l.indexOf(un+'：')===0||l.indexOf(un+':')===0))return false;return true});if(!lines.length){toast('AI 回复为空');return}for(var i=0;i<lines.length;i++){(function(line,idx){setTimeout(function(){pushMsg({from:'them',text:line,t:Date.now()})},idx*650)})(lines[i],i)}}catch(e){typ.remove();toast('回复失败: '+e.message)}}
 
-function pushChatMsg(m){var pc=loadPhoneChats();if(!pc[curChat])pc[curChat]={msgs:[]};if(!m.type)m.type='text';pc[curChat].msgs.push(m);savePhoneChats(pc);renderChatMessages();setTimeout(function(){var b=$('cht-body');b.scrollTop=b.scrollHeight},30)}
+function compressImg(file){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(e){var img=new Image();img.onload=function(){var maxW=800,w=img.width,h=img.height;if(w>maxW){h=h*maxW/w;w=maxW}var cv=document.createElement('canvas');cv.width=w;cv.height=h;var ctx=cv.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);var out=cv.toDataURL('image/webp',.75);ok({data:out,origSize:file.size,newSize:Math.round(out.length*.75)})};img.onerror=function(){no(new Error('图片加载失败'))};img.src=e.target.result};r.onerror=function(){no(new Error('读取失败'))};r.readAsDataURL(file)})}
 
-async function chtCallAI(){if(!api.url||!api.key||!api.model){toast('请先在故事页配置API');return}var allChars=getAllChars();var c=allChars[curChat];if(!c){toast('角色卡未找到');return}var b=$('cht-body');var typing=document.createElement('div');typing.className='cht-row';typing.innerHTML='<div class="cht-av">'+curChat.charAt(0)+'</div><div class="cht-typing"><span></span><span></span><span></span></div>';b.appendChild(typing);b.scrollTop=b.scrollHeight;try{var sys='你正在通过即时通讯软件和用户聊天，扮演以下角色：\n\n## 你的角色：'+curChat+'\n';if(c.personality)sys+='性格：'+c.personality+'\n';if(c.appearance)sys+='外貌：'+c.appearance+'\n';if(c.background)sys+='背景：'+c.background+'\n';if(c.style)sys+='说话风格：'+c.style+'\n';sys+='\n## 重要规则\n1. 这是真实的日常聊天场景，简短、口语化、自然\n2. 一次回复 1-3 句话，不要长篇大论\n3. 可以连续发多条短消息，用换行符分隔（每行一条独立消息）\n4. 不要写动作描写、不要用括号、不要用旁白格式\n5. 直接说话，像真的在和朋友发微信一样\n6. 当前真实时间：'+new Date().toLocaleString('zh-CN')+'\n';if(userP&&userP.name){sys+='\n## 用户角色：'+userP.name+'\n';if(userP.gender)sys+='性别：'+userP.gender+'\n';if(userP.relation)sys+='与你的关系：'+userP.relation+'\n'}var pc=loadPhoneChats();var msgs=[{role:'system',content:sys}];var hist=pc[curChat].msgs.slice(-20);for(var i=0;i<hist.length;i++){var m=hist[i];if(m.type==='img')continue;msgs.push({role:m.from==='me'?'user':'assistant',content:m.text})}var r=await callAPI(msgs);typing.remove();var lines=r.split('\n').map(function(l){return l.trim()}).filter(function(l){return l});for(var i=0;i<lines.length;i++){(function(line,idx){setTimeout(function(){pushChatMsg({from:'them',text:line,t:Date.now()})},idx*600)})(lines[i],i)}}catch(e){typing.remove();toast('回复失败: '+e.message)}}
+window.chPickImg=function(){$('ch-file').click()};
+window.phViewImg=function(src){$('ph-iv-src').src=src;$('ph-iv').classList.add('on')};
+window.chClear=function(){if(!confirm('清空和「'+curC+'」的聊天记录？'))return;var pc=loadCh();if(pc[curC])pc[curC].msgs=[];saveCh(pc);renderMsgs();$('a-ch-tl').classList.remove('on');toast('已清空')};
 
-window.chtPickImg=function(){$('cht-file').click()};
-window.chtViewImg=function(src){$('cht-imgview-src').src=src;$('cht-imgview').classList.add('on')};
-window.chtClearChat=function(){if(!confirm('清空和「'+curChat+'」的聊天记录？'))return;var pc=loadPhoneChats();if(pc[curChat])pc[curChat].msgs=[];savePhoneChats(pc);renderChatMessages();$('cht-tools').classList.remove('on');toast('已清空')};
+function renderSet(){var pa=loadPhApi(),hasApi=pa&&pa.url&&pa.key&&pa.model;var h='';h+='<div class="st-sec">API 配置</div><div class="st-grp">';h+='<div class="st-it" onclick="tgPhApi()"><span>独立 API</span><span class="v '+(hasApi?'on':'')+'">'+(hasApi?'已启用':'未配置')+' <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div>';h+='<div class="st-it" onclick="usePresetApi()"><span>从文游预设导入</span><span class="v"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div></div>';h+='<div class="st-form" id="ph-api-f"><label>API 地址</label><input id="ph-api-u" placeholder="https://your-relay.com/v1"><label>API Key</label><input id="ph-api-k" type="password" placeholder="sk-..."><label>模型名</label><input id="ph-api-m" placeholder="gpt-4o-mini"><div class="st-fbn"><button class="se" onclick="dlPhApi()">清空</button><button class="se" onclick="tsPhApi()">测试</button><button class="pr" onclick="svPhApi()">保存</button></div></div>';h+='<div class="st-sec">数据</div><div class="st-grp"><div class="st-it" onclick="clrAllPh()"><span style="color:#E88080">清空全部聊天</span><span class="v"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div></div>';h+='<div class="st-sec">关于</div><div class="st-grp"><div class="st-it"><span>版本</span><span class="v">v0.1 早期</span></div></div>';$('a-set-bd').innerHTML=h;if(pa){$('ph-api-u').value=pa.url||'';$('ph-api-k').value=pa.key||'';$('ph-api-m').value=pa.model||''}}
 
-setTimeout(function(){var inp=$('cht-inp');if(inp){inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'});inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chtSend()}})}var f=$('cht-file');if(f){f.addEventListener('change',function(e){var fl=e.target.files[0];if(!fl)return;var reader=new FileReader();reader.onload=function(ev){pushChatMsg({from:'me',text:ev.target.result,t:Date.now(),type:'img'});$('cht-tools').classList.remove('on')};reader.readAsDataURL(fl);e.target.value=''})}},800);
+window.tgPhApi=function(){$('ph-api-f').classList.toggle('on')};
+window.usePresetApi=function(){if(!apiPresets||!apiPresets.length)return toast('文游中暂无预设');var names=apiPresets.map(function(p,i){return (i+1)+'. '+p.name}).join('\n');var v=prompt('选择预设序号：\n'+names);if(!v)return;var idx=parseInt(v)-1;if(isNaN(idx)||!apiPresets[idx])return toast('序号无效');var p=apiPresets[idx];savePhApi({url:p.url,key:p.key,model:p.model});toast('已导入：'+p.name);renderSet()};
+window.svPhApi=function(){var u=$('ph-api-u').value.trim(),k=$('ph-api-k').value.trim(),m=$('ph-api-m').value.trim();if(!u||!k||!m)return toast('请填完整');savePhApi({url:u,key:k,model:m});toast('已保存');renderSet()};
+window.dlPhApi=function(){if(!confirm('清空小手机的独立 API 配置？'))return;savePhApi(null);toast('已清空，将使用文游 API');renderSet()};
+window.tsPhApi=async function(){var pa={url:$('ph-api-u').value.trim(),key:$('ph-api-k').value.trim(),model:$('ph-api-m').value.trim()};if(!pa.url||!pa.key||!pa.model)return toast('请填完整');toast('测试中...');try{var url=cleanURL(pa.url)+'/chat/completions';var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+cleanKey(pa.key)},body:JSON.stringify({model:pa.model,messages:[{role:'user',content:'回复ok'}],max_tokens:10})});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,100))}toast('连接成功 ✓')}catch(e){toast('失败: '+e.message)}};
+window.clrAllPh=function(){if(!confirm('清空所有联系人的聊天记录？此操作不可恢复'))return;saveCh({});toast('已清空');if(curC)renderMsgs()};
 
-
-
-function updPhoneTime(){var d=new Date(),pd=function(n){return n<10?'0'+n:''+n};var t=pd(d.getHours())+':'+pd(d.getMinutes());var ws=['周日','周一','周二','周三','周四','周五','周六'];if($('ph-stat-time'))$('ph-stat-time').textContent=t;if($('ph-time-big'))$('ph-time-big').textContent=t;if($('ph-date-big'))$('ph-date-big').textContent=ws[d.getDay()]+' · '+(d.getMonth()+1)+'月'+d.getDate()+'日'}
-setInterval(updPhoneTime,30000);
+setTimeout(function(){var inp=$('ch-in');if(inp){inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'});inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chSend()}})}var f=$('ch-file');if(f){f.addEventListener('change',async function(e){var fl=e.target.files[0];if(!fl)return;toast('压缩中...');try{var rs=await compressImg(fl);var oK=Math.round(rs.origSize/1024),nK=Math.round(rs.newSize/1024);pushMsg({from:'me',text:rs.data,t:Date.now(),type:'img'});toast('图片：'+oK+'KB → '+nK+'KB');$('a-ch-tl').classList.remove('on')}catch(err){toast('压缩失败: '+err.message)}e.target.value=''})}},800);
 
 
 // HOME
