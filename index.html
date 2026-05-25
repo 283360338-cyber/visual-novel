@@ -193,6 +193,37 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 .ph-dock .ph-app-ic{width:52px;height:52px;background:rgba(255,255,255,.5);border:none}
 .ph-dock .ph-app-nm{display:none}
 
+/* ===== 手机 App 通用骨架 ===== */
+.ph-app-screen{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#F8F8F6 0%,#EDF3F4 100%);z-index:10;flex-direction:column}
+.ph-app-screen.on{display:flex}
+.ph-app-hdr{padding:48px 16px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,210,216,.18);position:relative;z-index:2}
+.ph-app-bk{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:3px;color:#7A9DA8;font-size:14px;padding:4px 6px;font-weight:500}
+.ph-app-bk:active{opacity:.6}
+.ph-app-bk svg{width:18px;height:18px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
+.ph-app-ttl{flex:1;text-align:center;font-size:16px;font-weight:600;color:#2D3436;margin-right:40px}
+.ph-app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 0 20px}
+.ph-app-body::-webkit-scrollbar{width:0}
+
+/* ===== 联系人列表 ===== */
+.ct-empty{padding:80px 30px;text-align:center;color:#9CA3AF;font-size:13px;line-height:2}
+.ct-empty .em-ic{font-size:42px;margin-bottom:16px;opacity:.4}
+.ct-empty .em-tip{margin-top:14px;font-size:11px;color:#C5CCD3}
+
+.ct-item{display:flex;align-items:center;gap:13px;padding:13px 18px;cursor:pointer;transition:background .15s;position:relative}
+.ct-item:active{background:rgba(184,210,216,.1)}
+.ct-item::after{content:'';position:absolute;bottom:0;left:75px;right:18px;height:1px;background:rgba(184,210,216,.13)}
+.ct-item:last-child::after{display:none}
+
+.ct-av{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:600;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);box-shadow:0 2px 6px rgba(139,170,181,.25);overflow:hidden}
+.ct-av img{width:100%;height:100%;object-fit:cover}
+
+.ct-info{flex:1;min-width:0}
+.ct-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.ct-name{font-size:15px;font-weight:600;color:#2D3436;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px}
+.ct-time{font-size:10px;color:#C5CCD3;flex-shrink:0;font-weight:500}
+.ct-preview{font-size:12px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px;line-height:1.4}
+.ct-unread{background:#E88080;color:#fff;font-size:10px;font-weight:600;border-radius:9px;padding:1px 6px;min-width:18px;text-align:center;margin-left:6px}
+
 
 /* ===== 状态栏 ===== */
 #statbar{position:absolute;top:12px;left:54px;right:54px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.25);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:10px;z-index:9;cursor:pointer;transition:all .2s;font-size:11px;color:#6B7280}
@@ -482,6 +513,13 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div class="ph-app" onclick="phoneApp('camera')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
 </div>
 </div>
+<div id="ph-msg" class="ph-app-screen">
+<div class="ph-app-hdr">
+<button class="ph-app-bk" onclick="closePhoneApp('ph-msg')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div class="ph-app-ttl">消息</div>
+</div>
+<div class="ph-app-body" id="ct-list"></div>
+</div>
 </div>
 
 <div id="gv">
@@ -633,7 +671,68 @@ function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{}
 
 // MODE SWITCH (文游 / 手机)
 window.switchMode=function(m){if(m==='phone'){$('home').style.display='none';$('phone').classList.add('on');$('mt-home').classList.remove('on');$('mt-phone').classList.add('on');updPhoneTime()}else{$('phone').classList.remove('on');$('home').style.display='flex';$('mt-home').classList.add('on');$('mt-phone').classList.remove('on')}};
-window.phoneApp=function(name){var nm={msg:'消息',photo:'相册',note:'备忘',set:'设置',call:'电话',camera:'相机'}[name]||name;toast('「'+nm+'」即将上线 ✨')};
+window.phoneApp=function(name){if(name==='msg'){openPhoneApp('ph-msg');renderContacts();return}var nm={photo:'相册',note:'备忘',set:'设置',call:'电话',camera:'相机'}[name]||name;toast('「'+nm+'」即将上线 ✨')}; window.openPhoneApp=function(id){$(id).classList.add('on')}; window.closePhoneApp=function(id){$(id).classList.remove('on')};
+// 手机聊天数据：所有故事共享，按角色名为 key
+function loadPhoneChats(){return GLD('phoneChats',{})}
+function savePhoneChats(d){GSV('phoneChats',d)}
+
+function renderContacts(){
+  // 汇总所有故事的所有角色卡（去重）
+  var allChars={};
+  for(var i=0;i<stories.length;i++){
+    var stCards=CACHE['vs_'+stories[i].id+'_cards'];
+    if(stCards){for(var n in stCards)if(!allChars[n])allChars[n]=stCards[n]}
+  }
+  // 当前 sid 的也合并（CACHE 里已经有了，但保险起见）
+  if(sid&&cards){for(var n in cards)if(!allChars[n])allChars[n]=cards[n]}
+  
+  var pc=loadPhoneChats();
+  var names=Object.keys(allChars);
+  
+  if(names.length===0){
+    $('ct-list').innerHTML='<div class="ct-empty"><div class="em-ic">💭</div>还没有联系人<br>去「故事」里创建角色卡<br><div class="em-tip">角色会自动出现在这里</div></div>';
+    return
+  }
+  
+  // 按最近聊天排序
+  names.sort(function(a,b){
+    var ta=pc[a]&&pc[a].msgs&&pc[a].msgs.length?pc[a].msgs[pc[a].msgs.length-1].t:0;
+    var tb=pc[b]&&pc[b].msgs&&pc[b].msgs.length?pc[b].msgs[pc[b].msgs.length-1].t:0;
+    return tb-ta;
+  });
+  
+  var h='';
+  for(var i=0;i<names.length;i++){
+    var n=names[i],chat=pc[n];
+    var last='',ts='';
+    if(chat&&chat.msgs&&chat.msgs.length){
+      var lm=chat.msgs[chat.msgs.length-1];
+      last=(lm.from==='me'?'我：':'')+lm.text;
+      ts=fmtChatTime(lm.t)
+    }else{
+      last='点击开始聊天';
+    }
+    h+='<div class="ct-item" onclick="openChat(\''+n.replace(/'/g,"\\'")+'\')">';
+    h+='<div class="ct-av">'+n.charAt(0)+'</div>';
+    h+='<div class="ct-info"><div class="ct-row"><div class="ct-name">'+n+'</div><div class="ct-time">'+ts+'</div></div><div class="ct-preview">'+last+'</div></div>';
+    h+='</div>'
+  }
+  $('ct-list').innerHTML=h
+}
+
+function fmtChatTime(t){
+  if(!t)return '';
+  var d=new Date(t),now=new Date();
+  var pd=function(n){return n<10?'0'+n:''+n};
+  if(d.toDateString()===now.toDateString())return pd(d.getHours())+':'+pd(d.getMinutes());
+  var dd=Math.floor((now-d)/86400000);
+  if(dd===1)return '昨天';
+  if(dd<7)return ['日','一','二','三','四','五','六'][d.getDay()]==='日'?'周日':'周'+['日','一','二','三','四','五','六'][d.getDay()];
+  return (d.getMonth()+1)+'/'+d.getDate()
+}
+
+window.openChat=function(name){toast('「'+name+'」聊天页下一步上线 ✨')};
+
 function updPhoneTime(){var d=new Date(),pd=function(n){return n<10?'0'+n:''+n};var t=pd(d.getHours())+':'+pd(d.getMinutes());var ws=['周日','周一','周二','周三','周四','周五','周六'];if($('ph-stat-time'))$('ph-stat-time').textContent=t;if($('ph-time-big'))$('ph-time-big').textContent=t;if($('ph-date-big'))$('ph-date-big').textContent=ws[d.getDay()]+' · '+(d.getMonth()+1)+'月'+d.getDate()+'日'}
 setInterval(updPhoneTime,30000);
 
