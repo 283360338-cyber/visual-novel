@@ -147,6 +147,53 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 .toast{position:fixed;top:40px;left:50%;transform:translateX(-50%);background:rgba(45,52,54,.88);color:#fff;padding:8px 22px;border-radius:20px;font-size:12px;z-index:200;animation:ti .3s}
 @keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .empty{color:#C5CCD3;font-size:12px;text-align:center;padding:30px 0;font-style:italic}
+/* ===== 模式切换 Tab ===== */
+.mode-tabs{display:flex;background:rgba(184,210,216,.1);border:1px solid rgba(184,210,216,.2);border-radius:14px;padding:4px;margin:16px 20px 0;gap:4px}
+.mode-tab{flex:1;padding:10px 0;border:none;background:transparent;font-size:13px;color:#9CA3AF;font-weight:500;cursor:pointer;border-radius:10px;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:6px}
+.mode-tab.on{background:#fff;color:#2D3436;box-shadow:0 1px 3px rgba(184,210,216,.25);font-weight:600}
+.mode-tab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ===== 小手机 ===== */
+#phone{display:none;width:100%;height:100vh;flex-direction:column;background:linear-gradient(180deg,#F8F8F6 0%,#E5EDEF 50%,#D4E2E5 100%);overflow:hidden;position:relative}
+#phone.on{display:flex}
+#phone::before{content:'';position:absolute;top:-120px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(184,210,216,.45),transparent 70%);pointer-events:none}
+#phone::after{content:'';position:absolute;bottom:-100px;left:-100px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);pointer-events:none}
+
+.ph-stat{padding:18px 22px 0;display:flex;justify-content:space-between;align-items:center;z-index:2;position:relative}
+.ph-stat-l{font-size:14px;font-weight:600;color:#2D3436;letter-spacing:.3px}
+.ph-stat-r{display:flex;align-items:center;gap:6px}
+.ph-sig{display:flex;gap:2px;align-items:flex-end;height:10px}
+.ph-sig span{width:3px;background:#2D3436;border-radius:.5px;opacity:.85}
+.ph-sig span:nth-child(1){height:3px}
+.ph-sig span:nth-child(2){height:5px}
+.ph-sig span:nth-child(3){height:7px}
+.ph-sig span:nth-child(4){height:9px}
+.ph-batt{width:24px;height:11px;border:1px solid rgba(45,52,54,.55);border-radius:3px;position:relative;padding:1px}
+.ph-batt::after{content:'';position:absolute;right:-3px;top:3px;width:2px;height:5px;background:rgba(45,52,54,.55);border-radius:0 1px 1px 0}
+.ph-batt-fill{height:100%;width:78%;background:rgba(45,52,54,.85);border-radius:1px}
+
+.ph-back{position:absolute;top:48px;left:14px;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.3);border-radius:18px;padding:7px 14px 7px 10px;display:flex;align-items:center;gap:5px;cursor:pointer;z-index:5;font-size:11px;color:#7A9DA8;font-weight:600;box-shadow:0 2px 8px rgba(139,170,181,.1)}
+.ph-back:active{background:rgba(255,255,255,.85);transform:scale(.96)}
+.ph-back svg{width:13px;height:13px;stroke:#7A9DA8;fill:none;stroke-width:2.2}
+
+.ph-clock{padding:50px 24px 0;text-align:center;z-index:2;position:relative}
+.ph-time{font-size:78px;font-weight:200;color:#2D3436;letter-spacing:-3px;line-height:1;font-family:-apple-system,'SF Pro Display',sans-serif}
+.ph-date{font-size:14px;color:rgba(45,52,54,.6);margin-top:10px;font-weight:500;letter-spacing:1px}
+
+.ph-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:24px;z-index:2;position:relative}
+.ph-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px 8px;padding:0 22px 28px}
+.ph-app{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:transform .15s}
+.ph-app:active{transform:scale(.9)}
+.ph-app-ic{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 14px rgba(139,170,181,.12);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ph-app-ic svg{width:28px;height:28px;stroke:#7A9DA8;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ph-app-nm{font-size:11px;color:#2D3436;font-weight:500}
+
+.ph-dock{margin:0 18px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.6);border-radius:26px;padding:12px 8px;display:flex;justify-content:space-around;box-shadow:0 8px 28px rgba(139,170,181,.15)}
+.ph-dock .ph-app{gap:0}
+.ph-dock .ph-app-ic{width:52px;height:52px;background:rgba(255,255,255,.5);border:none}
+.ph-dock .ph-app-nm{display:none}
+
+
 /* ===== 状态栏 ===== */
 #statbar{position:absolute;top:12px;left:54px;right:54px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.25);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:10px;z-index:9;cursor:pointer;transition:all .2s;font-size:11px;color:#6B7280}
 #statbar:active{transform:scale(.98)}
@@ -403,9 +450,38 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div id="app">
 <div id="home">
 <div class="hh"><button id="hamburger" onclick="openSB()" title="菜单"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#8BAAB5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><span class="hht">我的故事</span></div>
+<div class="mode-tabs">
+<button class="mode-tab on" id="mt-home" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>故事</button>
+<button class="mode-tab" id="mt-phone" onclick="switchMode('phone')"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>手机</button>
+</div>
+
 <div id="hapi" style="display:none"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="window.ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型 <span style="color:#9CA3AF;font-size:10px;font-weight:normal">（点列表自动填入下方，可再编辑）</span></label> <div style="display:flex;gap:6px;margin-bottom:6px"> <select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="window.pickModel(this.value)"><option value="">点拉取后从此选择</option></select> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.fetchModels()">拉取</button> </div> <div style="display:flex;gap:6px;margin-bottom:10px"> <input class="inp" id="ha_m" placeholder="实际使用的模型名（可手动编辑）" style="margin-bottom:0;flex:1"> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.copyModel()">复制</button> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.clearModel()">清空</button> </div><label class="lb">温度 <span id="ha_tv" style="color:#8BAAB5;font-weight:600">0.85</span></label><input type="range" min="0" max="200" value="85" id="ha_temp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tv').textContent=(this.value/100).toFixed(2)"><label class="lb">Top-P <span id="ha_tpv" style="color:#8BAAB5;font-weight:600">1.00</span></label><input type="range" min="0" max="100" value="100" id="ha_tp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tpv').textContent=(this.value/100).toFixed(2)"><div style="display:flex;gap:10px;margin-bottom:10px"><div style="flex:1"><label class="lb">最大输出Token</label><input class="inp" id="ha_mt" type="number" value="4096" style="margin-bottom:0"></div><div style="flex:1"><label class="lb">上下文轮数</label><input class="inp" id="ha_cl" type="number" value="6" min="1" max="50" style="margin-bottom:0"></div></div><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svHA()">保存预设</button><button class="btn o" onclick="window.tsHA()">测试连接</button></div> <div style="margin-top:16px;padding-top:14px;border-top:1px dashed rgba(184,210,216,.3)"> <label class="lb" style="font-weight:600;color:#6B7280">摘要专用 API（可选，省钱）</label> <p style="font-size:11px;color:#9CA3AF;line-height:1.6;margin-bottom:8px">用便宜的小模型做摘要，主模型留给剧情。留空则和主模型共用</p> <label class="lb">摘要预设</label> <select class="inp" id="sum_sel" onchange="window.ldSumPreset()"><option value="">不启用 · 与主 API 共用</option></select> <label class="lb">API 地址</label><input class="inp" id="sum_u" placeholder="https://your-relay.com/v1"> <label class="lb">API Key</label><input class="inp" id="sum_k" type="password" placeholder="sk-..."> <label class="lb">模型名</label><input class="inp" id="sum_m" placeholder="gpt-4o-mini 或 gemini-2.5-flash"> <div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svSum()">保存摘要API</button><button class="btn o" onclick="window.tsSum()">测试摘要API</button><button class="btn d" onclick="window.dlSum()">清空</button></div> </div> </div>
 <div id="nsf" style="display:none"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
 <div class="hsl" id="storyList"></div>
+</div>
+<div id="phone">
+<div class="ph-stat">
+<div class="ph-stat-l" id="ph-stat-time">--:--</div>
+<div class="ph-stat-r"><div class="ph-sig"><span></span><span></span><span></span><span></span></div><div class="ph-batt"><div class="ph-batt-fill"></div></div></div>
+</div>
+<button class="ph-back" onclick="switchMode('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>故事</button>
+<div class="ph-clock">
+<div class="ph-time" id="ph-time-big">--:--</div>
+<div class="ph-date" id="ph-date-big">-- · --月--日</div>
+</div>
+<div class="ph-body">
+<div class="ph-apps">
+<div class="ph-app" onclick="phoneApp('msg')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="ph-app-nm">消息</div></div>
+<div class="ph-app" onclick="phoneApp('photo')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="ph-app-nm">相册</div></div>
+<div class="ph-app" onclick="phoneApp('note')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div><div class="ph-app-nm">备忘</div></div>
+<div class="ph-app" onclick="phoneApp('set')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="ph-app-nm">设置</div></div>
+</div>
+<div class="ph-dock">
+<div class="ph-app" onclick="phoneApp('call')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>
+<div class="ph-app" onclick="phoneApp('msg')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+<div class="ph-app" onclick="phoneApp('camera')"><div class="ph-app-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
+</div>
+</div>
 </div>
 
 <div id="gv">
@@ -554,6 +630,13 @@ var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw=''; var gameState=null;
 var callMode=false,ntfTpl=null,ntfTimer=null;
 function loadGlobal(){api=GLD('api',{url:'',model:'',key:'',temp:0.85,topP:1,maxTokens:4096,contextLen:6});stories=GLD('stories',[]);apiPresets=GLD('apiPresets',[])}
 function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{});bgs=LD('bg',{});bgDesc=LD('bgd',{});wb=LD('wb',[]);wbId=LD('wbid',1);mem=LD('mem',{shortLen:6,autoEnabled:true,autoInterval:5,auto:[],manual:[],sumTo:0});upr=LD('upr','');hi=LD('hi',[]);rp=LD('rp',[]);svs=LD('svs',[null,null,null,null,null]);tc=LD('tc',0);tpls=LD('tpls',{});userP=LD('userp',{name:'',gender:'',appearance:'',personality:'',background:'',relation:'',style:'',other:''});gameState=LD('gameState',{time:Date.now(),todos:[],todoId:1})}
+
+// MODE SWITCH (文游 / 手机)
+window.switchMode=function(m){if(m==='phone'){$('home').style.display='none';$('phone').classList.add('on');$('mt-home').classList.remove('on');$('mt-phone').classList.add('on');updPhoneTime()}else{$('phone').classList.remove('on');$('home').style.display='flex';$('mt-home').classList.add('on');$('mt-phone').classList.remove('on')}};
+window.phoneApp=function(name){var nm={msg:'消息',photo:'相册',note:'备忘',set:'设置',call:'电话',camera:'相机'}[name]||name;toast('「'+nm+'」即将上线 ✨')};
+function updPhoneTime(){var d=new Date(),pd=function(n){return n<10?'0'+n:''+n};var t=pd(d.getHours())+':'+pd(d.getMinutes());var ws=['周日','周一','周二','周三','周四','周五','周六'];if($('ph-stat-time'))$('ph-stat-time').textContent=t;if($('ph-time-big'))$('ph-time-big').textContent=t;if($('ph-date-big'))$('ph-date-big').textContent=ws[d.getDay()]+' · '+(d.getMonth()+1)+'月'+d.getDate()+'日'}
+setInterval(updPhoneTime,30000);
+
 
 // HOME
 function rdrHome(){var h='';if(!stories.length){h='<div class="hempty">还没有故事<br>点击右上角「新建故事」开始创作</div>'}else{for(var i=0;i<stories.length;i++){var s=stories[i];h+='<div class="sc" onclick="enterStory(\''+s.id+'\')"><div class="sc-t">'+s.title+'</div>'+(s.desc?'<div class="sc-d">'+s.desc+'</div>':'')+'<div class="sc-m">'+(s.lastPlayed?'上次：'+s.lastPlayed:'未开始')+'</div><div class="sc-a" onclick="event.stopPropagation()"><button onclick="enterStory(\''+s.id+'\')">进入</button><button class="del" onclick="delStory(\''+s.id+'\')">删除</button></div></div>'}}$('storyList').innerHTML=h}
