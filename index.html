@@ -147,6 +147,64 @@ body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB',sans-serif;backg
 .toast{position:fixed;top:40px;left:50%;transform:translateX(-50%);background:rgba(45,52,54,.88);color:#fff;padding:8px 22px;border-radius:20px;font-size:12px;z-index:200;animation:ti .3s}
 @keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 .empty{color:#C5CCD3;font-size:12px;text-align:center;padding:30px 0;font-style:italic}
+/* ===== 状态栏 ===== */
+#statbar{position:absolute;top:12px;left:54px;right:54px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(184,210,216,.25);border-radius:12px;padding:6px 12px;display:flex;align-items:center;gap:10px;z-index:9;cursor:pointer;transition:all .2s;font-size:11px;color:#6B7280}
+#statbar:active{transform:scale(.98)}
+#statbar .st-t{font-weight:600;color:#2D3436;font-size:12px}
+#statbar .st-d{color:#9CA3AF}
+#statbar .st-w{color:#8BAAB5;font-weight:500}
+#statbar .st-dot{width:4px;height:4px;border-radius:50%;background:rgba(184,210,216,.5)}
+#statbar .st-todo{margin-left:auto;display:flex;align-items:center;gap:4px;color:#8BAAB5;font-weight:500}
+#statbar .st-todo .ic{width:13px;height:13px;stroke:#8BAAB5}
+#statbar .st-badge{background:#E88080;color:#fff;border-radius:8px;padding:1px 6px;font-size:9px;font-weight:600;margin-left:2px;min-width:14px;text-align:center}
+body.dark #statbar{background:rgba(20,20,22,.85);border-color:rgba(255,255,255,.08);color:#9a9a9f}
+body.dark #statbar .st-t{color:#e8e8ea}
+body.dark #statbar .st-d{color:#7a7a80}
+body.dark #statbar .st-w{color:#7eb3ec}
+
+/* 状态栏弹出面板 */
+#stpanel{display:none;position:absolute;top:50px;left:12px;right:12px;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(184,210,216,.3);border-radius:14px;padding:16px;z-index:14;box-shadow:0 8px 30px rgba(0,0,0,.08);max-height:70vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#stpanel.on{display:block}
+#stpanel .sp-h{font-size:13px;font-weight:600;color:#2D3436;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+#stpanel .sp-sec{margin-bottom:14px}
+#stpanel .sp-lb{font-size:10px;color:#9CA3AF;font-weight:600;letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
+#stpanel .sp-time-display{display:flex;align-items:center;gap:14px;padding:14px;background:rgba(184,210,216,.08);border-radius:10px;margin-bottom:14px}
+#stpanel .sp-time-big{font-size:32px;font-weight:700;color:#2D3436;line-height:1}
+#stpanel .sp-time-info{flex:1;font-size:12px;color:#6B7280;line-height:1.7}
+#stpanel .sp-time-edit{font-size:11px;padding:4px 12px;border-radius:8px;border:1px solid rgba(184,210,216,.4);background:#fff;color:#8BAAB5;cursor:pointer}
+#stpanel .sp-todo-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:1px solid rgba(184,210,216,.15);border-radius:10px;margin-bottom:6px;cursor:pointer;transition:all .15s}
+#stpanel .sp-todo-item:active{transform:scale(.99)}
+#stpanel .sp-todo-item.done{opacity:.5}
+#stpanel .sp-todo-item.done .sp-todo-txt{text-decoration:line-through;color:#9CA3AF}
+#stpanel .sp-todo-cb{width:18px;height:18px;border:2px solid rgba(184,210,216,.5);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff}
+#stpanel .sp-todo-item.done .sp-todo-cb{background:#8BAAB5;border-color:#8BAAB5}
+#stpanel .sp-todo-cb svg{display:none;width:12px;height:12px;stroke:#fff;fill:none;stroke-width:3}
+#stpanel .sp-todo-item.done .sp-todo-cb svg{display:block}
+#stpanel .sp-todo-txt{flex:1;font-size:13px;color:#2D3436;line-height:1.5}
+#stpanel .sp-todo-del{color:#E88080;font-size:14px;cursor:pointer;padding:0 4px;background:none;border:none}
+#stpanel .sp-todo-input{display:flex;gap:6px;margin-top:8px}
+#stpanel .sp-todo-input input{flex:1;border:1px solid rgba(184,210,216,.3);border-radius:8px;padding:8px 12px;font-size:13px;background:#fff;outline:none}
+#stpanel .sp-todo-input input:focus{border-color:#8BAAB5}
+#stpanel .sp-todo-input button{background:#8BAAB5;color:#fff;border:none;border-radius:8px;padding:0 14px;font-size:12px;cursor:pointer;font-weight:500}
+#stpanel .sp-empty{color:#C5CCD3;font-size:12px;text-align:center;padding:20px;font-style:italic}
+body.dark #stpanel{background:rgba(28,28,32,.96);border-color:rgba(255,255,255,.1)}
+body.dark #stpanel .sp-h,body.dark #stpanel .sp-time-big{color:#e8e8ea}
+body.dark #stpanel .sp-lb{color:#7a7a80}
+body.dark #stpanel .sp-time-display{background:rgba(184,210,216,.06)}
+body.dark #stpanel .sp-todo-item{background:#1a1a1d;border-color:rgba(255,255,255,.06)}
+body.dark #stpanel .sp-todo-txt{color:#e8e8ea}
+body.dark #stpanel .sp-todo-input input{background:#1a1a1d;border-color:rgba(255,255,255,.08);color:#e8e8ea}
+
+/* ===== 图标按钮 ===== */
+.ic{width:18px;height:18px;display:inline-block;vertical-align:middle;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ibtn{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.gt-ic{padding:8px !important;width:36px;height:36px}
+.gt-ic .ic{width:16px;height:16px}
+#sbtn-new{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);border:none;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(184,210,216,.4);transition:transform .15s;padding:0;flex-shrink:0}
+#sbtn-new:active{transform:scale(.92)}
+#sbtn-new .ic{width:18px;height:18px;stroke:#fff}
+
+
 /* ===== 开屏页 ===== */
 #splash{position:fixed;top:0;left:0;width:100%;height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
 #splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
@@ -344,7 +402,7 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 
 <div id="app">
 <div id="home">
-<div class="hh"><button id="hamburger" onclick="openSB()"><span></span><span></span><span></span></button><span class="hht">我的故事</span></div>
+<div class="hh"><button id="hamburger" onclick="openSB()" title="菜单"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#8BAAB5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><span class="hht">我的故事</span></div>
 <div id="hapi" style="display:none"><label class="lb">API 预设</label><div style="display:flex;gap:6px;margin-bottom:10px"><select class="inp" id="ha_sel" style="margin-bottom:0;flex:1" onchange="window.ldPreset()"></select><button class="btn d" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.dlPreset()">删除</button></div><label class="lb">预设名称</label><input class="inp" id="ha_name" placeholder="我的API"><label class="lb">API 地址</label><input class="inp" id="ha_u" placeholder="https://your-relay.com/v1"><label class="lb">API Key</label><input class="inp" id="ha_k" type="password" placeholder="sk-..."><label class="lb">模型 <span style="color:#9CA3AF;font-size:10px;font-weight:normal">（点列表自动填入下方，可再编辑）</span></label> <div style="display:flex;gap:6px;margin-bottom:6px"> <select class="inp" id="ha_ml" style="margin-bottom:0;flex:1" onchange="window.pickModel(this.value)"><option value="">点拉取后从此选择</option></select> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.fetchModels()">拉取</button> </div> <div style="display:flex;gap:6px;margin-bottom:10px"> <input class="inp" id="ha_m" placeholder="实际使用的模型名（可手动编辑）" style="margin-bottom:0;flex:1"> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.copyModel()">复制</button> <button class="btn o" style="margin:0;padding:6px 10px;font-size:11px" onclick="window.clearModel()">清空</button> </div><label class="lb">温度 <span id="ha_tv" style="color:#8BAAB5;font-weight:600">0.85</span></label><input type="range" min="0" max="200" value="85" id="ha_temp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tv').textContent=(this.value/100).toFixed(2)"><label class="lb">Top-P <span id="ha_tpv" style="color:#8BAAB5;font-weight:600">1.00</span></label><input type="range" min="0" max="100" value="100" id="ha_tp" style="width:100%;margin-bottom:10px" oninput="document.getElementById('ha_tpv').textContent=(this.value/100).toFixed(2)"><div style="display:flex;gap:10px;margin-bottom:10px"><div style="flex:1"><label class="lb">最大输出Token</label><input class="inp" id="ha_mt" type="number" value="4096" style="margin-bottom:0"></div><div style="flex:1"><label class="lb">上下文轮数</label><input class="inp" id="ha_cl" type="number" value="6" min="1" max="50" style="margin-bottom:0"></div></div><div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svHA()">保存预设</button><button class="btn o" onclick="window.tsHA()">测试连接</button></div> <div style="margin-top:16px;padding-top:14px;border-top:1px dashed rgba(184,210,216,.3)"> <label class="lb" style="font-weight:600;color:#6B7280">摘要专用 API（可选，省钱）</label> <p style="font-size:11px;color:#9CA3AF;line-height:1.6;margin-bottom:8px">用便宜的小模型做摘要，主模型留给剧情。留空则和主模型共用</p> <label class="lb">摘要预设</label> <select class="inp" id="sum_sel" onchange="window.ldSumPreset()"><option value="">不启用 · 与主 API 共用</option></select> <label class="lb">API 地址</label><input class="inp" id="sum_u" placeholder="https://your-relay.com/v1"> <label class="lb">API Key</label><input class="inp" id="sum_k" type="password" placeholder="sk-..."> <label class="lb">模型名</label><input class="inp" id="sum_m" placeholder="gpt-4o-mini 或 gemini-2.5-flash"> <div style="display:flex;gap:6px;margin-top:4px"><button class="btn" onclick="window.svSum()">保存摘要API</button><button class="btn o" onclick="window.tsSum()">测试摘要API</button><button class="btn d" onclick="window.dlSum()">清空</button></div> </div> </div>
 <div id="nsf" style="display:none"><div class="nsf-r"><label class="lb">故事标题</label><input id="ns_t" placeholder="输入标题"></div><div class="nsf-r"><label class="lb">简介（可选）</label><textarea id="ns_d" placeholder="描述一下..."></textarea></div><div class="nsf-b"><button class="ok" onclick="createStory()">创建</button><button class="cc" onclick="hideNsf()">取消</button></div></div>
 <div class="hsl" id="storyList"></div>
@@ -354,17 +412,25 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div id="screen">
 <div id="bgl"></div>
 <div id="chl"></div>
+<div id="statbar" onclick="window.toggleStPanel()" style="display:none">
+<span class="st-t" id="st-time">--:--</span>
+<span class="st-dot"></span>
+<span class="st-d" id="st-date">--月--日</span>
+<span class="st-w" id="st-week">周-</span>
+<span class="st-todo" id="st-todo-mini"><svg class="ic" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span id="st-todo-count">0</span></span>
+</div>
+<div id="stpanel" onclick="event.stopPropagation()"></div>
 <div id="dlg" onclick="vnN()"><div id="spk"></div><div id="dtx"></div><span id="cti">▼</span></div>
 <div id="ntf" onclick="ntfClick()"><div class="ni"></div><div class="nt"><div class="na"></div><div class="nc"></div><div class="nm">现在</div></div></div>
 <div id="ld">思考中...</div>
 <div id="smsg">点击右上角「设置」配置角色和场景<br>在下方输入框开始你的故事</div>
 <div id="tplo" onclick="if(event.target===this)tplClose()"><button id="tplx" onclick="tplClose()">✕</button><div id="tplc"></div></div>
 </div>
-<button class="gt" id="bkb" onclick="goHome()">返回</button>
-<button class="gt" id="rawb" onclick="tgRaw()">原文</button>
-<button class="gt" id="setb" onclick="openMgmt()">设置</button>
+<button class="gt gt-ic" id="bkb" onclick="goHome()" title="返回"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="gt gt-ic" id="rawb" onclick="tgRaw()" title="查看原文"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></button>
+<button class="gt gt-ic" id="setb" onclick="openMgmt()" title="设置"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
 <div id="rawx"></div>
-<div id="ibar"><textarea id="mi" placeholder="输入你的对话..." rows="1"></textarea><button id="sbtn" onclick="vnS()">发送</button></div>
+<div id="ibar"><textarea id="mi" placeholder="输入你的对话..." rows="1"></textarea><button id="sbtn-new" onclick="vnS()" title="发送"><svg class="ic" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
 </div>
 
 <div id="mv">
@@ -484,10 +550,10 @@ function SV(k,v){CACHE[SK()+k]=v;idbSet(SK()+k,v)}
 var $=function(id){return document.getElementById(id)};window.$=$;
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
 var api,stories,cards,sprites,spDesc,bgs,bgDesc,wb,wbId,mem,upr,hi,rp,svs,tc,tpls,userP,apiPresets;
-var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw=''; 
+var sc=[],si=0,dq=[],di=0,busy=0,acCh={},cBg='',lastRaw=''; var gameState=null;
 var callMode=false,ntfTpl=null,ntfTimer=null;
 function loadGlobal(){api=GLD('api',{url:'',model:'',key:'',temp:0.85,topP:1,maxTokens:4096,contextLen:6});stories=GLD('stories',[]);apiPresets=GLD('apiPresets',[])}
-function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{});bgs=LD('bg',{});bgDesc=LD('bgd',{});wb=LD('wb',[]);wbId=LD('wbid',1);mem=LD('mem',{shortLen:6,autoEnabled:true,autoInterval:5,auto:[],manual:[],sumTo:0});upr=LD('upr','');hi=LD('hi',[]);rp=LD('rp',[]);svs=LD('svs',[null,null,null,null,null]);tc=LD('tc',0);tpls=LD('tpls',{});userP=LD('userp',{name:'',gender:'',appearance:'',personality:'',background:'',relation:'',style:'',other:''})}
+function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{});bgs=LD('bg',{});bgDesc=LD('bgd',{});wb=LD('wb',[]);wbId=LD('wbid',1);mem=LD('mem',{shortLen:6,autoEnabled:true,autoInterval:5,auto:[],manual:[],sumTo:0});upr=LD('upr','');hi=LD('hi',[]);rp=LD('rp',[]);svs=LD('svs',[null,null,null,null,null]);tc=LD('tc',0);tpls=LD('tpls',{});userP=LD('userp',{name:'',gender:'',appearance:'',personality:'',background:'',relation:'',style:'',other:''});gameState=LD('gameState',{time:Date.now(),todos:[],todoId:1})}
 
 // HOME
 function rdrHome(){var h='';if(!stories.length){h='<div class="hempty">还没有故事<br>点击右上角「新建故事」开始创作</div>'}else{for(var i=0;i<stories.length;i++){var s=stories[i];h+='<div class="sc" onclick="enterStory(\''+s.id+'\')"><div class="sc-t">'+s.title+'</div>'+(s.desc?'<div class="sc-d">'+s.desc+'</div>':'')+'<div class="sc-m">'+(s.lastPlayed?'上次：'+s.lastPlayed:'未开始')+'</div><div class="sc-a" onclick="event.stopPropagation()"><button onclick="enterStory(\''+s.id+'\')">进入</button><button class="del" onclick="delStory(\''+s.id+'\')">删除</button></div></div>'}}$('storyList').innerHTML=h}
@@ -495,8 +561,8 @@ window.showNsf=function(){$('nsf').style.display='block'};
 window.hideNsf=function(){$('nsf').style.display='none';$('ns_t').value='';$('ns_d').value=''};
 window.createStory=function(){var t=$('ns_t').value.trim();if(!t)return toast('请输入标题');var id=Date.now().toString(36);stories.push({id:id,title:t,desc:$('ns_d').value.trim(),created:new Date().toLocaleString('zh-CN'),lastPlayed:''});GSV('stories',stories);hideNsf();rdrHome();toast('已创建');enterStory(id)};
 window.delStory=function(id){if(!confirm('删除这个故事？'))return;stories=stories.filter(function(s){return s.id!==id});GSV('stories',stories);var pfx='vs_'+id+'_';Object.keys(CACHE).forEach(function(k){if(k.indexOf(pfx)===0){delete CACHE[k];idbDel(k)}});rdrHome();toast('已删除')};
-window.enterStory=function(id){sid=id;GSV('cur',id);for(var i=0;i<stories.length;i++)if(stories[i].id===id)stories[i].lastPlayed=new Date().toLocaleString('zh-CN');GSV('stories',stories);loadStory();$('home').style.display='none';$('gv').style.display='block';sc=[];si=0;dq=[];di=0;acCh={};cBg='';lastRaw='';callMode=false;$('chl').innerHTML='';$('dlg').style.display='none';$('rawb').style.display='none';$('rawx').style.display='none';$('bgl').style.backgroundImage='';var sm=$('smsg');if(sm)sm.style.display='block'};
-window.goHome=function(){callMode=false;$('gv').style.display='none';$('mv').style.display='none';$('mv').classList.remove('open');$('home').style.display='flex';rdrHome()};
+window.enterStory=function(id){sid=id;GSV('cur',id);for(var i=0;i<stories.length;i++)if(stories[i].id===id)stories[i].lastPlayed=new Date().toLocaleString('zh-CN');GSV('stories',stories);loadStory();$('home').style.display='none';$('gv').style.display='block';sc=[];si=0;dq=[];di=0;acCh={};cBg='';lastRaw='';callMode=false;$('chl').innerHTML='';$('dlg').style.display='none';$('rawb').style.display='none';$('rawx').style.display='none';$('bgl').style.backgroundImage='';showStBar();var sm=$('smsg');if(sm)sm.style.display='block'};
+window.goHome=function(){callMode=false;$('gv').style.display='none';$('mv').style.display='none';$('mv').classList.remove('open');$('home').style.display='flex';$('statbar').style.display='none';$('stpanel').classList.remove('on');rdrHome()};
 window.openSB=function(){$('sb-ov').classList.add('on');$('sidebar').style.display='block';$('sb-main').style.display='block';$('sb-set').style.display='none'};
 window.closeSB=function(){$('sb-ov').classList.remove('on');$('sidebar').style.display='none'};
 window.sbNew=function(){closeSB();setTimeout(function(){showNsf()},200)};
@@ -654,7 +720,8 @@ function dl(name,data){var b=new Blob([data],{type:'application/json'});var a=do
 function pickFile(cb){var inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.onchange=async function(e){try{var t=await e.target.files[0].text();cb(JSON.parse(t))}catch(e){toast('解析失败')}};inp.click()}
 
 // BUILD SYSTEM PROMPT
-function buildSys(){var base='你是一个视觉小说的导演兼编剧。根据用户输入推进剧情，用特定格式控制画面。\n\n## 输出格式（严格遵守）\n\n指令行：\n[bg:场景名] — 切换背景\n[char:角色名,位置,表情] — 显示角色（left/center/right）\n[hide:角色名] — 隐藏角色\n[wait] — 等待点击\n[notify:应用名,内容] — 屏幕顶部弹通知，用户可点击打开（如[notify:微信,方亦楷：在干嘛]）\n\n内容行：\n角色名：对话内容\n[narr]旁白文字\n\n模板指令（展示手机界面等）：\n[tpl:模板名]\\n变量名=值\\n[/tpl]\n\n自由HTML：\n[html]HTML代码[/html]\n\n## 通知+模板联动\n当[notify:]和[tpl:]在同一个[wait]段内时，通知可点击直接打开模板界面。适合\"收到消息→点开查看\"的场景。\n\n## 来电模板使用说明\n来电模板会显示来电界面，用户需点击接听按钮。接听后，后续的对话文字会显示在通话界面内。通话结束时用户点挂断。\n\n## QQ聊天表情包\n消息中使用 [img:图片链接] 可发送表情包/图片。\n\n## 绝对禁止\n- 禁止使用列表中不存在的名称\n- 禁止自创名称\n\n## 写作规则\n- 用[wait]分割节奏\n- 对话自然，旁白有文学性\n- 根据情绪切换表情\n- 角色收到消息时先用[notify:]弹通知增强沉浸感\n- 角色离开当前场景时必须用[hide:角色名]隐藏立绘\n- 切换背景时重新用[char:]指定在场角色，未指定的会自动消失\n';
+function buildSys(){var base='你是一个视觉小说的导演兼编剧。根据用户输入推进剧情，用特定格式控制画面。\n\n## 输出格式（严格遵守）\n\n指令行：\n[bg:场景名] — 切换背景\n[char:角色名,位置,表情] — 显示角色（left/center/right）\n[hide:角色名] — 隐藏角色\n[wait] — 等待点击\n[notify:应用名,内容] — 屏幕顶部弹通知，用户可点击打开（如[notify:微信,方亦楷：在干嘛]）\n\n内容行：\n角色名：对话内容\n[narr]旁白文字\n\n模板指令（展示手机界面等）：\n[tpl:模板名]\\n变量名=值\\n[/tpl]\n\n自由HTML：\n[html]HTML代码[/html]\n\n## 通知+模板联动\n当[notify:]和[tpl:]在同一个[wait]段内时，通知可点击直接打开模板界面。适合\"收到消息→点开查看\"的场景。\n\n## 来电模板使用说明\n来电模板会显示来电界面，用户需点击接听按钮。接听后，后续的对话文字会显示在通话界面内。通话结束时用户点挂断。\n\n## QQ聊天表情包\n消息中使用 [img:图片链接] 可发送表情包/图片。\n\n## 绝对禁止\n- 禁止使用列表中不存在的名称\n- 禁止自创名称\n\n## 写作规则\n- 用[wait]分割节奏\n- 对话自然，旁白有文学性\n- 根据情绪切换表情\n- 角色收到消息时先用[notify:]弹通知增强沉浸感\n- 角色离开当前场景时必须用[hide:角色名]隐藏立绘\n- 切换背景时重新用[char:]指定在场角色，未指定的会自动消失\n\n## 时间和待办系统\n[time:+2h] — 时间前进2小时（单位：h小时/m分钟/d天）\n[time:set,2026-05-25 14:30] — 设置具体时间\n[todo:add,买生日礼物] — 添加待办事项\n[todo:done,买生日礼物] — 标记完成\n[todo:del,买生日礼物] — 删除待办\n规则：剧情中时间自然流逝时主动用[time:+30m]推进；角色提到要做某事时记入待办；完成后标记done。\n';
+
 
 if(userP&&userP.name){var up='\n## 用户角色（'+userP.name+'）\n';if(userP.gender)up+='性别：'+userP.gender+'\n';if(userP.appearance)up+='外貌：'+userP.appearance+'\n';if(userP.personality)up+='性格：'+userP.personality+'\n';if(userP.background)up+='背景：'+userP.background+'\n';if(userP.relation)up+='与角色关系：'+userP.relation+'\n';if(userP.style)up+='说话风格：'+userP.style+'\n';if(userP.other)up+=userP.other+'\n';base+=up+'\n'}
 if(upr)base+='\n## 用户要求\n'+upr+'\n';
@@ -669,15 +736,37 @@ if(hs||hb)base+=at;
 var tplInfo='\n## 可用模板\n\n';var hasTpl=false;for(var n in BTPL){hasTpl=true;tplInfo+='模板名：'+n+'\n'+BTPL[n].vars+'\n\n'}for(var n in tpls){hasTpl=true;tplInfo+='模板名：'+n+'\n'+(tpls[n].vars||'')+'\n\n'}if(hasTpl)base+=tplInfo;
 return base}
 
-function buildMsgs(userMsg){var msgs=[{role:'system',content:buildSys()}];var mc='';if(mem.auto.length)mc+='## 剧情摘要\n'+mem.auto.join('\n\n')+'\n\n';if(mem.manual.length)mc+='## 重要信息\n'+mem.manual.join('\n')+'\n\n';if(mc)msgs.push({role:'system',content:mc});var cl=api.contextLen||6;var s=Math.max(0,hi.length-cl*2);msgs=msgs.concat(hi.slice(s));msgs.push({role:'user',content:userMsg});return msgs}
+function buildMsgs(userMsg){var msgs=[{role:'system',content:buildSys()}];var stCtx='';if(gameState){var d=new Date(gameState.time);stCtx='## 当前故事时间
+'+d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 '+WEEK_NAMES[d.getDay()]+' '+MONTH_PAD(d.getHours())+':'+MONTH_PAD(d.getMinutes())+'
+
+';var pending=gameState.todos.filter(function(t){return !t.done});if(pending.length){stCtx+='## 当前待办事项
+';for(var ti=0;ti<pending.length;ti++)stCtx+='- '+pending[ti].text+'
+';stCtx+='
+'}}if(stCtx)msgs.push({role:'system',content:stCtx});var mc='';if(mem.auto.length)mc+='## 剧情摘要\n'+mem.auto.join('\n\n')+'\n\n';if(mem.manual.length)mc+='## 重要信息\n'+mem.manual.join('\n')+'\n\n';if(mc)msgs.push({role:'system',content:mc});var cl=api.contextLen||6;var s=Math.max(0,hi.length-cl*2);msgs=msgs.concat(hi.slice(s));msgs.push({role:'user',content:userMsg});return msgs}
+
+// STATUS BAR
+var WEEK_NAMES=['周日','周一','周二','周三','周四','周五','周六'];
+var MONTH_PAD=function(n){return n<10?'0'+n:''+n};
+function renderStBar(){if(!gameState)return;var d=new Date(gameState.time);var hh=MONTH_PAD(d.getHours()),mm=MONTH_PAD(d.getMinutes());var m=d.getMonth()+1,day=d.getDate();$('st-time').textContent=hh+':'+mm;$('st-date').textContent=m+'月'+day+'日';$('st-week').textContent=WEEK_NAMES[d.getDay()];var pending=gameState.todos.filter(function(t){return !t.done}).length;$('st-todo-count').textContent=pending;$('st-todo-mini').style.opacity=pending>0?'1':'.5'}
+function showStBar(){$('statbar').style.display='flex';renderStBar()}
+function saveGameState(){SV('gameState',gameState)}
+window.toggleStPanel=function(){var p=$('stpanel');if(p.classList.contains('on')){p.classList.remove('on')}else{renderStPanel();p.classList.add('on')}};
+function renderStPanel(){var d=new Date(gameState.time);var hh=MONTH_PAD(d.getHours()),mm=MONTH_PAD(d.getMinutes());var m=d.getMonth()+1,day=d.getDate(),y=d.getFullYear();var h='<div class="sp-h"><span>故事状态</span><span style="cursor:pointer;color:#9CA3AF;font-size:18px" onclick="window.toggleStPanel()">×</span></div>';h+='<div class="sp-time-display"><div class="sp-time-big">'+hh+':'+mm+'</div><div class="sp-time-info">'+y+'年'+m+'月'+day+'日<br>'+WEEK_NAMES[d.getDay()]+'</div><button class="sp-time-edit" onclick="window.editStTime()">调整</button></div>';h+='<div class="sp-sec"><div class="sp-lb">待办事项 / 重要提醒</div>';if(gameState.todos.length===0){h+='<div class="sp-empty">暂无待办</div>'}else{for(var i=0;i<gameState.todos.length;i++){var t=gameState.todos[i];h+='<div class="sp-todo-item'+(t.done?' done':'')+'"><div class="sp-todo-cb" onclick="window.tgTodo('+t.id+')"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="sp-todo-txt" onclick="window.tgTodo('+t.id+')">'+t.text+'</div><button class="sp-todo-del" onclick="window.dlTodo('+t.id+')">×</button></div>'}}h+='<div class="sp-todo-input"><input id="todo-new" placeholder="添加新待办..." onkeydown="if(event.key===\'Enter\')window.addTodo()"><button onclick="window.addTodo()">添加</button></div></div>';$('stpanel').innerHTML=h}
+window.addTodo=function(){var inp=$('todo-new'),v=inp.value.trim();if(!v)return;gameState.todos.push({id:gameState.todoId++,text:v,done:false});saveGameState();renderStPanel();renderStBar()};
+window.tgTodo=function(id){for(var i=0;i<gameState.todos.length;i++)if(gameState.todos[i].id===id)gameState.todos[i].done=!gameState.todos[i].done;saveGameState();renderStPanel();renderStBar()};
+window.dlTodo=function(id){gameState.todos=gameState.todos.filter(function(t){return t.id!==id});saveGameState();renderStPanel();renderStBar()};
+window.editStTime=function(){var d=new Date(gameState.time);var cur=d.getFullYear()+'-'+MONTH_PAD(d.getMonth()+1)+'-'+MONTH_PAD(d.getDate())+' '+MONTH_PAD(d.getHours())+':'+MONTH_PAD(d.getMinutes());var v=prompt('格式：YYYY-MM-DD HH:MM',cur);if(!v)return;var nd=new Date(v.replace(' ','T'));if(isNaN(nd.getTime()))return toast('格式错误');gameState.time=nd.getTime();saveGameState();renderStBar();renderStPanel();toast('时间已调整')};
+function applyTimeChange(cmd){if(!cmd)return;var m;if(m=cmd.match(/^\+(\d+)([hmd])$/)){var n=parseInt(m[1]),u=m[2];var mult={h:3600000,m:60000,d:86400000}[u];gameState.time+=n*mult;saveGameState();renderStBar()}else if(m=cmd.match(/^set,(.+)$/)){var nd=new Date(m[1].replace(' ','T'));if(!isNaN(nd.getTime())){gameState.time=nd.getTime();saveGameState();renderStBar()}}}
+function applyTodoCmd(cmd){if(!cmd)return;var m;if(m=cmd.match(/^add,(.+)$/)){gameState.todos.push({id:gameState.todoId++,text:m[1].trim(),done:false});saveGameState();renderStBar()}else if(m=cmd.match(/^done,(.+)$/)){var txt=m[1].trim();for(var i=0;i<gameState.todos.length;i++)if(gameState.todos[i].text.indexOf(txt)!==-1||txt.indexOf(gameState.todos[i].text)!==-1){gameState.todos[i].done=true;break}saveGameState();renderStBar()}else if(m=cmd.match(/^del,(.+)$/)){var txt=m[1].trim();gameState.todos=gameState.todos.filter(function(t){return t.text.indexOf(txt)===-1&&txt.indexOf(t.text)===-1});saveGameState();renderStBar()}}
+
 
 // ENGINE
 function findBg(name){name=name.trim();if(bgs[name])return bgs[name];var ln=name.toLowerCase();for(var k in bgs){if(k.toLowerCase()===ln)return bgs[k];if(k.indexOf(name)!==-1||name.indexOf(k)!==-1)return bgs[k]}return null}
 function findCh(name,expr){name=name.trim();expr=expr.trim();if(sprites[name]&&sprites[name][expr])return{n:name,u:sprites[name][expr]};var rn=null,ln=name.toLowerCase();for(var k in sprites){if(k.toLowerCase()===ln){rn=k;break}if(k.indexOf(name)!==-1||name.indexOf(k)!==-1){rn=k;break}}if(!rn)return null;if(sprites[rn][expr])return{n:rn,u:sprites[rn][expr]};var le=expr.toLowerCase();for(var e in sprites[rn]){if(e.toLowerCase()===le||e.indexOf(expr)!==-1||expr.indexOf(e)!==-1)return{n:rn,u:sprites[rn][e]}}var fk=Object.keys(sprites[rn]);if(fk.length)return{n:rn,u:sprites[rn][fk[0]]};return null}
 
-function parse(txt){var lines=txt.split('\n'),res=[],cur={c:[],d:[]};var inTpl=false,tplName='',tplBody='',inHtml=false,htmBody='';for(var i=0;i<lines.length;i++){var l=lines[i];var lt=l.trim();if(!inTpl&&!inHtml&&lt==='')continue;var tm=lt.match(/^\[tpl:\s*(.+?)\s*\]$/);if(tm&&!inTpl&&!inHtml){inTpl=true;tplName=tm[1];tplBody='';continue}if(inTpl){if(lt==='[/tpl]'){var vars={};tplBody.split('\n').forEach(function(ln){var eq=ln.indexOf('=');if(eq>0)vars[ln.substring(0,eq).trim()]=ln.substring(eq+1).trim()});cur.c.push({t:'tpl',n:tplName,v:vars});inTpl=false;tplName='';tplBody='';continue}tplBody+=l+'\n';continue}if(lt==='[html]'&&!inHtml){inHtml=true;htmBody='';continue}if(inHtml){if(lt==='[/html]'){cur.c.push({t:'htm',h:htmBody});inHtml=false;htmBody='';continue}htmBody+=l+'\n';continue}if(lt==='[wait]'){if(cur.c.length||cur.d.length){res.push(cur);cur={c:[],d:[]}}continue}var m;if(m=lt.match(/^\[notify:\s*(.+?)\s*,\s*(.+?)\s*\]$/)){cur.c.push({t:'ntf',a:m[1],x:m[2]});continue}if(m=lt.match(/^\[bg:\s*(.+?)\s*\]$/)){cur.c.push({t:'bg',v:m[1]});continue}if(m=lt.match(/^\[char:\s*(.+?)\s*,\s*(.+?)\s*,\s*(.+?)\s*\]$/)){cur.c.push({t:'ch',n:m[1],p:m[2].toLowerCase(),e:m[3]});continue}if(m=lt.match(/^\[hide:\s*(.+?)\s*\]$/)){cur.c.push({t:'hi',n:m[1]});continue}if(m=lt.match(/^\[narr\]\s*(.+)$/)){cur.d.push({t:'n',x:m[1]});continue}if(m=lt.match(/^(.+?)[:：]\s*(.+)$/)){cur.d.push({t:'d',s:m[1].trim(),x:m[2].trim()});continue}if(lt)cur.d.push({t:'n',x:lt})}if(cur.c.length||cur.d.length)res.push(cur);return res}
+function parse(txt){var lines=txt.split('\n'),res=[],cur={c:[],d:[]};var inTpl=false,tplName='',tplBody='',inHtml=false,htmBody='';for(var i=0;i<lines.length;i++){var l=lines[i];var lt=l.trim();if(!inTpl&&!inHtml&&lt==='')continue;var tm=lt.match(/^\[tpl:\s*(.+?)\s*\]$/);if(tm&&!inTpl&&!inHtml){inTpl=true;tplName=tm[1];tplBody='';continue}if(inTpl){if(lt==='[/tpl]'){var vars={};tplBody.split('\n').forEach(function(ln){var eq=ln.indexOf('=');if(eq>0)vars[ln.substring(0,eq).trim()]=ln.substring(eq+1).trim()});cur.c.push({t:'tpl',n:tplName,v:vars});inTpl=false;tplName='';tplBody='';continue}tplBody+=l+'\n';continue}if(lt==='[html]'&&!inHtml){inHtml=true;htmBody='';continue}if(inHtml){if(lt==='[/html]'){cur.c.push({t:'htm',h:htmBody});inHtml=false;htmBody='';continue}htmBody+=l+'\n';continue}if(lt==='[wait]'){if(cur.c.length||cur.d.length){res.push(cur);cur={c:[],d:[]}}continue}var m;if(m=lt.match(/^\[notify:\s*(.+?)\s*,\s*(.+?)\s*\]$/)){cur.c.push({t:'ntf',a:m[1],x:m[2]});continue}if(m=lt.match(/^\[bg:\s*(.+?)\s*\]$/)){cur.c.push({t:'bg',v:m[1]});continue}if(m=lt.match(/^\[char:\s*(.+?)\s*,\s*(.+?)\s*,\s*(.+?)\s*\]$/)){cur.c.push({t:'ch',n:m[1],p:m[2].toLowerCase(),e:m[3]});continue}if(m=lt.match(/^\[hide:\s*(.+?)\s*\]$/)){cur.c.push({t:'hi',n:m[1]});continue} if(m=lt.match(/^\[time:\s*(.+?)\s*\]$/)){cur.c.push({t:'tm',v:m[1]});continue} if(m=lt.match(/^\[todo:\s*(.+?)\s*\]$/)){cur.c.push({t:'td',v:m[1]});continue}if(m=lt.match(/^\[narr\]\s*(.+)$/)){cur.d.push({t:'n',x:m[1]});continue}if(m=lt.match(/^(.+?)[:：]\s*(.+)$/)){cur.d.push({t:'d',s:m[1].trim(),x:m[2].trim()});continue}if(lt)cur.d.push({t:'n',x:lt})}if(cur.c.length||cur.d.length)res.push(cur);return res}
 
-function renderSc(s){var ntfCmd=null,tplHtml=null;for(var i=0;i<s.c.length;i++){if(s.c[i].t==='ntf')ntfCmd=s.c[i];if(s.c[i].t==='tpl'){var h=renderTplFromVars(s.c[i].n,s.c[i].v);if(h)tplHtml=h}}var sceneChars={};var hasBgChange=false;for(var i=0;i<s.c.length;i++){if(s.c[i].t==='ch')sceneChars[s.c[i].n]=1;if(s.c[i].t==='bg')hasBgChange=true}var hasCharCmd=Object.keys(sceneChars).length>0;var toHide=[];if(hasCharCmd){for(var k in acCh){var keep=false;for(var sn in sceneChars){if(k===sn||k.indexOf(sn)!==-1||sn.indexOf(k)!==-1){keep=true;break}}if(!keep)toHide.push(k)}}else if(hasBgChange){for(var k in acCh)toHide.push(k)}toHide.forEach(function(k){hideCh(k)});for(var i=0;i<s.c.length;i++){var c=s.c[i];if(c.t==='bg'){var bu=findBg(c.v);if(bu){$('bgl').style.backgroundImage='url('+bu+')';cBg=c.v}}if(c.t==='ch'){var f=findCh(c.n,c.e);if(f)showCh(f.n,c.p,f.u)}if(c.t==='hi')hideCh(c.n);if(c.t==='ntf'){showNotify(c.a,c.x,ntfCmd&&tplHtml?tplHtml:null)}if(c.t==='tpl'&&!ntfCmd&&tplHtml){showTpl(tplHtml)}if(c.t==='htm')showTpl(c.h)}dq=s.d;di=0;if(dq.length>0&&!callMode)showDlg(dq[0]);else if(dq.length>0&&callMode){var ca=document.getElementById('call-act');if(ca&&ca.style.display!=='none')showDlg(dq[0])}else if(dq.length===0&&!$('tplo').classList.contains('on')){si++;if(si<sc.length)setTimeout(function(){renderSc(sc[si])},400)}}
+function renderSc(s){var ntfCmd=null,tplHtml=null;for(var i=0;i<s.c.length;i++){if(s.c[i].t==='ntf')ntfCmd=s.c[i];if(s.c[i].t==='tpl'){var h=renderTplFromVars(s.c[i].n,s.c[i].v);if(h)tplHtml=h}}var sceneChars={};var hasBgChange=false;for(var i=0;i<s.c.length;i++){if(s.c[i].t==='ch')sceneChars[s.c[i].n]=1;if(s.c[i].t==='bg')hasBgChange=true}var hasCharCmd=Object.keys(sceneChars).length>0;var toHide=[];if(hasCharCmd){for(var k in acCh){var keep=false;for(var sn in sceneChars){if(k===sn||k.indexOf(sn)!==-1||sn.indexOf(k)!==-1){keep=true;break}}if(!keep)toHide.push(k)}}else if(hasBgChange){for(var k in acCh)toHide.push(k)}toHide.forEach(function(k){hideCh(k)});for(var i=0;i<s.c.length;i++){var c=s.c[i];if(c.t==='bg'){var bu=findBg(c.v);if(bu){$('bgl').style.backgroundImage='url('+bu+')';cBg=c.v}}if(c.t==='ch'){var f=findCh(c.n,c.e);if(f)showCh(f.n,c.p,f.u)}if(c.t==='hi')hideCh(c.n);if(c.t==='tm')applyTimeChange(c.v);if(c.t==='td')applyTodoCmd(c.v);if(c.t==='ntf'){showNotify(c.a,c.x,ntfCmd&&tplHtml?tplHtml:null)}if(c.t==='tpl'&&!ntfCmd&&tplHtml){showTpl(tplHtml)}if(c.t==='htm')showTpl(c.h)}dq=s.d;di=0;if(dq.length>0&&!callMode)showDlg(dq[0]);else if(dq.length>0&&callMode){var ca=document.getElementById('call-act');if(ca&&ca.style.display!=='none')showDlg(dq[0])}else if(dq.length===0&&!$('tplo').classList.contains('on')){si++;if(si<sc.length)setTimeout(function(){renderSc(sc[si])},400)}}
 
 function showCh(n,p,u){if(acCh[n])acCh[n].remove();var img=document.createElement('img');img.className='csp';img.src=u;img.dataset.p=p;img.dataset.n=n;$('chl').appendChild(img);setTimeout(function(){img.classList.add('show')},50);acCh[n]=img}
 function hideCh(n){var found=null;for(var k in acCh){if(k===n||k.indexOf(n)!==-1||n.indexOf(k)!==-1){found=k;break}}if(!found)return;acCh[found].classList.remove('show');var el=acCh[found];setTimeout(function(){el.remove()},500);delete acCh[found]}
