@@ -1463,14 +1463,14 @@ var h='<div class="wb-tabs"><div class="wb-tab'+(wbTabIdx===0?' on':'')+'" oncli
 if(wbEditing){h+=renderWbEditForm();$('a-wb-bd').innerHTML=h;return}
 if(wbTabIdx===0){
   if(!g.length)h+='<div class="wb-empty">暂无全局世界书<br>所有角色都会读到这里的设定</div>';
-  else for(var i=0;i<g.length;i++){var e=g[i];var safeCn=cn.replace(/'/g,"\\'");h+='<div class="wb-entry" onclick="editWbItem(2,'+i+',\''+safeCn+'\')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}}
+  else for(var i=0;i<g.length;i++){var e=g[i];h+='<div class="wb-entry" onclick="editWbItem(0,'+i+')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}
 }else if(wbTabIdx===1){
   if(!s.length)h+='<div class="wb-empty">暂无通用世界书<br>绑定多个角色 = 同一世界线</div>';
   else for(var i=0;i<s.length;i++){var e=s[i];h+='<div class="wb-entry" onclick="editWbItem(1,'+i+')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div><div class="wb-entry-chars">绑定：'+(e.chars&&e.chars.length?e.chars.join('、'):'未绑定')+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}
 }else{
   var charNames=Object.keys(c);
   if(!charNames.length)h+='<div class="wb-empty">暂无角色世界书<br>从文游带来或手动添加</div>';
-  else for(var ci2=0;ci2<charNames.length;ci2++){var cn=charNames[ci2],entries=c[cn]||[];h+='<div style="padding:12px 16px 4px;font-size:12px;font-weight:600;color:#7A9DA8">'+cn+' ('+entries.length+')</div>';for(var i=0;i<entries.length;i++){var e=entries[i];h+='<div class="wb-entry" onclick="editWbItem(2,'+i+\',\\\'\'+cn+\'\\\'\')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}}
+  else for(var ci2=0;ci2<charNames.length;ci2++){var cn=charNames[ci2],entries=c[cn]||[];h+='<div style="padding:12px 16px 4px;font-size:12px;font-weight:600;color:#7A9DA8">'+cn+' ('+entries.length+')</div>';for(var i=0;i<entries.length;i++){var e=entries[i];var safeCn=cn.replace(/'/g,"\\'");h+='<div class="wb-entry" onclick="editWbItem(2,'+i+',\''+safeCn+'\')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}}
 }
 $('a-wb-bd').innerHTML=h}
 
