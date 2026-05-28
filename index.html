@@ -477,6 +477,53 @@ body.dark #statbar .st-raw{background:rgba(126,179,236,.15);color:#7eb3ec}
 .ch-ctx-it{padding:10px 16px;font-size:13px;color:#2D3436;cursor:pointer}
 .ch-ctx-it:active{background:rgba(184,210,216,.1)}
 .ch-ctx-it.danger{color:#E04E3F}
+/* 世界书 app */
+.wb-tabs{display:flex;border-bottom:1px solid rgba(184,210,216,.15);padding:0 14px}
+.wb-tab{flex:1;text-align:center;padding:12px 0;font-size:12px;color:#9CA3AF;cursor:pointer;border-bottom:2px solid transparent;font-weight:500}
+.wb-tab.on{color:#7A9DA8;border-bottom-color:#7A9DA8;font-weight:600}
+.wb-entry{padding:13px 16px;border-bottom:1px solid rgba(184,210,216,.1);display:flex;align-items:center;gap:10px}
+.wb-entry:last-child{border-bottom:none}
+.wb-entry-info{flex:1;min-width:0}
+.wb-entry-nm{font-size:14px;font-weight:500;color:#2D3436;margin-bottom:2px}
+.wb-entry-pv{font-size:11px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wb-entry-chars{font-size:10px;color:#8BAAB5;margin-top:3px}
+.wb-empty{padding:40px 20px;text-align:center;color:#C5CCD3;font-size:12px;line-height:2}
+
+/* 群聊列表 */
+.grp-it{display:flex;align-items:center;gap:13px;padding:14px 18px;cursor:pointer;border-bottom:1px solid rgba(184,210,216,.1)}
+.grp-it:active{background:rgba(184,210,216,.08)}
+.grp-av{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#B8D2D8,#8BAAB5);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden}
+.grp-av-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;width:100%;height:100%;padding:4px}
+.grp-av-grid img,.grp-av-grid div{width:100%;height:100%;border-radius:3px;object-fit:cover;background:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:600}
+.grp-info{flex:1;min-width:0}
+.grp-nm{font-size:15px;font-weight:600;color:#2D3436;margin-bottom:3px}
+.grp-pv{font-size:12px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grp-empty{padding:60px 20px;text-align:center;color:#C5CCD3;font-size:13px;line-height:2}
+
+/* 群聊气泡里的发送者名 */
+.gc-sender{font-size:10px;color:#8BAAB5;margin-bottom:2px;font-weight:500}
+
+/* 引用回复 */
+.ch-reply{padding:6px 10px;margin-bottom:4px;background:rgba(184,210,216,.12);border-radius:8px;border-left:3px solid #8BAAB5;font-size:11px;color:#6B7280;line-height:1.4;max-height:36px;overflow:hidden}
+.ch-reply-bar{display:none;padding:6px 14px;background:rgba(184,210,216,.08);border-top:1px solid rgba(184,210,216,.15);font-size:11px;color:#6B7280;align-items:center;gap:8px}
+.ch-reply-bar.on{display:flex}
+.ch-reply-bar .rp-txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ch-reply-bar .rp-close{background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:16px;padding:0 4px}
+
+/* 创建角色弹窗 */
+.ph-create{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
+.ph-create.on{display:flex}
+.ph-create-card{background:#fff;width:100%;max-width:420px;border-radius:18px 18px 0 0;padding:20px 18px 28px;max-height:85vh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:rpSlideUp .3s ease}
+.ph-create-card h3{font-size:16px;font-weight:600;color:#2D3436;text-align:center;margin-bottom:16px}
+.ph-create-card label{display:block;font-size:11px;color:#9CA3AF;margin-bottom:4px;margin-top:12px}
+.ph-create-card label:first-of-type{margin-top:0}
+.ph-create-card input,.ph-create-card textarea{width:100%;background:#F7F8F8;border:1px solid rgba(184,210,216,.25);border-radius:10px;padding:10px 14px;font-size:13px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box}
+.ph-create-card textarea{height:70px;resize:vertical;line-height:1.5}
+.ph-create-card input:focus,.ph-create-card textarea:focus{border-color:#8BAAB5;background:#fff}
+.ph-create-bns{display:flex;gap:10px;margin-top:18px}
+.ph-create-bns button{flex:1;padding:11px 0;border-radius:11px;border:none;font-size:14px;font-weight:500;cursor:pointer}
+.ph-create-bns .cc{background:#F0F2F4;color:#6B7280}
+.ph-create-bns .ok{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff;box-shadow:0 2px 8px rgba(139,170,181,.3)}
 
 /* 表情包面板 */
 .em-panel{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid rgba(184,210,216,.18);padding:10px 12px 24px;max-height:220px;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:50;flex-wrap:wrap;gap:8px;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
@@ -485,8 +532,10 @@ body.dark #statbar .st-raw{background:rgba(126,179,236,.15);color:#7eb3ec}
 .em-it:active{transform:scale(.9)}
 .em-it img{width:100%;height:100%;object-fit:cover}
 .em-it .em-fb{font-size:10px;color:#9CA3AF;text-align:center;padding:2px;word-break:break-all;line-height:1.2}
-.em-btn{background:rgba(184,210,216,.18);border:none;color:#7A9DA8;border-radius:50%;width:34px;height:34px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;padding:0}
+.em-btn{background:rgba(184,210,216,.18);border:none;color:#7A9DA8;border-radius:50%;width:34px;height:34px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0}
 .em-btn:active{transform:scale(.9)}
+.em-btn svg{width:20px;height:20px;flex-shrink:0}
+
 /* 设置里的表情包管理 */
 .ep-it{padding:11px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(184,210,216,.1)}
 .ep-it:last-child{border-bottom:none}
@@ -798,11 +847,12 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div class="ph-app" onclick="phApp('msg')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="ph-an">消息</div></div>
 <div class="ph-app" onclick="phApp('cb')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div><div class="ph-an">通讯录</div></div>
 <div class="ph-app" onclick="phApp('photo')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="ph-an">相册</div></div>
+<div class="ph-app" onclick="phApp('grp')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="ph-an">群聊</div></div>
 <div class="ph-app" onclick="phApp('set')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="ph-an">设置</div></div>
 </div>
 <div class="ph-dk">
 <div class="ph-app" onclick="phApp('call')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>
-<div class="ph-app" onclick="phApp('msg')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+<div class="ph-app" onclick="phApp('wb')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div></div>
 <div class="ph-app" onclick="phApp('camera')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
 </div>
 </div>
@@ -814,7 +864,7 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 
 <div id="a-cb" class="aps">
 <div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-cb')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">通讯录</div></div>
-<div class="cb-tip">从文游创建的所有角色中<br>挑选你想聊天的人</div>
+<div class="cb-tip">从文游或手机创建的角色中<br>挑选你想聊天的人</div><div style="padding:8px 18px"><button style="width:100%;padding:11px;border-radius:12px;border:1px dashed rgba(184,210,216,.4);background:rgba(184,210,216,.06);color:#7A9DA8;font-size:13px;font-weight:500;cursor:pointer" onclick="openPhCreate()">+ 创建新角色</button></div>
 <div class="ap-bd" id="cb-list"></div>
 </div>
 
@@ -840,11 +890,48 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-set')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">设置</div></div>
 <div class="ap-bd" id="a-set-bd"></div>
 </div>
+<div id="a-wb" class="aps">
+<div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-wb')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">世界书</div><button class="ap-add" onclick="addWbEntry()"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
+<div class="ap-bd" id="a-wb-bd"></div>
+</div>
+
+<div id="a-grp" class="aps">
+<div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-grp')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">群聊</div><button class="ap-add" onclick="createGroup()"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
+<div class="ap-bd" id="a-grp-bd"></div>
+</div>
+
+<div id="a-gc" class="aps">
+<div class="ch-hd"><button class="ap-bk" onclick="closeApp('a-gc')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ch-tt" id="gc-tt">群聊<span class="st">3人</span></div></div>
+<div class="ch-bd" id="gc-bd"></div>
+<div class="ch-ib"><button class="ch-pl" onclick="gcTl()"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><textarea class="ch-in" id="gc-in" placeholder="说点什么..." rows="1"></textarea><button class="ch-sd" onclick="gcSend()" title="发送"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
+</div>
 <div id="a-info" class="aps">
 <div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-info')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt">资料</div></div>
 <div class="ap-bd" id="a-info-bd"></div>
 <input type="file" id="in-av-file" accept="image/*" style="display:none">
 </div>
+<div class="ph-create" id="ph-create" onclick="if(event.target===this)closePhCreate()">
+<div class="ph-create-card">
+<h3>创建新角色</h3>
+<label>角色名（必填）</label>
+<input id="pc-name" placeholder="小明">
+<label>性格</label>
+<textarea id="pc-pers" placeholder="开朗活泼，喜欢吐槽..."></textarea>
+<label>外貌</label>
+<input id="pc-look" placeholder="黑色短发，戴眼镜">
+<label>背景</label>
+<textarea id="pc-bg" placeholder="大学生，喜欢打游戏..."></textarea>
+<label>说话风格</label>
+<input id="pc-style" placeholder="语气随意，爱用缩写">
+<label>与你的关系</label>
+<input id="pc-rel" placeholder="朋友 / 恋人 / 同事">
+<div class="ph-create-bns">
+<button class="cc" onclick="closePhCreate()">取消</button>
+<button class="ok" onclick="savePhCreate()">创建并添加好友</button>
+</div>
+</div>
+</div>
+
 <div class="rp-send" id="rp-send" onclick="if(event.target===this)closeRPSend()">
 <div class="rp-send-card">
 <div class="rp-send-h">发红包</div>
@@ -1070,7 +1157,7 @@ function loadAv(){return GLD('phAvs',{})}
 function loadPhApi(){return GLD('phApi',null)}
 function savePhApi(d){GSV('phApi',d)}
 
-function getAllChars(){var all={};for(var i=0;i<stories.length;i++){var c=CACHE['vs_'+stories[i].id+'_cards'];if(c){for(var n in c)if(!all[n])all[n]=c[n]}}if(sid&&cards){for(var n in cards)if(!all[n])all[n]=cards[n]}return all}
+function getAllChars(){var all={};for(var i=0;i<stories.length;i++){var c=CACHE['vs_'+stories[i].id+'_cards'];if(c){for(var n in c)if(!all[n])all[n]=c[n]}}if(sid&&cards){for(var n in cards)if(!all[n])all[n]=cards[n]}var pcs=loadPhChars();for(var n in pcs)if(!all[n])all[n]=pcs[n];return all}
 function avHTML(name){var avs=loadAv();if(avs[name])return '<img src="'+avs[name]+'">';return name.charAt(0)}
 function fmtTm(t){if(!t)return '';var d=new Date(t),now=new Date(),pd=function(n){return n<10?'0'+n:''+n};if(d.toDateString()===now.toDateString())return pd(d.getHours())+':'+pd(d.getMinutes());var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天';if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];return (d.getMonth()+1)+'/'+d.getDate()}
 function fmtFTm(t){var d=new Date(t),now=new Date(),pd=function(n){return n<10?'0'+n:''+n};var hm=pd(d.getHours())+':'+pd(d.getMinutes());if(d.toDateString()===now.toDateString())return hm;var dd=Math.floor((now-d)/86400000);if(dd===1)return '昨天 '+hm;if(dd<7)return ['周日','周一','周二','周三','周四','周五','周六'][d.getDay()]+' '+hm;return (d.getMonth()+1)+'月'+d.getDate()+'日 '+hm}
@@ -1108,7 +1195,7 @@ window.chTl=function(){$('a-ch-tl').classList.toggle('on')};
 function updQueueUI(){var has=msgQueue.length>0;var ab=$('ch-add');var tg=$('ch-qtag');if(ab){if(has)ab.classList.add('on');else ab.classList.remove('on')}if(tg){if(has){tg.classList.add('on');tg.textContent=msgQueue.length+'条消息待发送，点 ✈ 发送全部并让对方回复'}else tg.classList.remove('on')}}
 window.chQueue=function(){var inp=$('ch-in'),tx=inp.value.trim();if(!tx||!curC)return;inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');var ab=$('ch-add');if(ab)ab.classList.remove('typing');msgQueue.push(tx);pushMsg({from:'me',text:tx,t:Date.now(),read:false});updQueueUI();toast('已追加 '+msgQueue.length+' 条，点 ✈ 发送')};
 
-window.chSend=async function(){var inp=$('ch-in'),tx=inp.value.trim();if(!curC)return;if(tx){inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');var ab=$('ch-add');if(ab){ab.classList.remove('typing');ab.classList.remove('on')}pushMsg({from:'me',text:tx,t:Date.now(),read:false})}if(!tx&&!msgQueue.length)return;msgQueue=[];updQueueUI();await chAI();flushChat();var pc=loadCh(),ch=pc[curC];if(ch&&ch.msgs){for(var i=0;i<ch.msgs.length;i++)if(ch.msgs[i].from==='me')ch.msgs[i].read=true;saveCh(pc);var oldRd=document.querySelectorAll('.ch-rd');for(var ri=0;ri<oldRd.length;ri++){oldRd[ri].className='ch-rd read';oldRd[ri].textContent='已读'}}};
+window.chSend=async function(){var inp=$('ch-in'),tx=inp.value.trim();if(!curC)return;if(tx){inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');var ab=$('ch-add');if(ab){ab.classList.remove('typing');ab.classList.remove('on')}var urlMatch=tx.match(/^(https?:\/\/[^\s]+)$/i);if(urlMatch&&!msgQueue.length){chSendLink(urlMatch[1]);return}pushMsg({from:'me',text:tx,t:Date.now(),read:false})}if(!tx&&!msgQueue.length)return;msgQueue=[];updQueueUI();await chAI();flushChat();var pc=loadCh(),ch=pc[curC];if(ch&&ch.msgs){for(var i=0;i<ch.msgs.length;i++)if(ch.msgs[i].from==='me')ch.msgs[i].read=true;saveCh(pc);var oldRd=document.querySelectorAll('.ch-rd');for(var ri=0;ri<oldRd.length;ri++){oldRd[ri].className='ch-rd read';oldRd[ri].textContent='已读'}}};
 
 
 function pushMsg(m){var pc=loadCh();if(!pc[curC])pc[curC]={msgs:[]};if(!m.type)m.type='text';pc[curC].msgs.push(m);CACHE[GK+'phChats']=pc;appendMsgDOM(m,pc[curC].msgs.length-1,pc[curC].msgs);setTimeout(function(){var b=$('ch-bd');if(b)b.scrollTop=b.scrollHeight},30)} function flushChat(){var pc=loadCh();saveCh(pc)} function appendMsgDOM(m,idx,allMsgs){var bd=$('ch-bd');if(!bd)return;var emp=bd.querySelector('.ch-emp');if(emp)bd.innerHTML='';var phUA=GLD('phUserAv','');var av=m.from==='me'?(phUA?'<img src="'+phUA+'">':(userP&&userP.name?userP.name.charAt(0):'我')):avHTML(curC);var ct='',bc='ch-bb';if(m.type==='emoji'){var ems=loadEmojis(),eu='';for(var ei=0;ei<ems.length;ei++)if(ems[ei].name===m.name){eu=ems[ei].url;break}bc='ch-bb imb';ct=eu?'<img class="ch-img" src="'+eu+'" onclick="phViewImg(this.src)" style="max-width:120px;max-height:120px">':'<div style="padding:8px 12px;font-size:13px">[表情：'+escH(m.name)+']</div>'}else if(m.type==='img'){bc='ch-bb imb';ct='<img class="ch-img" src="'+m.text+'" onclick="phViewImg(this.src)">'}else if(m.type==='rp'){bc='ch-bb ch-rp-bb';ct='<div class="ch-rp'+(m.opened?' opened':'')+'" onclick="openRP('+idx+')"><div class="ch-rp-ic">红</div><div class="ch-rp-info"><div class="ch-rp-greet">'+escH(m.greeting||'恭喜发财')+'</div><div class="ch-rp-tag">微信红包'+(m.opened?' · 已领取':'')+'</div></div></div>'}else if(m.type==='voice'){var dur=m.duration||1,bars='',bn=Math.min(20,Math.max(5,Math.round(dur/2)));for(var b=0;b<bn;b++)bars+='<i style="height:'+(35+Math.floor(Math.random()*55))+'%"></i>';bc='ch-bb ch-vc-bb';ct='<div class="ch-vc" onclick="toggleVoice('+idx+')"><svg class="ch-vc-ic" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z" fill="currentColor"/><path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="2" fill="none"/></svg><div class="ch-vc-wave">'+bars+'</div><span class="ch-vc-dur">'+dur+"''"+'</span></div><div class="ch-vc-text" data-vc-idx="'+idx+'">'+escH(m.text||'')+'</div>'}else if(m.type==='call'){var icSvg=m.callType==='video'?'<svg viewBox="0 0 24 24" fill="none"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>':'<svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';bc='ch-bb ch-call-bb';ct='<div class="ch-call">'+icSvg+'<span>'+(m.callType==='video'?'视频':'语音')+'通话 '+(m.duration||'')+'</span></div>'}else ct=escH(m.text);var oldRd=bd.querySelectorAll('.ch-rd');for(var ri=0;ri<oldRd.length;ri++)oldRd[ri].remove();var div=document.createElement('div');div.innerHTML='<div class="ch-rw '+(m.from==='me'?'me':'')+'"><div class="ch-av">'+av+'</div><div class="'+bc+'">'+ct+'</div></div>';bd.appendChild(div.firstChild);if(m.from==='me'){var rdDiv=document.createElement('div');rdDiv.className='ch-rd';rdDiv.textContent='未读';bd.appendChild(rdDiv)}}
@@ -1136,7 +1223,9 @@ sys+='\n## 特殊功能指令（每条独占一行）\n\n【发红包】[rp:金�
 var phCfg=loadPhCfg();
 var pc=loadCh(),hist=(pc[curC].msgs||[]).slice(-(phCfg.ctxLen||20));
 var msgs=[{role:'system',content:sys}];
-for(var i=0;i<hist.length;i++){var m=hist[i];if(m.type==='img')continue;var displayText=m.text||'';if(m.type==='rp')displayText='[发了红包：'+(m.greeting||'')+' ¥'+m.amount+(m.opened?' 已领取':'')+']';else if(m.type==='voice')displayText='[语音]'+(m.text||'');else if(m.type==='call')displayText='['+(m.callType==='video'?'视频':'语音')+'通话 '+(m.duration||'')+']';else if(m.type==='emoji')displayText='[发了表情包：'+(m.name||'')+']';else if(m.type==='recalled')displayText='[撤回了一条消息]';msgs.push({role:m.from==='me'?'user':'assistant',content:displayText})}
+for(var i=0;i<hist.length;i++){var m=hist[i];if(m.type==='img')continue;var displayText=m.text||'';if(m.type==='rp')displayText='[发了红包：'+(m.greeting||'')+' ¥'+m.amount+(m.opened?' 已领取':'')+']';else if(m.type==='voice')displayText='[语音]'+(m.text||'');else if(m.type==='call')displayText='['+(m.callType==='video'?'视频':'语音')+'通话 '+(m.duration||'')+']';else if(m.type==='emoji')displayText='[发了表情包：'+(m.name||'')+']';else if(m.type==='recalled')displayText='[撤回了一条消息]';if(m._linkCtx)displayText+='
+
+'+m._linkCtx;msgs.push({role:m.from==='me'?'user':'assistant',content:displayText})}
 var r=await callPhAPI(msgs);
 typ.remove();
 var un=userP&&userP.name||'';
@@ -1263,6 +1352,72 @@ h+='<div class="st-sec">关于</div><div class="st-grp"><div class="st-it"><span
 $('a-set-bd').innerHTML=h;
 if(pa){$('ph-api-u').value=pa.url||'';$('ph-api-k').value=pa.key||'';$('ph-api-m').value=pa.model||''}
 }
+// ===== 世界书系统（三层） =====
+function loadWbG(){return GLD('phWbGlobal',[])}
+function saveWbG(d){GSV('phWbGlobal',d)}
+function loadWbS(){return GLD('phWbShared',[])}
+function saveWbS(d){GSV('phWbShared',d)}
+function loadWbC(){return GLD('phWbChar',{})}
+function saveWbC(d){GSV('phWbChar',d)}
+function loadWbOff(){return GLD('phWbOff',{})}
+function saveWbOff(d){GSV('phWbOff',d)}
+var wbTabIdx=0;
+
+window.phApp=function(name){if(name==='msg'){openApp('a-msg');renderCT();return}if(name==='cb'){openApp('a-cb');renderCB();return}if(name==='set'){openApp('a-set');renderSet();return}if(name==='wb'){openApp('a-wb');renderWbApp();return}if(name==='grp'){openApp('a-grp');renderGrpList();return}toast(({photo:'相册',call:'电话',camera:'相机'}[name]||name)+' 暂未上线 ✨')};
+
+function renderWbApp(){
+var g=loadWbG(),s=loadWbS(),c=loadWbC();
+var h='<div class="wb-tabs"><div class="wb-tab'+(wbTabIdx===0?' on':'')+'" onclick="wbTabIdx=0;renderWbApp()">全局</div><div class="wb-tab'+(wbTabIdx===1?' on':'')+'" onclick="wbTabIdx=1;renderWbApp()">通用</div><div class="wb-tab'+(wbTabIdx===2?' on':'')+'" onclick="wbTabIdx=2;renderWbApp()">角色</div></div>';
+if(wbTabIdx===0){
+  if(!g.length)h+='<div class="wb-empty">暂无全局世界书<br>点右上角 + 添加</div>';
+  else for(var i=0;i<g.length;i++){var e=g[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbG('+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbG('+i+')">×</button></div>'}
+}else if(wbTabIdx===1){
+  if(!s.length)h+='<div class="wb-empty">暂无通用世界书<br>绑定多个角色 = 同一世界线</div>';
+  else for(var i=0;i<s.length;i++){var e=s[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div><div class="wb-entry-chars">绑定：'+(e.chars&&e.chars.length?e.chars.join('、'):'未绑定')+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbS('+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#8BAAB5;font-size:11px;cursor:pointer;padding:4px 8px;border:1px solid rgba(184,210,216,.3);border-radius:6px;margin:0 4px" onclick="editWbSChars('+i+')">绑定</button><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbS('+i+')">×</button></div>'}
+}else{
+  var charNames=Object.keys(c);
+  if(!charNames.length)h+='<div class="wb-empty">暂无角色世界书<br>从文游带来或手动添加</div>';
+  else for(var ci=0;ci<charNames.length;ci++){var cn=charNames[ci],entries=c[cn]||[];h+='<div style="padding:10px 16px 4px;font-size:12px;font-weight:600;color:#7A9DA8">'+cn+' ('+entries.length+')</div>';for(var i=0;i<entries.length;i++){var e=entries[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbC(\''+cn+'\','+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbC(\''+cn+'\','+i+')">×</button></div>'}}
+}
+$('a-wb-bd').innerHTML=h}
+
+window.addWbEntry=function(){var types=['全局（所有角色）','通用（选择角色）','角色（单个角色）'];var choice=prompt('添加到哪一层？\n\n1 = '+types[0]+'\n2 = '+types[1]+'\n3 = '+types[2]+'\n\n输入 1/2/3：');if(!choice)return;var name=prompt('条目名称：');if(!name||!name.trim())return;var content=prompt('内容（世界观/设定/规则）：');if(!content||!content.trim())return;choice=choice.trim();if(choice==='1'){var g=loadWbG();g.push({name:name.trim(),content:content.trim(),off:false});saveWbG(g)}else if(choice==='2'){var chars=prompt('绑定哪些角色？（逗号分隔角色名）：');var charList=chars?chars.split(/[,，]/).map(function(x){return x.trim()}).filter(function(x){return x}):[];var s=loadWbS();s.push({name:name.trim(),content:content.trim(),chars:charList,off:false});saveWbS(s)}else if(choice==='3'){var charName=prompt('属于哪个角色？（输入角色名）：');if(!charName||!charName.trim())return;var c=loadWbC();if(!c[charName.trim()])c[charName.trim()]=[];c[charName.trim()].push({name:name.trim(),content:content.trim(),off:false});saveWbC(c)}else return toast('请输入 1/2/3');wbTabIdx=parseInt(choice)-1;renderWbApp();toast('已添加')};
+window.tgWbG=function(i,v){var g=loadWbG();g[i].off=!v;saveWbG(g)};
+window.tgWbS=function(i,v){var s=loadWbS();s[i].off=!v;saveWbS(s)};
+window.tgWbC=function(cn,i,v){var c=loadWbC();c[cn][i].off=!v;saveWbC(c)};
+window.delWbG=function(i){var g=loadWbG();g.splice(i,1);saveWbG(g);renderWbApp()};
+window.delWbS=function(i){var s=loadWbS();s.splice(i,1);saveWbS(s);renderWbApp()};
+window.delWbC=function(cn,i){var c=loadWbC();c[cn].splice(i,1);if(!c[cn].length)delete c[cn];saveWbC(c);renderWbApp()};
+window.editWbSChars=function(i){var s=loadWbS();var cur=s[i].chars||[];var v=prompt('绑定角色（逗号分隔）：\n当前：'+(cur.join('、')||'无'),cur.join(','));if(v===null)return;s[i].chars=v.split(/[,，]/).map(function(x){return x.trim()}).filter(function(x){return x});saveWbS(s);renderWbApp();toast('已更新绑定')};
+
+function getWbForChar(charName){var result=[];var g=loadWbG();for(var i=0;i<g.length;i++)if(!g[i].off)result.push(g[i]);var s=loadWbS();for(var i=0;i<s.length;i++){if(s[i].off)continue;if(s[i].chars&&s[i].chars.indexOf(charName)!==-1)result.push(s[i])}var c=loadWbC();if(c[charName])for(var i=0;i<c[charName].length;i++)if(!c[charName][i].off)result.push(c[charName][i]);return result}
+
+// ===== 群聊 =====
+function loadGroups(){return GLD('phGroups',[])}
+function saveGroups(d){GSV('phGroups',d)}
+var curGrp=null;
+
+function renderGrpList(){var groups=loadGroups();if(!groups.length){$('a-grp-bd').innerHTML='<div class="grp-empty">还没有群聊<br>点右上角 + 创建一个</div>';return}var h='';for(var i=0;i<groups.length;i++){var g=groups[i];var pv='';if(g.msgs&&g.msgs.length){var lm=g.msgs[g.msgs.length-1];pv=(lm.from||'')+'：'+(lm.text||'').substring(0,25)}var avH='<div class="grp-av-grid">';for(var j=0;j<Math.min(4,g.members.length);j++){var av=loadAv();avH+=av[g.members[j]]?'<img src="'+av[g.members[j]]+'">':'<div>'+g.members[j].charAt(0)+'</div>'}avH+='</div>';h+='<div class="grp-it" onclick="openGrp(\''+g.id+'\')"><div class="grp-av">'+avH+'</div><div class="grp-info"><div class="grp-nm">'+escH(g.name)+' <span style="font-size:11px;color:#9CA3AF;font-weight:400">('+g.members.length+')</span></div><div class="grp-pv">'+escH(pv||'暂无消息')+'</div></div></div>'}$('a-grp-bd').innerHTML=h}
+
+window.createGroup=function(){var name=prompt('群聊名称：');if(!name||!name.trim())return;var all=getAllChars(),frs=loadFr();var available=frs.filter(function(n){return all[n]});if(!available.length)return toast('先添加好友');var list=available.map(function(n,i){return(i+1)+'. '+n}).join('\n');var sel=prompt('选择群成员（输入序号，逗号分隔）：\n\n'+list);if(!sel)return;var members=[];sel.split(/[,，]/).forEach(function(s){var idx=parseInt(s.trim())-1;if(idx>=0&&idx<available.length)members.push(available[idx])});if(members.length<2)return toast('至少选2个人');var groups=loadGroups();groups.push({id:Date.now().toString(36),name:name.trim(),members:members,msgs:[],created:Date.now()});saveGroups(groups);renderGrpList();toast('群聊已创建')};
+
+window.openGrp=function(id){var groups=loadGroups();curGrp=null;for(var i=0;i<groups.length;i++)if(groups[i].id===id){curGrp=groups[i];break}if(!curGrp)return;$('gc-tt').innerHTML=escH(curGrp.name)+'<span class="st">'+curGrp.members.length+'人</span>';renderGcMsgs();openApp('a-gc')};
+
+function renderGcMsgs(){if(!curGrp){$('gc-bd').innerHTML='';return}var msgs=curGrp.msgs||[];if(!msgs.length){$('gc-bd').innerHTML='<div class="ch-emp">群聊已创建，说点什么吧 💬</div>';return}var h='',lt=0;for(var i=0;i<msgs.length;i++){var m=msgs[i];if(!lt||m.t-lt>5*60*1000)h+='<div class="ch-tm">'+fmtFTm(m.t)+'</div>';lt=m.t;var isMe=m.from==='me';var phUA=GLD('phUserAv','');var av=isMe?(phUA?'<img src="'+phUA+'">':(userP&&userP.name?userP.name.charAt(0):'我')):avHTML(m.from);var replyH='';if(m.replyTo){replyH='<div class="ch-reply">'+escH(m.replyTo.from)+': '+escH((m.replyTo.text||'').substring(0,40))+'</div>'}h+='<div class="ch-rw '+(isMe?'me':'')+'"><div class="ch-av">'+av+'</div><div class="ch-bb">'+replyH+(!isMe?'<div class="gc-sender">'+escH(m.from)+'</div>':'')+escH(m.text)+'</div></div>'}$('gc-bd').innerHTML=h;setTimeout(function(){var b=$('gc-bd');if(b)b.scrollTop=b.scrollHeight},30)}
+
+window.gcSend=async function(){var inp=$('gc-in'),tx=inp.value.trim();if(!tx||!curGrp)return;inp.value='';curGrp.msgs.push({from:'me',text:tx,t:Date.now()});saveGroups(loadGroups().map(function(g){return g.id===curGrp.id?curGrp:g}));renderGcMsgs();for(var mi=0;mi<curGrp.members.length;mi++){await gcAIReply(curGrp.members[mi])}};
+
+async function gcAIReply(charName){if(!curGrp)return;var all=getAllChars(),c=all[charName];if(!c)return;if(Math.random()>0.7)return;var sys='你是群聊中的一员，扮演：'+charName+'\n';if(c.personality)sys+='性格：'+c.personality+'\n';if(c.style)sys+='说话风格：'+c.style+'\n';sys+='\n群成员：'+curGrp.members.join('、')+'、'+(userP&&userP.name||'用户')+'\n';sys+='\n规则：\n1. 这是群聊，你只是其中一个人\n2. 不是每条消息都需要回复，觉得没必要就不说话\n3. 回复简短，1-2条，像真人群聊\n4. 不写动作描写，纯
+
+// ===== 小手机独立创建角色 =====
+function loadPhChars(){return GLD('phChars',{})}
+function savePhChars(d){GSV('phChars',d)}
+
+window.openPhCreate=function(){$('pc-name').value='';$('pc-pers').value='';$('pc-look').value='';$('pc-bg').value='';$('pc-style').value='';$('pc-rel').value='';$('ph-create').classList.add('on')};
+window.closePhCreate=function(){$('ph-create').classList.remove('on')};
+window.savePhCreate=function(){var name=$('pc-name').value.trim();if(!name)return toast('请填角色名');var ch={name:name,personality:$('pc-pers').value.trim(),appearance:$('pc-look').value.trim(),background:$('pc-bg').value.trim(),style:$('pc-style').value.trim(),relation:$('pc-rel').value.trim()};var pcs=loadPhChars();pcs[name]=ch;savePhChars(pcs);var frs=loadFr();if(frs.indexOf(name)===-1){frs.push(name);saveFr(frs)}closePhCreate();toast(name+' 已创建');renderCB();renderCT()};
+
+
 // ===== 拉黑 =====
 function loadBlocked(){return GLD('phBlocked',[])}
 function saveBlocked(d){GSV('phBlocked',d)}
@@ -1306,6 +1461,9 @@ document.addEventListener('input',function(e){if(e.target&&e.target.id==='em-url
 window.tgEmPanel=function(){var p=$('em-panel');if(!p)return;if(p.classList.contains('on')){p.classList.remove('on');p.style.display='none'}else{renderEmPanel();p.style.display='flex';p.classList.add('on')}}; window.closeEmPanel=function(){var p=$('em-panel');if(p){p.classList.remove('on');p.style.display='none'}};
 
 window.renderEmPanel=function(){var p=$('em-panel');if(!p)return;var list=loadEmojis();if(!list.length){p.innerHTML='<div style="color:#C5CCD3;font-size:12px;padding:8px;width:100%">暂无表情包 · 去设置里添加</div>';return}var h='';for(var i=0;i<list.length;i++){var em=list[i];h+='<div class="em-it" onclick="sendEmoji(\''+em.name.replace(/'/g,"\\'")+'\')" title="'+escH(em.name)+'"><img src="'+escH(em.url)+'" onerror="this.outerHTML=\'<div class=em-fb>'+escH(em.name)+'</div>\'"></div>'}p.innerHTML=h};
+// ===== 链接读取 =====
+window.chSendLink=async function(url){if(!url||!curC)return;pushMsg({from:'me',text:url,t:Date.now(),read:false});flushChat();toast('正在读取链接...');try{var proxyUrl='https://api.allorigins.win/raw?url='+encodeURIComponent(url);var r=await fetch(proxyUrl,{signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error(r.status);var html=await r.text();var doc=new DOMParser().parseFromString(html,'text/html');var scripts=doc.querySelectorAll('script,style,nav,header,footer,iframe');for(var si=0;si<scripts.length;si++)scripts[si].remove();var title=doc.querySelector('title');var titleText=title?title.textContent.trim():'';var article=doc.querySelector('article')||doc.querySelector('[class*="content"]')||doc.querySelector('[class*="detail"]')||doc.querySelector('main')||doc.body;var text=article?article.textContent.replace(/\s+/g,' ').trim():'';if(text.length>2000)text=text.substring(0,2000)+'...';if(!text&&!titleText){pushMsg({from:'me',type:'text',text:'[分享了一个链接：'+url+']（无法读取内容）',t:Date.now()});flushChat();await chAI();return}var linkCtx='[用户分享了一个链接]\n标题：'+(titleText||'无')+'\n内容摘要：'+text;pushMsg({from:'me',type:'text',text:'[分享了链接：'+(titleText||url)+']',t:Date.now()});var pc=loadCh();if(pc[curC]&&pc[curC].msgs){var lastMsg=pc[curC].msgs[pc[curC].msgs.length-1];lastMsg._linkCtx=linkCtx;saveCh(pc)}flushChat();await chAI()}catch(e){pushMsg({from:'me',type:'text',text:'[分享了一个链接：'+url+']（读取失败：'+e.message+'）',t:Date.now()});flushChat();await chAI()}};
+
 
 window.sendEmoji=function(name){closeEmPanel();if(!curC)return;pushMsg({from:'me',type:'emoji',name:name,t:Date.now(),read:false});flushChat()};
 
