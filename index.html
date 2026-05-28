@@ -264,7 +264,8 @@ body.dark .mtb button.on{background:#1a1a1d;color:#e8e8ea}
 .ch-sd:active{transform:scale(.92)}
 .ch-add{background:rgba(184,210,216,.25);border:none;color:#7A9DA8;border-radius:50%;width:36px;height:36px;cursor:pointer;flex-shrink:0;display:none;align-items:center;justify-content:center;padding:0;font-size:18px;font-weight:700;transition:transform .15s}
 .ch-add:active{transform:scale(.9)}
-.ch-add.on{display:flex}
+.ch-add.on{display:flex} 
+.ch-add.typing{display:flex}
 .ch-queue-tag{font-size:10px;color:#9CA3AF;text-align:right;padding:0 60px 4px 0;display:none}
 .ch-queue-tag.on{display:block}
 .ch-sd svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -1064,7 +1065,7 @@ function renderMsgs(){var pc=loadCh(),ch=pc[curC];if(!ch||!ch.msgs||!ch.msgs.len
 var msgQueue=[];
 window.chTl=function(){$('a-ch-tl').classList.toggle('on')};
 function updQueueUI(){var has=msgQueue.length>0;var ab=$('ch-add');var tg=$('ch-qtag');if(ab){if(has)ab.classList.add('on');else ab.classList.remove('on')}if(tg){if(has){tg.classList.add('on');tg.textContent=msgQueue.length+'条消息待发送，点 ✈ 发送全部并让对方回复'}else tg.classList.remove('on')}}
-window.chQueue=function(){var inp=$('ch-in'),tx=inp.value.trim();if(!tx||!curC)return;inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');msgQueue.push(tx);pushMsg({from:'me',text:tx,t:Date.now(),read:false});updQueueUI();toast('已追加 '+msgQueue.length+' 条，点 ✈ 发送')};
+window.chQueue=function(){var inp=$('ch-in'),tx=inp.value.trim();if(!tx||!curC)return;inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');var ab=$('ch-add');if(ab)ab.classList.remove('typing');msgQueue.push(tx);pushMsg({from:'me',text:tx,t:Date.now(),read:false});updQueueUI();toast('已追加 '+msgQueue.length+' 条，点 ✈ 发送')};
 
 window.chSend=async function(){var inp=$('ch-in'),tx=inp.value.trim();if(!curC)return;if(tx){inp.value='';inp.style.height='auto';$('a-ch-tl').classList.remove('on');pushMsg({from:'me',text:tx,t:Date.now(),read:false})}if(!tx&&!msgQueue.length)return;msgQueue=[];updQueueUI();await chAI();flushChat();var pc=loadCh(),ch=pc[curC];if(ch&&ch.msgs){for(var i=0;i<ch.msgs.length;i++)if(ch.msgs[i].from==='me')ch.msgs[i].read=true;saveCh(pc);var oldRd=document.querySelectorAll('.ch-rd');for(var ri=0;ri<oldRd.length;ri++){oldRd[ri].className='ch-rd read';oldRd[ri].textContent='已读'}}};
 
@@ -1167,8 +1168,7 @@ window.dlPhApi=function(){if(!confirm('清空小手机的独立 API 配置？'))
 window.tsPhApi=async function(){var pa={url:$('ph-api-u').value.trim(),key:$('ph-api-k').value.trim(),model:$('ph-api-m').value.trim()};if(!pa.url||!pa.key||!pa.model)return toast('请填完整');toast('测试中...');try{var url=cleanURL(pa.url)+'/chat/completions';var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+cleanKey(pa.key)},body:JSON.stringify({model:pa.model,messages:[{role:'user',content:'回复ok'}],max_tokens:10})});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,100))}toast('连接成功 ✓')}catch(e){toast('失败: '+e.message)}};
 window.clrAllPh=function(){var choice=prompt('清空所有联系人：\n\n1 = 仅清记录（保留记忆）\n2 = 彻底清空（记录+记忆全删）\n\n输入 1 或 2：');if(!choice)return;choice=choice.trim();if(choice==='1'){saveCh({});toast('已清空所有记录')}else if(choice==='2'){saveCh({});GSV('phMems',{});toast('已彻底清空（记录+记忆）')}if(curC)renderMsgs()};
 
-setTimeout(function(){var inp=$('ch-in');if(inp){inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'});inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chSend()}})}var f=$('ch-file');if(f){f.addEventListener('change',async function(e){var fl=e.target.files[0];if(!fl)return;toast('压缩中...');try{var rs=await compressImg(fl);var oK=Math.round(rs.origSize/1024),nK=Math.round(rs.newSize/1024);pushMsg({from:'me',text:rs.data,t:Date.now(),type:'img'});toast('图片：'+oK+'KB → '+nK+'KB');$('a-ch-tl').classList.remove('on')}catch(err){toast('压缩失败: '+err.message)}e.target.value=''})}},800);
-
+setTimeout(function(){var inp=$('ch-in');if(inp){inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px';var ab=$('ch-add');if(ab){if(this.value.trim())ab.classList.add('typing');else ab.classList.remove('typing')}});inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chSend()}})}var f=$('ch-file');if(f){f.addEventListener('change',async function(e){var fl=e.target.files[0];if(!fl)return;toast('压缩中...');try{var rs=await compressImg(fl);var oK=Math.round(rs.origSize/1024),nK=Math.round(rs.newSize/1024);pushMsg({from:'me',text:rs.data,t:Date.now(),type:'img'});flushChat();toast('图片：'+oK+'KB → '+nK+'KB');$('a-ch-tl').classList.remove('on')}catch(err){toast('压缩失败: '+err.message)}e.target.value=''})}},800);
 
 // HOME
 function rdrHome(){var h='';if(!stories.length){h='<div class="hempty">还没有故事<br>点击右上角「新建故事」开始创作</div>'}else{for(var i=0;i<stories.length;i++){var s=stories[i];h+='<div class="sc" onclick="enterStory(\''+s.id+'\')"><div class="sc-t">'+s.title+'</div>'+(s.desc?'<div class="sc-d">'+s.desc+'</div>':'')+'<div class="sc-m">'+(s.lastPlayed?'上次：'+s.lastPlayed:'未开始')+'</div><div class="sc-a" onclick="event.stopPropagation()"><button onclick="enterStory(\''+s.id+'\')">进入</button><button class="del" onclick="delStory(\''+s.id+'\')">删除</button></div></div>'}}$('storyList').innerHTML=h}
