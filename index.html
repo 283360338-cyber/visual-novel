@@ -1236,7 +1236,6 @@ function loadStory(){cards=LD('cards',{});sprites=LD('sp',{});spDesc=LD('spd',{}
 window.switchMode=function(m){if(m==='phone'){$('home').style.display='none';$('ph').classList.add('on');$('mt-h').classList.remove('on');$('mt-p').classList.add('on');updPhTime()}else{$('ph').classList.remove('on');$('home').style.display='flex';$('mt-h').classList.add('on');$('mt-p').classList.remove('on')}};
 window.openApp=function(id){$(id).classList.add('on')};
 window.closeApp=function(id){$(id).classList.remove('on')};
-window.phApp=function(name){if(name==='msg'){openApp('a-msg');renderCT();return}if(name==='cb'){openApp('a-cb');renderCB();return}if(name==='set'){openApp('a-set');renderSet();return}toast(({photo:'相册',call:'电话',camera:'相机'}[name]||name)+' 暂未上线 ✨')};
 
 function updPhTime(){var d=new Date(),pd=function(n){return n<10?'0'+n:''+n};var t=pd(d.getHours())+':'+pd(d.getMinutes());var w=['周日','周一','周二','周三','周四','周五','周六'];if($('ph-st'))$('ph-st').textContent=t;if($('ph-ct'))$('ph-ct').textContent=t;if($('ph-cd'))$('ph-cd').textContent=w[d.getDay()]+' · '+(d.getMonth()+1)+'月'+d.getDate()+'日'}
 setInterval(updPhTime,30000);
@@ -1326,7 +1325,6 @@ for(var li=0;li<rawLines.length;li++){
   var line=rawLines[li];
   if(line.match(/^\[block\]$/i)){actions.push({type:'ai_block'});continue}
   if(line.match(/^\[recall\]$/i)){actions.push({type:'ai_recall'});continue}
-  if(line.match(/^\[block\]$/i)){actions.push({type:'ai_block'});continue}if(line.match(/^\[recall\]$/i)){actions.push({type:'ai_recall'});continue}
   var emM=line.match(/^\[em[:：]\s*(.+?)\s*\]$/i);
   if(!emM){for(var ei2=0;ei2<emojiList.length;ei2++){if(line.trim()===emojiList[ei2].name){emM=['',emojiList[ei2].name];break}}}
   if(emM){actions.push({type:'emoji',name:emM[1]||emM[0]});continue}
@@ -1346,7 +1344,6 @@ for(var ai=0;ai<actions.length;ai++){
       else if(act.type==='rp'){pushMsg({from:'them',type:'rp',amount:act.amount,greeting:act.greeting,opened:false,t:Date.now()})}
       else if(act.type==='voice'){pushMsg({from:'them',type:'voice',text:act.text,duration:act.duration,t:Date.now()})}
       else if(act.type==='emoji'){pushMsg({from:'them',type:'emoji',name:act.name,t:Date.now()})}
-      else if(act.type==='ai_block'){aiBlockUser()}else if(act.type==='ai_recall'){var pc2=loadCh(),ch2=pc2[curC];if(ch2&&ch2.msgs&&ch2.msgs.length){var li=ch2.msgs.length-1;while(li>=0&&ch2.msgs[li].type==='recalled')li--;if(li>=0&&ch2.msgs[li].from==='them'){ch2.msgs[li]={from:'them',type:'recalled',text:getDispName(curC)+' 撤回了一条消息',t:ch2.msgs[li].t,recallType:'them'};saveCh(pc2);renderMsgs()}}}
       else if(act.type==='call_invite'){showCallInvite(act.callType)}
       else if(act.type==='ai_block'){aiBlockUser()}
       else if(act.type==='ai_recall'){var pc2=loadCh(),ch2=pc2[curC];if(ch2&&ch2.msgs&&ch2.msgs.length){var li2=ch2.msgs.length-1;while(li2>=0&&ch2.msgs[li2].type==='recalled')li2--;if(li2>=0&&ch2.msgs[li2].from==='them'){ch2.msgs[li2]={from:'them',type:'recalled',text:getDispName(curC)+' 撤回了一条消息',t:ch2.msgs[li2].t};saveCh(pc2);renderMsgs()}}}
@@ -1513,7 +1510,7 @@ window.rejectReq=function(name){var reqs=loadReqs();reqs=reqs.filter(function(r)
 
 // ===== 撤回 =====
 var ctxMsgIdx=-1;
-window.showMsgCtx=function(e,idx){e.preventDefault();e.stopPropagation();ctxMsgIdx=idx;var ctx=$('ch-ctx');var pc=loadCh(),ch=pc[curC];if(!ch||!ch.msgs||!ch.msgs[idx])return;var m=ch.msgs[idx];var h='';if(m.from==='me'){h+='<div class="ch-ctx-it" onclick="recallMsg(\'recall\')">撤回（对方未看到）</div>';h+='<div class="ch-ctx-it" onclick="recallMsg(\'delete\')">删除（对方已看到）</div>'}else{h+='<div class="ch-ctx-it" onclick="recallMsg(\'them\')">对方撤回了</divctx.innerHTML=h;ctx.style.left=Math.min(e.clientX,window.innerWidth-130)+'px';ctx.style.top=Math.min(e.clientY,window.innerHeight-100)+'px';ctx.classList.add('on')};
+window.showMsgCtx=function(e,idx){e.preventDefault();e.stopPropagation();ctxMsgIdx=idx;var ctx=$('ch-ctx');var pc=loadCh(),ch=pc[curC];if(!ch||!ch.msgs||!ch.msgs[idx])return;var m=ch.msgs[idx];var h='';if(m.from==='me'){h+='<div class="ch-ctx-it" onclick="recallMsg(\'recall\')">撤回（对方未看到）</div>';h+='<div class="ch-ctx-it" onclick="recallMsg(\'delete\')">删除（对方已看到）</div>'}else{h+='<div class="ch-ctx-it" onclick="recallMsg(\'them\')">对方撤回了</div>'}h+='<div class="ch-ctx-it" onclick="showFwd([loadCh()[curC].msgs[ctxMsgIdx]])">转发</div>';ctx.innerHTML=h;ctx.style.left=Math.min(e.clientX,window.innerWidth-130)+'px';ctx.style.top=Math.min(e.clientY,window.innerHeight-100)+'px';ctx.classList.add('on')};
 document.addEventListener('click',function(e){$('ch-ctx').classList.remove('on');var ep=$('em-panel');if(ep&&ep.classList.contains('on')){var btn=e.target.closest('.em-btn');if(!btn)closeEmPanel()}});
 
 window.recallMsg=function(type){$('ch-ctx').classList.remove('on');var pc=loadCh(),ch=pc[curC];if(!ch||!ch.msgs||ctxMsgIdx<0||!ch.msgs[ctxMsgIdx])return;var m=ch.msgs[ctxMsgIdx];if(type==='recall'){ch.msgs[ctxMsgIdx]={from:m.from,type:'recalled',text:'你撤回了一条消息',t:m.t,recallType:'unseen'}}else if(type==='delete'){ch.msgs[ctxMsgIdx]={from:m.from,type:'recalled',text:'你删除了一条消息',t:m.t,recallType:'seen'}}else if(type==='them'){ch.msgs[ctxMsgIdx]={from:m.from,type:'recalled',text:getDispName(curC)+' 撤回了一条消息',t:m.t,recallType:'them'}}saveCh(pc);renderMsgs();ctxMsgIdx=-1};
