@@ -1044,7 +1044,7 @@ var curC=null;
 function getDispName(name){var notes=GLD('phNotes',{});return notes[name]||name}
 function applyChBg(){var bgs=GLD('phChatBgs',{}),bd=$('ch-bd');if(!bd)return;if(bgs[curC]){bd.style.backgroundImage='url('+bgs[curC]+')';bd.classList.add('has-bg')}else{bd.style.backgroundImage='';bd.classList.remove('has-bg')}}
 
-window.openCh=function(name){curC=name;hasPending=false;var dn=getDispName(name);$('ch-tt').innerHTML=dn+'<span class="st">在线</span>';var av=loadAv();$('ch-av-h').innerHTML=av[name]?'<img src="'+av[name]+'">':name.charAt(0);openApp('a-ch');var pc=loadCh();if(pc[name]){pc[name].unread=0;saveCh(pc)}applyChBg();renderMsgs();setTimeout(function(){var b=$('ch-bd');b.scrollTop=b.scrollHeight;updateChBtn()},60);$('a-ch-tl').classList.remove('on');msgQueue=[];updQueueUI()};
+window.openCh=function(name){curC=name;var dn=getDispName(name);$('ch-tt').innerHTML=dn+'<span class="st">在线</span>';var av=loadAv();$('ch-av-h').innerHTML=av[name]?'<img src="'+av[name]+'">':name.charAt(0);openApp('a-ch');var pc=loadCh();if(pc[name]){pc[name].unread=0;saveCh(pc)}applyChBg();renderMsgs();setTimeout(function(){var b=$('ch-bd');b.scrollTop=b.scrollHeight;updateChBtn()},60);$('a-ch-tl').classList.remove('on');msgQueue=[];updQueueUI()};
 
 window.openInfo=function(){if(!curC)return;var all=getAllChars(),c=all[curC];if(!c){toast('角色卡未找到');return}var avs=loadAv(),myAv=avs[curC];var wbAll=getAllWb(),wbDis=loadWbDis(),disList=wbDis[curC]||[];var notes=GLD('phNotes',{}),curNote=notes[curC]||'';var hasBg=!!GLD('phChatBgs',{})[curC];var avInner=myAv?'<img src="'+myAv+'">':curC.charAt(0);var ds=c.personality||c.background||'';if(ds.length>80)ds=ds.substring(0,80)+'...';var h='<div class="in-hero"><div class="in-av" onclick="inPickAv()">'+avInner+'<div class="in-av-cam"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div><div class="in-nm">'+curC+'</div>'+(ds?'<div class="in-ds">'+escH(ds)+'</div>':'')+'</div>';h+='<div class="in-sec">个性化</div><div class="in-grp"><div class="in-input"><span class="lbl">备注名</span><input id="in-note" placeholder="留空=显示原名" value="'+escH(curNote).replace(/"/g,'&quot;')+'" onblur="svNote(this.value)"></div><div class="in-it" onclick="inPickBg()"><span class="lbl">聊天背景</span><span class="v">'+(hasBg?'已设置':'默认')+' <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div>'+(hasBg?'<div class="in-it" onclick="clrChBg()"><span class="lbl" style="color:#E88080">清除聊天背景</span></div>':'')+'<div class="in-it" onclick="inPickVBg()"><span class="lbl">视频通话背景</span><span class="v">'+(GLD('phVideoBg',{})[curC]?'已设置':'用立绘/默认')+' <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div>'+(GLD('phVideoBg',{})[curC]?'<div class="in-it" onclick="clrVBg()"><span class="lbl" style="color:#E88080">清除视频背景</span></div>':'')+'</div>';h+='<div class="in-sec">独立世界书开关</div><div class="in-grp">';if(!wbAll.length){h+='<div class="in-empty">暂无世界书条目</div>'}else{for(var i=0;i<wbAll.length;i++){var w=wbAll[i],wbKey=wbKeyOf(w),isOff=disList.indexOf(wbKey)!==-1;var preview=(w.content||'').substring(0,60);h+='<div class="in-it"><div class="lbl"><div>'+escH(w.name)+'</div>'+(preview?'<div class="sub">'+escH(preview)+'</div>':'')+'</div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(isOff?'':'checked')+' onchange="tgWbCh(\''+wbKey.replace(/'/g,"\\'")+'\',this.checked)"><span class="sl"></span></label></div>'}}h+='</div>';h+='<div class="in-sec">操作</div><div class="in-grp"><div class="in-it" onclick="chClearFromInfo()"><span class="lbl">清空聊天记录</span></div><div class="in-it in-danger" onclick="rmFr()"><span class="lbl">删除好友</span></div></div>';$('a-info-bd').innerHTML=h;openApp('a-info')};
 window.svNote=function(v){var notes=GLD('phNotes',{});if(v.trim())notes[curC]=v.trim();else delete notes[curC];GSV('phNotes',notes);$('ch-tt').innerHTML=getDispName(curC)+'<span class="st">在线</span>';renderCT()};
@@ -1054,12 +1054,7 @@ window.inPickVBg=function(){var i=document.createElement('input');i.type='file';
 window.clrVBg=function(){var vbgs=GLD('phVideoBg',{});delete vbgs[curC];GSV('phVideoBg',vbgs);openInfo();toast('已清除')};
 window.tgWbCh=function(wbKey,enabled){var d=loadWbDis();if(!d[curC])d[curC]=[];var idx=d[curC].indexOf(wbKey);if(enabled){if(idx>=0)d[curC].splice(idx,1)}else{if(idx<0)d[curC].push(wbKey)}saveWbDis(d)};
 window.inPickAv=function(){$('in-av-file').click()};
-window.chClearFromInfo=function(){var choice=prompt('清空和「'+curC+'」的聊天：
-
-1 = 仅清屏（保留记忆）
-2 = 彻底清空（清记录+清记忆）
-
-输入 1 或 2：');if(!choice)return;choice=choice.trim();if(choice==='1'){var pc=loadCh();if(pc[curC])pc[curC].msgs=[];saveCh(pc);renderMsgs();toast('已清屏')}else if(choice==='2'){var pc=loadCh();if(pc[curC])pc[curC].msgs=[];saveCh(pc);var mems=GLD('phMems',{});if(mems[curC]){delete mems[curC];GSV('phMems',mems)}renderMsgs();toast('已彻底清空')}};
+window.chClearFromInfo=function(){var choice=prompt('清空和「'+curC+'」的聊天：\n\n1 = 仅清屏（保留记忆）\n2 = 彻底清空（清记录+清记忆）\n\n输入 1 或 2：');
 window.rmFr=function(){if(!confirm('删除好友「'+curC+'」？聊天记录会保留'))return;var frs=loadFr();var i=frs.indexOf(curC);if(i>=0){frs.splice(i,1);saveFr(frs)}closeApp('a-info');closeApp('a-ch');toast('已删除');renderCT()};
 
 setTimeout(function(){var avf=$('in-av-file');if(avf&&!avf._bound){avf._bound=true;avf.addEventListener('change',async function(e){var fl=e.target.files[0];if(!fl||!curC)return;toast('压缩中...');try{var rs=await compressImg(fl);var avs=loadAv();avs[curC]=rs.data;GSV('phAvs',avs);openInfo();var hav=$('ch-av-h');if(hav)hav.innerHTML='<img src="'+rs.data+'">';toast('头像已更新 ✓')}catch(err){toast('失败: '+err.message)}e.target.value=''})}},1000);
@@ -1094,7 +1089,7 @@ window.closeRP=function(){$('rp-modal').classList.remove('on')};
 window.confirmOpenRP=function(){var idx=parseInt($('rp-amt-show').dataset.idx);var pc=loadCh();if(pc[curC]&&pc[curC].msgs[idx]){pc[curC].msgs[idx].opened=true;saveCh(pc);renderMsgs()}$('rp-open-btn').classList.add('hide');$('rp-amt-show').classList.add('on');$('rp-amt-tag').style.display='block'};
 
 // ===== 语音 =====
-window.chPickVoice=function(){$('a-ch-tl').classList.remove('on');var t=prompt('输入语音内容（自动转成语音条）：','');if(!t||!t.trim())return;var dur=Math.max(1,Math.min(60,Math.round(t.length*0.4)));pushMsg({from:'me',type:'voice',text:t.trim(),duration:dur,read:false,t:Date.now()});hasPending=true;updateChBtn();toast('已发送语音 · 收键盘后点纸飞机让对方回复')};
+window.chPickVoice=function(){$('a-ch-tl').classList.remove('on');var t=prompt('输入语音内容（自动转成语音条）：','');if(!t||!t.trim())return;var dur=Math.max(1,Math.min(60,Math.round(t.length*0.4)));pushMsg({from:'me',type:'voice',text:t.trim(),duration:dur,read:false,t:Date.now()});toast('已发送语音 · 收键盘后点纸飞机让对方回复')};
 window.toggleVoice=function(idx){var el=document.querySelector('[data-vc-idx="'+idx+'"]');if(el)el.classList.toggle('on')};
 
 // ===== 通话 =====
@@ -1118,12 +1113,7 @@ function compressImg(file){return new Promise(function(ok,no){var r=new FileRead
 
 window.chPickImg=function(){$('ch-file').click()};
 window.phViewImg=function(src){$('ph-iv-src').src=src;$('ph-iv').classList.add('on')};
-window.chClear=function(){var choice=prompt('清空和「'+curC+'」的聊天：
-
-1 = 仅清屏（保留记忆，AI仍记得）
-2 = 彻底清空（清记录+清记忆，AI完全忘记）
-
-输入 1 或 2：');if(!choice)return;choice=choice.trim();if(choice==='1'){var pc=loadCh();if(pc[curC])pc[curC].msgs=[];saveCh(pc);renderMsgs();$('a-ch-tl').classList.remove('on');toast('已清屏（记忆保留）')}else if(choice==='2'){var pc=loadCh();if(pc[curC])pc[curC].msgs=[];saveCh(pc);var mems=GLD('phMems',{});if(mems[curC]){delete mems[curC];GSV('phMems',mems)}renderMsgs();$('a-ch-tl').classList.remove('on');toast('已彻底清空（记录+记忆）')}else{toast('请输入 1 或 2')}};
+window.chClear=function(){var choice=prompt('清空和「'+curC+'」的聊天：\n\n1 = 仅清屏（保留记忆，AI仍记得）\n2 = 彻底清空（清记录+清记忆，AI完全忘记）\n\n输入 1 或 2：');
 
 function loadPhCfg(){return GLD('phCfg',{ctxLen:20,memEnabled:true,memInterval:30,sendDelay:1500})}
 function savePhCfg(c){GSV('phCfg',c)}
@@ -1174,12 +1164,7 @@ window.usePresetApi=function(){if(!apiPresets||!apiPresets.length)return toast('
 window.svPhApi=function(){var u=$('ph-api-u').value.trim(),k=$('ph-api-k').value.trim(),m=$('ph-api-m').value.trim();if(!u||!k||!m)return toast('请填完整');savePhApi({url:u,key:k,model:m});toast('已保存');renderSet()};
 window.dlPhApi=function(){if(!confirm('清空小手机的独立 API 配置？'))return;savePhApi(null);toast('已清空，将使用文游 API');renderSet()};
 window.tsPhApi=async function(){var pa={url:$('ph-api-u').value.trim(),key:$('ph-api-k').value.trim(),model:$('ph-api-m').value.trim()};if(!pa.url||!pa.key||!pa.model)return toast('请填完整');toast('测试中...');try{var url=cleanURL(pa.url)+'/chat/completions';var r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+cleanKey(pa.key)},body:JSON.stringify({model:pa.model,messages:[{role:'user',content:'回复ok'}],max_tokens:10})});if(!r.ok){var e=await r.text();throw new Error(r.status+': '+e.substring(0,100))}toast('连接成功 ✓')}catch(e){toast('失败: '+e.message)}};
-window.clrAllPh=function(){var choice=prompt('清空所有联系人：
-
-1 = 仅清记录（保留记忆）
-2 = 彻底清空（记录+记忆全删）
-
-输入 1 或 2：');if(!choice)return;choice=choice.trim();if(choice==='1'){saveCh({});toast('已清空所有记录')}else if(choice==='2'){saveCh({});GSV('phMems',{});toast('已彻底清空（记录+记忆）')}if(curC)renderMsgs()};
+window.clrAllPh=function(){var choice=prompt('清空所有联系人：\n\n1 = 仅清记录（保留记忆）\n2 = 彻底清空（记录+记忆全删）\n\n输入 1 或 2：');
 
 setTimeout(function(){var inp=$('ch-in');if(inp){inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'});inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chSend()}})}var f=$('ch-file');if(f){f.addEventListener('change',async function(e){var fl=e.target.files[0];if(!fl)return;toast('压缩中...');try{var rs=await compressImg(fl);var oK=Math.round(rs.origSize/1024),nK=Math.round(rs.newSize/1024);pushMsg({from:'me',text:rs.data,t:Date.now(),type:'img'});toast('图片：'+oK+'KB → '+nK+'KB');$('a-ch-tl').classList.remove('on')}catch(err){toast('压缩失败: '+err.message)}e.target.value=''})}},800);
 
