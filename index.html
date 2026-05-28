@@ -478,16 +478,31 @@ body.dark #statbar .st-raw{background:rgba(126,179,236,.15);color:#7eb3ec}
 .ch-ctx-it:active{background:rgba(184,210,216,.1)}
 .ch-ctx-it.danger{color:#E04E3F}
 /* 世界书 app */
-.wb-tabs{display:flex;border-bottom:1px solid rgba(184,210,216,.15);padding:0 14px}
-.wb-tab{flex:1;text-align:center;padding:12px 0;font-size:12px;color:#9CA3AF;cursor:pointer;border-bottom:2px solid transparent;font-weight:500}
+.wb-tabs{display:flex;border-bottom:1px solid rgba(184,210,216,.15);padding:0 14px;background:rgba(255,255,255,.6)}
+.wb-tab{flex:1;text-align:center;padding:12px 0;font-size:12px;color:#9CA3AF;cursor:pointer;border-bottom:2px solid transparent;font-weight:500;transition:all .2s}
 .wb-tab.on{color:#7A9DA8;border-bottom-color:#7A9DA8;font-weight:600}
-.wb-entry{padding:13px 16px;border-bottom:1px solid rgba(184,210,216,.1);display:flex;align-items:center;gap:10px}
+.wb-entry{padding:14px 16px;border-bottom:1px solid rgba(184,210,216,.1);display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s}
+.wb-entry:active{background:rgba(184,210,216,.06)}
 .wb-entry:last-child{border-bottom:none}
 .wb-entry-info{flex:1;min-width:0}
 .wb-entry-nm{font-size:14px;font-weight:500;color:#2D3436;margin-bottom:2px}
 .wb-entry-pv{font-size:11px;color:#9CA3AF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wb-entry-chars{font-size:10px;color:#8BAAB5;margin-top:3px}
+.wb-entry-mode{font-size:9px;color:#fff;background:#8BAAB5;padding:1px 6px;border-radius:4px;flex-shrink:0}
 .wb-empty{padding:40px 20px;text-align:center;color:#C5CCD3;font-size:12px;line-height:2}
+.wb-edit{padding:16px;background:#fff;margin:10px 14px;border-radius:12px;border:1px solid rgba(184,210,216,.13)}
+.wb-edit label{display:block;font-size:11px;color:#9CA3AF;margin-bottom:4px;margin-top:12px}
+.wb-edit label:first-child{margin-top:0}
+.wb-edit input,.wb-edit textarea,.wb-edit select{width:100%;background:#FAFAF8;border:1px solid rgba(184,210,216,.25);border-radius:9px;padding:9px 12px;font-size:13px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box}
+.wb-edit textarea{height:120px;resize:vertical;line-height:1.6}
+.wb-edit input:focus,.wb-edit textarea:focus{border-color:#8BAAB5;background:#fff}
+.wb-edit select{appearance:auto;height:38px}
+.wb-edit-bns{display:flex;gap:8px;margin-top:14px}
+.wb-edit-bns button{flex:1;padding:10px 0;border-radius:10px;border:none;font-size:13px;font-weight:500;cursor:pointer}
+.wb-edit-bns .cc{background:#F0F2F4;color:#6B7280}
+.wb-edit-bns .ok{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff}
+.wb-edit-bns .del{background:rgba(232,128,128,.12);color:#E88080}
+
 
 /* 群聊列表 */
 .grp-it{display:flex;align-items:center;gap:13px;padding:14px 18px;cursor:pointer;border-bottom:1px solid rgba(184,210,216,.1)}
@@ -581,18 +596,19 @@ body.dark #statbar .st-raw{background:rgba(126,179,236,.15);color:#7eb3ec}
 .mc-fab:active{transform:scale(.9)}
 
 /* 发朋友圈弹窗 */
-.mc-pub{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
+.mc-pub{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:300;flex-direction:column}
 .mc-pub.on{display:flex}
-.mc-pub-card{background:#fff;width:100%;max-width:420px;border-radius:18px 18px 0 0;padding:18px;max-height:80vh;overflow-y:auto;animation:rpSlideUp .3s ease}
-.mc-pub-card h3{font-size:15px;font-weight:600;color:#2D3436;margin-bottom:14px;text-align:center}
-.mc-pub-card textarea{width:100%;min-height:100px;background:#F7F8F8;border:1px solid rgba(184,210,216,.25);border-radius:10px;padding:10px 14px;font-size:13px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box;resize:vertical;line-height:1.6}
-.mc-pub-card textarea:focus{border-color:#8BAAB5;background:#fff}
-.mc-pub-card label{display:block;font-size:11px;color:#9CA3AF;margin:12px 0 4px}
-.mc-pub-card input{width:100%;background:#F7F8F8;border:1px solid rgba(184,210,216,.25);border-radius:10px;padding:9px 14px;font-size:13px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box}
-.mc-pub-bns{display:flex;gap:10px;margin-top:16px}
-.mc-pub-bns button{flex:1;padding:11px 0;border-radius:11px;border:none;font-size:14px;font-weight:500;cursor:pointer}
-.mc-pub-bns .cc{background:#F0F2F4;color:#6B7280}
-.mc-pub-bns .ok{background:linear-gradient(135deg,#B8D2D8,#9EC3CC);color:#fff}
+.mc-pub-hd{padding:46px 14px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(184,210,216,.12)}
+.mc-pub-hd .mc-cancel{background:none;border:none;font-size:14px;color:#6B7280;cursor:pointer}
+.mc-pub-hd .mc-submit{background:linear-gradient(135deg,#7BC47F,#5BA876);color:#fff;border:none;border-radius:6px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer}
+.mc-pub-bd{flex:1;overflow-y:auto;padding:16px}
+.mc-pub-bd textarea{width:100%;min-height:140px;border:none;background:transparent;font-size:15px;color:#2D3436;outline:none;font-family:inherit;box-sizing:border-box;resize:none;line-height:1.7}
+.mc-pub-bd textarea::placeholder{color:#C5CCD3}
+.mc-pub-opts{border-top:1px solid rgba(184,210,216,.12);padding:12px 16px}
+.mc-pub-opt{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(184,210,216,.08);font-size:14px;color:#2D3436;cursor:pointer}
+.mc-pub-opt:last-child{border-bottom:none}
+.mc-pub-opt .opt-v{font-size:12px;color:#9CA3AF;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-pub-opt svg{width:14px;height:14px;stroke:#C5CCD3;fill:none;stroke-width:2}
 
 /* 转发弹窗 */
 .fwd-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
@@ -930,21 +946,18 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 </div>
 </div>
 
-<div class="mc-pub" id="mc-pub" onclick="if(event.target===this)closeMcPub()">
-<div class="mc-pub-card">
-<h3>发朋友圈</h3>
-<textarea id="mc-text" placeholder="这一刻的想法..."></textarea>
-<label>图片链接（逗号分隔多张）</label>
-<input id="mc-imgs" placeholder="https://...jpg, https://...png">
-<label>位置</label>
-<input id="mc-loc" placeholder="北京·三里屯">
-<label>@谁（逗号分隔）</label>
-<input id="mc-at" placeholder="小明, 小红">
-<label>不给谁看（逗号分隔）</label>
-<input id="mc-hide" placeholder="某人">
-<div class="mc-pub-bns"><button class="cc" onclick="closeMcPub()">取消</button><button class="ok" onclick="pubMoment()">发表</button></div>
+<div class="mc-pub" id="mc-pub">
+<div class="mc-pub-hd"><button class="mc-cancel" onclick="closeMcPub()">取消</button><span style="font-size:15px;font-weight:600;color:#2D3436">发朋友圈</span><button class="mc-submit" onclick="pubMoment()">发表</button></div>
+<div class="mc-pub-bd"><textarea id="mc-text" placeholder="这一刻的想法..."></textarea></div>
+<div class="mc-pub-opts">
+<div class="mc-pub-opt" onclick="var v=prompt('图片链接（逗号分隔多张）：',$('mc-imgs').value);if(v!==null)$('mc-imgs').value=v;this.querySelector('.opt-v').textContent=v||'未添加'"><span>📷 图片</span><span class="opt-v">未添加</span><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="mc-pub-opt" onclick="var v=prompt('位置：',$('mc-loc').value);if(v!==null)$('mc-loc').value=v;this.querySelector('.opt-v').textContent=v||'不显示'"><span>📍 所在位置</span><span class="opt-v">不显示</span><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="mc-pub-opt" onclick="var v=prompt('@谁（逗号分隔）：',$('mc-at').value);if(v!==null)$('mc-at').value=v;this.querySelector('.opt-v').textContent=v||'无'"><span>@ 提醒谁看</span><span class="opt-v">无</span><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="mc-pub-opt" onclick="var v=prompt('不给谁看（逗号分隔）：',$('mc-hide').value);if(v!==null)$('mc-hide').value=v;this.querySelector('.opt-v').textContent=v||'公开'"><span>🔒 谁可以看</span><span class="opt-v">公开</span><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 </div>
+<input id="mc-imgs" type="hidden"><input id="mc-loc" type="hidden"><input id="mc-at" type="hidden"><input id="mc-hide" type="hidden">
 </div>
+
 
 <div class="fwd-modal" id="fwd-modal" onclick="if(event.target===this)closeFwd()">
 <div class="fwd-card">
@@ -1425,7 +1438,7 @@ h+='<div class="st-it" onclick="viewMems()"><span>查看记忆库</span><span cl
 h+='</div>';
 h+='<div class="st-sec">数据</div><div class="st-grp"><div class="st-it" onclick="clrAllPh()"><span style="color:#E88080">清空全部聊天</span><span class="v"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div></div>';
 h+='<div class="st-sec">表情包</div><div class="st-grp"><div class="st-it" onclick="tgEmojiMgr()"><span>管理表情包</span><span class="v">'+GLD('phEmojis',[]).length+' 个 <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span></div></div>';
-h+='<div class="st-form" id="ph-em-f"><label>表情包名字（发给AI的标识）</label><input id="em-name" placeholder="比如：哭哭 / 笑死 / 摆烂"><label>图片链接</label><input id="em-url" placeholder="https://...gif 或 ...png"><div style="margin-top:10px;text-align:center" id="em-preview"></div><div class="st-fbn"><button class="pr" onclick="addEmoji()">添加</button></div><div id="em-list" style="margin-top:10px"></div></div>';
+h+='<div class="st-form" id="ph-em-f"><div style="display:flex;gap:8px;margin-bottom:12px"><button style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(184,210,216,.3);background:#fff;color:#7A9DA8;font-size:12px;cursor:pointer" onclick="expEmojis()">导出</button><button style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(184,210,216,.3);background:#fff;color:#7A9DA8;font-size:12px;cursor:pointer" onclick="impEmojis()">导入</button></div><label>表情包名字（发给AI的标识）</label><input id="em-name" placeholder="比如：哭哭 / 笑死 / 摆烂"><label>图片链接</label><input id="em-url" placeholder="https://...gif 或 ...png"><div style="margin-top:10px;text-align:center" id="em-preview"></div><div class="st-fbn"><button class="pr" onclick="addEmoji()">添加</button></div><div id="em-list" style="margin-top:10px"></div></div>';
 h+='<div class="st-sec">关于</div><div class="st-grp"><div class="st-it"><span>版本</span><span class="v">v0.3 早期</span></div></div>';
 $('a-set-bd').innerHTML=h;
 if(pa){$('ph-api-u').value=pa.url||'';$('ph-api-k').value=pa.key||'';$('ph-api-m').value=pa.model||''}
@@ -1443,30 +1456,34 @@ var wbTabIdx=0;
 
 window.phApp=function(name){if(name==='msg'){openApp('a-msg');renderCT();return}if(name==='cb'){openApp('a-cb');renderCB();return}if(name==='set'){openApp('a-set');renderSet();return}if(name==='wb'){openApp('a-wb');renderWbApp();return}if(name==='grp'){openApp('a-grp');renderGrpList();return}toast(({photo:'相册',call:'电话',camera:'相机'}[name]||name)+' 暂未上线 ✨')};
 
+var wbEditing=null;
 function renderWbApp(){
 var g=loadWbG(),s=loadWbS(),c=loadWbC();
-var h='<div class="wb-tabs"><div class="wb-tab'+(wbTabIdx===0?' on':'')+'" onclick="wbTabIdx=0;renderWbApp()">全局</div><div class="wb-tab'+(wbTabIdx===1?' on':'')+'" onclick="wbTabIdx=1;renderWbApp()">通用</div><div class="wb-tab'+(wbTabIdx===2?' on':'')+'" onclick="wbTabIdx=2;renderWbApp()">角色</div></div>';
+var h='<div class="wb-tabs"><div class="wb-tab'+(wbTabIdx===0?' on':'')+'" onclick="wbTabIdx=0;wbEditing=null;renderWbApp()">全局</div><div class="wb-tab'+(wbTabIdx===1?' on':'')+'" onclick="wbTabIdx=1;wbEditing=null;renderWbApp()">通用</div><div class="wb-tab'+(wbTabIdx===2?' on':'')+'" onclick="wbTabIdx=2;wbEditing=null;renderWbApp()">角色</div></div>';
+if(wbEditing){h+=renderWbEditForm();$('a-wb-bd').innerHTML=h;return}
 if(wbTabIdx===0){
-  if(!g.length)h+='<div class="wb-empty">暂无全局世界书<br>点右上角 + 添加</div>';
-  else for(var i=0;i<g.length;i++){var e=g[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbG('+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbG('+i+')">×</button></div>'}
+  if(!g.length)h+='<div class="wb-empty">暂无全局世界书<br>所有角色都会读到这里的设定</div>';
+  else for(var i=0;i<g.length;i++){var e=g[i];h+='<div class="wb-entry" onclick="editWbItem(0,'+i+')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}
 }else if(wbTabIdx===1){
   if(!s.length)h+='<div class="wb-empty">暂无通用世界书<br>绑定多个角色 = 同一世界线</div>';
-  else for(var i=0;i<s.length;i++){var e=s[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div><div class="wb-entry-chars">绑定：'+(e.chars&&e.chars.length?e.chars.join('、'):'未绑定')+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbS('+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#8BAAB5;font-size:11px;cursor:pointer;padding:4px 8px;border:1px solid rgba(184,210,216,.3);border-radius:6px;margin:0 4px" onclick="editWbSChars('+i+')">绑定</button><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbS('+i+')">×</button></div>'}
+  else for(var i=0;i<s.length;i++){var e=s[i];h+='<div class="wb-entry" onclick="editWbItem(1,'+i+')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div><div class="wb-entry-chars">绑定：'+(e.chars&&e.chars.length?e.chars.join('、'):'未绑定')+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}
 }else{
   var charNames=Object.keys(c);
   if(!charNames.length)h+='<div class="wb-empty">暂无角色世界书<br>从文游带来或手动添加</div>';
-  else for(var ci=0;ci<charNames.length;ci++){var cn=charNames[ci],entries=c[cn]||[];h+='<div style="padding:10px 16px 4px;font-size:12px;font-weight:600;color:#7A9DA8">'+cn+' ('+entries.length+')</div>';for(var i=0;i<entries.length;i++){var e=entries[i];h+='<div class="wb-entry"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,60))+'</div></div><label class="tgl" onclick="event.stopPropagation()"><input type="checkbox" '+(e.off?'':'checked')+' onchange="tgWbC(\''+cn+'\','+i+',this.checked)"><span class="sl"></span></label><button style="background:none;border:none;color:#E88080;font-size:16px;cursor:pointer;padding:4px" onclick="delWbC(\''+cn+'\','+i+')">×</button></div>'}}
+  else for(var ci2=0;ci2<charNames.length;ci2++){var cn=charNames[ci2],entries=c[cn]||[];h+='<div style="padding:12px 16px 4px;font-size:12px;font-weight:600;color:#7A9DA8">'+cn+' ('+entries.length+')</div>';for(var i=0;i<entries.length;i++){var e=entries[i];h+='<div class="wb-entry" onclick="editWbItem(2,'+i+\',\\\'\'+cn+\'\\\'\')"><div class="wb-entry-info"><div class="wb-entry-nm">'+escH(e.name)+'</div><div class="wb-entry-pv">'+escH((e.content||'').substring(0,80))+'</div></div><span class="wb-entry-mode">'+(e.off?'关':'开')+'</span></div>'}}
 }
 $('a-wb-bd').innerHTML=h}
 
-window.addWbEntry=function(){var types=['全局（所有角色）','通用（选择角色）','角色（单个角色）'];var choice=prompt('添加到哪一层？\n\n1 = '+types[0]+'\n2 = '+types[1]+'\n3 = '+types[2]+'\n\n输入 1/2/3：');if(!choice)return;var name=prompt('条目名称：');if(!name||!name.trim())return;var content=prompt('内容（世界观/设定/规则）：');if(!content||!content.trim())return;choice=choice.trim();if(choice==='1'){var g=loadWbG();g.push({name:name.trim(),content:content.trim(),off:false});saveWbG(g)}else if(choice==='2'){var chars=prompt('绑定哪些角色？（逗号分隔角色名）：');var charList=chars?chars.split(/[,，]/).map(function(x){return x.trim()}).filter(function(x){return x}):[];var s=loadWbS();s.push({name:name.trim(),content:content.trim(),chars:charList,off:false});saveWbS(s)}else if(choice==='3'){var charName=prompt('属于哪个角色？（输入角色名）：');if(!charName||!charName.trim())return;var c=loadWbC();if(!c[charName.trim()])c[charName.trim()]=[];c[charName.trim()].push({name:name.trim(),content:content.trim(),off:false});saveWbC(c)}else return toast('请输入 1/2/3');wbTabIdx=parseInt(choice)-1;renderWbApp();toast('已添加')};
-window.tgWbG=function(i,v){var g=loadWbG();g[i].off=!v;saveWbG(g)};
-window.tgWbS=function(i,v){var s=loadWbS();s[i].off=!v;saveWbS(s)};
-window.tgWbC=function(cn,i,v){var c=loadWbC();c[cn][i].off=!v;saveWbC(c)};
-window.delWbG=function(i){var g=loadWbG();g.splice(i,1);saveWbG(g);renderWbApp()};
-window.delWbS=function(i){var s=loadWbS();s.splice(i,1);saveWbS(s);renderWbApp()};
-window.delWbC=function(cn,i){var c=loadWbC();c[cn].splice(i,1);if(!c[cn].length)delete c[cn];saveWbC(c);renderWbApp()};
-window.editWbSChars=function(i){var s=loadWbS();var cur=s[i].chars||[];var v=prompt('绑定角色（逗号分隔）：\n当前：'+(cur.join('、')||'无'),cur.join(','));if(v===null)return;s[i].chars=v.split(/[,，]/).map(function(x){return x.trim()}).filter(function(x){return x});saveWbS(s);renderWbApp();toast('已更新绑定')};
+function renderWbEditForm(){var e=wbEditing;var h='<div class="wb-edit">';h+='<label>条目名称</label><input id="wbe-name" value="'+escH(e.name||'').replace(/"/g,'&quot;')+'">';h+='<label>内容</label><textarea id="wbe-content">'+(e.content||'')+'</textarea>';if(wbTabIdx===1){h+='<label>绑定角色（逗号分隔）</label><input id="wbe-chars" value="'+(e.chars||[]).join(',')+'">';}if(wbTabIdx===2){h+='<label>所属角色</label><input id="wbe-char" value="'+(e._charName||'')+'">';}h+='<label>状态</label><select id="wbe-off"><option value="0"'+(e.off?'':' selected')+'>启用</option><option value="1"'+(e.off?' selected':'')+'>禁用</option></select>';h+='<div class="wb-edit-bns"><button class="cc" onclick="wbEditing=null;renderWbApp()">取消</button>'+(e._isNew?'':'<button class="del" onclick="delWbEditing()">删除</button>')+'<button class="ok" onclick="saveWbEditing()">保存</button></div>';h+='</div>';return h}
+
+window.editWbItem=function(tab,idx,charName){wbTabIdx=tab;var e;if(tab===0)e=Object.assign({},loadWbG()[idx],{_tab:0,_idx:idx});else if(tab===1)e=Object.assign({},loadWbS()[idx],{_tab:1,_idx:idx});else{var c=loadWbC();e=Object.assign({},c[charName][idx],{_tab:2,_idx:idx,_charName:charName})}wbEditing=e;renderWbApp()};
+
+window.addWbEntry=function(){wbEditing={name:'',content:'',off:false,chars:[],_charName:'',_tab:wbTabIdx,_idx:-1,_isNew:true};renderWbApp()};
+
+window.saveWbEditing=function(){var name=$('wbe-name').value.trim();var content=$('wbe-content').value.trim();if(!name)return toast('请填名称');if(!content)return toast('请填内容');var off=$('wbe-off').value==='1';var tab=wbEditing._tab,idx=wbEditing._idx;if(tab===0){var g=loadWbG();var item={name:name,content:content,off:off};if(idx===-1)g.push(item);else g[idx]=item;saveWbG(g)}else if(tab===1){var s=loadWbS();var chars=($('wbe-chars')?$('wbe-chars').value:'').split(/[,，]/).map(function(x){return x.trim()}).filter(function(x){return x});var item={name:name,content:content,off:off,chars:chars};if(idx===-1)s.push(item);else s[idx]=item;saveWbS(s)}else{var charName=$('wbe-char')?$('wbe-char').value.trim():(wbEditing._charName||'');if(!charName)return toast('请填所属角色');var c=loadWbC();if(!c[charName])c[charName]=[];var item={name:name,content:content,off:off};if(idx===-1)c[charName].push(item);else c[charName][idx]=item;saveWbC(c)}wbEditing=null;renderWbApp();toast('已保存')};
+
+window.delWbEditing=function(){if(!confirm('删除这个条目？'))return;var tab=wbEditing._tab,idx=wbEditing._idx;if(tab===0){var g=loadWbG();g.splice(idx,1);saveWbG(g)}else if(tab===1){var s=loadWbS();s.splice(idx,1);saveWbS(s)}else{var cn=wbEditing._charName;var c=loadWbC();c[cn].splice(idx,1);if(!c[cn].length)delete c[cn];saveWbC(c)}wbEditing=null;renderWbApp();toast('已删除')};
+
 
 function getWbForChar(charName){var result=[];var g=loadWbG();for(var i=0;i<g.length;i++)if(!g[i].off)result.push(g[i]);var s=loadWbS();for(var i=0;i<s.length;i++){if(s[i].off)continue;if(s[i].chars&&s[i].chars.indexOf(charName)!==-1)result.push(s[i])}var c=loadWbC();if(c[charName])for(var i=0;i<c[charName].length;i++)if(!c[charName][i].off)result.push(c[charName][i]);return result}
 
@@ -1527,6 +1544,9 @@ function loadEmojis(){return GLD('phEmojis',[])}
 function saveEmojis(d){GSV('phEmojis',d)}
 
 window.tgEmojiMgr=function(){$('ph-em-f').classList.toggle('on');if($('ph-em-f').classList.contains('on'))renderEmojiMgr()};
+window.expEmojis=function(){var list=loadEmojis();if(!list.length)return toast('暂无表情包');dl('emojis.json',JSON.stringify(list,null,2));toast('已导出 '+list.length+' 个')};
+window.impEmojis=function(){pickFile(function(d){if(!Array.isArray(d))return toast('格式错误');var list=loadEmojis();var added=0;for(var i=0;i<d.length;i++){if(d[i].name&&d[i].url){var exists=false;for(var j=0;j<list.length;j++)if(list[j].name===d[i].name){exists=true;break}if(!exists){list.push(d[i]);added++}}}saveEmojis(list);renderEmojiMgr();renderEmPanel();toast('已导入 '+added+' 个')})};
+
 
 window.renderEmojiMgr=function(){var list=loadEmojis();var h='';for(var i=0;i<list.length;i++){var em=list[i];h+='<div class="ep-it"><div class="ep-thumb"><img src="'+escH(em.url)+'" onerror="this.style.display=\'none\'"></div><div class="ep-name">'+escH(em.name)+'</div><button class="ep-del" onclick="delEmoji('+i+')">×</button></div>'}$('em-list').innerHTML=h||'<div style="text-align:center;color:#C5CCD3;font-size:12px;padding:14px">暂无表情包，添加一个吧</div>'};
 
@@ -1548,13 +1568,13 @@ function renderCB2(){var all=getAllChars(),frs=loadFr(),names=Object.keys(all);v
 function loadMoments(){return GLD('phMoments',[])}
 function saveMoments(d){GSV('phMoments',d)}
 
-function renderMoments2(){var moments=loadMoments();var phUA=GLD('phUserAv','');var myName=userP&&userP.name||'我';var avContent=phUA?'<img src="'+phUA+'">':myName.charAt(0);var mcBg=GLD('phMcBg','');var h='<div class="mc-hd">'+(mcBg?'<img class="mc-cover" src="'+mcBg+'">':'<div class="mc-cover"></div>')+'<div class="mc-me"><span class="mc-me-nm">'+escH(myName)+'</span><div class="mc-me-av">'+avContent+'</div></div></div>';if(!moments.length){h+='<div class="mc-empty">暂无动态<br>下拉刷新获取好友动态</div>'}else{for(var i=moments.length-1;i>=0;i--){var m=moments[i];var avs=loadAv();var isMe=m.from==='me';var postAv=isMe?(phUA?'<img src="'+phUA+'">':myName.charAt(0)):(avs[m.from]?'<img src="'+avs[m.from]+'">':m.from.charAt(0));var postName=isMe?myName:getDispName(m.from);h+='<div class="mc-post"><div class="mc-post-av">'+postAv+'</div><div class="mc-post-bd"><div class="mc-post-nm">'+escH(postName)+'</div>';if(m.text)h+='<div class="mc-post-tx">'+escH(m.text)+'</div>';if(m.imgs&&m.imgs.length){h+='<div class="mc-post-imgs">';for(var j=0;j<m.imgs.length;j++)h+='<img src="'+m.imgs[j]+'" onclick="phViewImg(this.src)">';h+='</div>'}if(m.location)h+='<div class="mc-post-loc">📍 '+escH(m.location)+'</div>';h+='<div class="mc-post-time"><span>'+fmtTm(m.time)+'</span><div class="mc-post-act"><button onclick="likeMoment('+i+')">♡ '+(m.likes?m.likes.length:0)+'</button><button onclick="commentMoment('+i+')">💬</button></div></div>';if(m.likes&&m.likes.length)h+='<div class="mc-post-likes">♡ '+m.likes.join('、')+'</div>';if(m.comments&&m.comments.length){h+='<div class="mc-post-cmts">';for(var ci=0;ci<m.comments.length;ci++){var cm=m.comments[ci];h+='<div class="mc-post-cmt"><span class="cmt-nm">'+escH(cm.from)+'</span>'+(cm.replyTo?'<span> 回复 </span><span class="cmt-at">'+escH(cm.replyTo)+'</span>':'')+'：'+escH(cm.text)+'</div>'}h+='</div>'}h+='</div></div>'}}$('mc-list').innerHTML=h}
+function renderMoments2(){var moments=loadMoments();var phUA=GLD('phUserAv','');var myName=userP&&userP.name||'我';var avContent=phUA?'<img src="'+phUA+'">':myName.charAt(0);var mcBg=GLD('phMcBg','');var h='<div class="mc-hd" onclick="changeMcBg()">'+(mcBg?'<img class="mc-cover" src="'+mcBg+'">':'<div class="mc-cover" style="display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:12px">点击更换封面</div>')+'<div class="mc-me"><span class="mc-me-nm">'+escH(myName)+'</span><div class="mc-me-av">'+avContent+'</div></div></div>';if(!moments.length){h+='<div class="mc-empty">暂无动态<br>下拉刷新获取好友动态</div>'}else{for(var i=moments.length-1;i>=0;i--){var m=moments[i];var avs=loadAv();var isMe=m.from==='me';var postAv=isMe?(phUA?'<img src="'+phUA+'">':myName.charAt(0)):(avs[m.from]?'<img src="'+avs[m.from]+'">':m.from.charAt(0));var postName=isMe?myName:getDispName(m.from);h+='<div class="mc-post"><div class="mc-post-av">'+postAv+'</div><div class="mc-post-bd"><div class="mc-post-nm">'+escH(postName)+'</div>';if(m.text)h+='<div class="mc-post-tx">'+escH(m.text)+'</div>';if(m.imgs&&m.imgs.length){h+='<div class="mc-post-imgs">';for(var j=0;j<m.imgs.length;j++)h+='<img src="'+m.imgs[j]+'" onclick="phViewImg(this.src)">';h+='</div>'}if(m.location)h+='<div class="mc-post-loc">📍 '+escH(m.location)+'</div>';h+='<div class="mc-post-time"><span>'+fmtTm(m.time)+'</span><div class="mc-post-act"><button onclick="likeMoment('+i+')">♡ '+(m.likes?m.likes.length:0)+'</button><button onclick="commentMoment('+i+')">💬</button></div></div>';if(m.likes&&m.likes.length)h+='<div class="mc-post-likes">♡ '+m.likes.join('、')+'</div>';if(m.comments&&m.comments.length){h+='<div class="mc-post-cmts">';for(var ci=0;ci<m.comments.length;ci++){var cm=m.comments[ci];h+='<div class="mc-post-cmt" onclick="commentMoment('+i+',\''+escH(cm.from).replace(/'/g,"\'")+'\')"><span class="cmt-nm">'+escH(cm.from)+'</span>'+(cm.replyTo?'<span> 回复 </span><span class="cmt-at">'+escH(cm.replyTo)+'</span>':'')+'：'+escH(cm.text)+'</div>'}h+='</div>'}h+='</div></div>'}}$('mc-list').innerHTML=h}
 
 window.openMcPub=function(){$('mc-text').value='';$('mc-imgs').value='';$('mc-loc').value='';$('mc-at').value='';$('mc-hide').value='';$('mc-pub').classList.add('on')};
 window.closeMcPub=function(){$('mc-pub').classList.remove('on')};
 window.pubMoment=function(){var text=$('mc-text').value.trim();var imgs=$('mc-imgs').value.trim().split(/[,，]/).filter(function(x){return x.trim()});var loc=$('mc-loc').value.trim();var at=$('mc-at').value.trim().split(/[,，]/).filter(function(x){return x.trim()});var hide=$('mc-hide').value.trim().split(/[,，]/).filter(function(x){return x.trim()});if(!text&&!imgs.length)return toast('请输入内容或图片');var moments=loadMoments();moments.push({id:Date.now(),from:'me',text:text,imgs:imgs,location:loc,time:Date.now(),likes:[],comments:[],atList:at,hideFrom:hide});saveMoments(moments);closeMcPub();renderMoments2();toast('已发表')};
 window.likeMoment=function(idx){var moments=loadMoments();var m=moments[idx];if(!m)return;var myName=userP&&userP.name||'我';if(!m.likes)m.likes=[];var li=m.likes.indexOf(myName);if(li>=0)m.likes.splice(li,1);else m.likes.push(myName);saveMoments(moments);renderMoments2()};
-window.commentMoment=function(idx){var text=prompt('评论：');if(!text||!text.trim())return;var moments=loadMoments();var m=moments[idx];if(!m)return;if(!m.comments)m.comments=[];var myName=userP&&userP.name||'我';m.comments.push({from:myName,text:text.trim(),time:Date.now()});saveMoments(moments);renderMoments2();toast('已评论')};
+window.commentMoment=function(idx,replyTo){var hint=replyTo?'回复 '+replyTo+'：':'评论：';var text=prompt(hint);if(!text||!text.trim())return;var moments=loadMoments();var m=moments[idx];if(!m)return;if(!m.comments)m.comments=[];var myName=userP&&userP.name||'我';m.comments.push({from:myName,text:text.trim(),time:Date.now(),replyTo:replyTo||''});saveMoments(moments);renderMoments2();toast('已评论')}; window.changeMcBg=function(){var i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=async function(e){var fl=e.target.files[0];if(!fl)return;toast('压缩中...');try{var rs=await compressImg(fl);GSV('phMcBg',rs.data);renderMoments2();toast('背景已更换 ✓')}catch(err){toast('失败: '+err.message)}};i.click()};
 
 // 下拉刷新 - AI 生成朋友圈
 window.refreshMoments=async function(){var frs=loadFr();if(!frs.length)return toast('没有好友');toast('刷新中...');try{var all=getAllChars();var charList=frs.filter(function(n){return all[n]}).slice(0,5);if(!charList.length)return toast('没有可用角色');var picked=charList[Math.floor(Math.random()*charList.length)];var c=all[picked];var sys='你是'+picked+'，正在发一条朋友圈动态。\n';if(c.personality)sys+='性格：'+c.personality+'\n';if(c.style)sys+='说话风格：'+c.style+'\n';sys+='\n要求：\n1. 只输出朋友圈文案内容，1-3句话\n2. 像真人发朋友圈一样自然\n3. 可以是日常分享、吐槽、感慨、晒图文案\n4. 不要写动作描写\n5. 当前时间：'+new Date().toLocaleString('zh-CN')+'\n';var msgs=[{role:'system',content:sys},{role:'user',content:'发一条朋友圈'}];var r=await callPhAPI(msgs);var text=r.replace(/\*[^*]*\*/g,'').replace(/[（(][^）)]*[）)]/g,'').trim();var moments=loadMoments();moments.push({id:Date.now(),from:picked,text:text,imgs:[],location:'',time:Date.now(),likes:[],comments:[]});saveMoments(moments);renderMoments2();toast(picked+' 发了一条朋友圈')}catch(e){toast('刷新失败：'+e.message)}};
