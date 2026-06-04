@@ -590,13 +590,13 @@ body.dark .rd-prog-fill{background:linear-gradient(90deg,#4A6FA5,#6B9CE8)}
 
 /* 阅读器正文 */
 #a-reader{z-index:12}
-#a-reader .rd-hd{padding:12px 14px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(184,210,216,.12);position:relative;z-index:5;transition:transform .3s,opacity .3s}
+#a-reader .rd-hd{padding:12px 14px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(184,210,216,.12);position:fixed;top:0;left:0;right:0;z-index:5;transition:transform .3s,opacity .3s}
 #a-reader .rd-hd.hide{transform:translateY(-100%);opacity:0;pointer-events:none}
-#a-reader .rd-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 22px 120px;line-height:1.9;transition:font-size .2s}
+#a-reader .rd-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 22px 80px;padding-top:calc(56px + env(safe-area-inset-top));line-height:1.9;transition:font-size .2s}
 #a-reader .rd-body::-webkit-scrollbar{width:0}
 #a-reader .rd-body .chap-tt{font-size:1.2em;font-weight:700;text-align:center;margin:20px 0 22px;letter-spacing:1px}
 #a-reader .rd-body p{text-indent:2em;margin-bottom:.8em;white-space:normal;word-break:break-all}
-#a-reader .rd-ft{position:absolute;bottom:0;left:0;right:0;padding:10px 16px;padding-bottom:max(14px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-around;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(184,210,216,.12);z-index:5;transition:transform .3s,opacity .3s}
+#a-reader .rd-ft{position:fixed;bottom:0;left:0;right:0;padding:10px 16px;padding-bottom:max(14px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-around;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(184,210,216,.12);z-index:5;transition:transform .3s,opacity .3s}
 #a-reader .rd-ft.hide{transform:translateY(100%);opacity:0;pointer-events:none}
 .rd-ft-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 14px;color:#6B7280;opacity:.7;transition:opacity .15s}
 .rd-ft-btn:active{opacity:1}
