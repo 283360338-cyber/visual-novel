@@ -1004,6 +1004,8 @@ body.dark .hsl::-webkit-scrollbar-track,
 body.dark .mp::-webkit-scrollbar-track,
 body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 
+.game-card-hub:active{transform:scale(.98)}
+
 </style>
 </head>
 <body>
@@ -1081,6 +1083,62 @@ body.dark #sidebar::-webkit-scrollbar-track{background:transparent}
 <div class="ph-app" onclick="phApp('camera')"><div class="ph-aic"><svg viewBox="0 0 24 24" fill="none"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div></div>
 </div>
 </div>
+<!-- 游戏选择界面 -->
+<div id="game-hub" style="display:none;width:100%;height:100vh;background:linear-gradient(165deg,#2D3436 0%,#1a1a1d 100%);overflow-y:auto;-webkit-overflow-scrolling:touch">
+<div style="padding:60px 20px 30px;text-align:center">
+<div style="font-size:28px;font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:8px">游戏中心</div>
+<div style="font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px">选择你的冒险</div>
+</div>
+<div style="padding:0 16px 40px;display:flex;flex-direction:column;gap:14px">
+
+<!-- 末世求生 -->
+<div class="game-card-hub" onclick="launchGame('wasteland')" style="background:linear-gradient(135deg,#8B4513,#654321);border-radius:18px;padding:20px;cursor:pointer;border:2px solid rgba(255,255,255,.1);transition:transform .2s">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+<div style="width:56px;height:56px;border-radius:12px;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:28px">☢️</div>
+<div style="flex:1">
+<div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:3px">末世求生</div>
+<div style="font-size:11px;color:rgba(255,255,255,.6)">生存 · 物资收集 · 幸存者招募</div>
+</div>
+<div style="font-size:11px;color:rgba(255,255,255,.5);writing-mode:vertical-rl">NEW</div>
+</div>
+<div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">在废土中求生，收集物资，招募幸存者，建立你的避难所</div>
+<div style="margin-top:12px;display:flex;gap:8px">
+<span style="font-size:10px;background:rgba(0,0,0,.3);color:rgba(255,255,255,.7);padding:4px 10px;border-radius:6px">数值系统</span>
+<span style="font-size:10px;background:rgba(0,0,0,.3);color:rgba(255,255,255,.7);padding:4px 10px;border-radius:6px">角色收集</span>
+<span style="font-size:10px;background:rgba(0,0,0,.3);color:rgba(255,255,255,.7);padding:4px 10px;border-radius:6px">资源管理</span>
+</div>
+</div>
+
+<!-- 视觉小说（原有的） -->
+<div class="game-card-hub" onclick="backToVN()" style="background:linear-gradient(135deg,#B8D2D8,#8BAAB5);border-radius:18px;padding:20px;cursor:pointer;border:2px solid rgba(255,255,255,.15);transition:transform .2s">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+<div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px">📖</div>
+<div style="flex:1">
+<div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:3px">视觉小说</div>
+<div style="font-size:11px;color:rgba(255,255,255,.7)">剧情向 · 立绘对话 · AI 生成</div>
+</div>
+</div>
+<div style="font-size:12px;color:rgba(255,255,255,.8);line-height:1.6">经典的视觉小说体验，与 AI 角色对话推进剧情</div>
+</div>
+
+<!-- 手机模拟（原有的） -->
+<div class="game-card-hub" onclick="backToPhone()" style="background:linear-gradient(135deg,#667eea,#764ba2);border-radius:18px;padding:20px;cursor:pointer;border:2px solid rgba(255,255,255,.15);transition:transform .2s">
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+<div style="width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px">📱</div>
+<div style="flex:1">
+<div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:3px">小手机</div>
+<div style="font-size:11px;color:rgba(255,255,255,.7)">社交模拟 · AI 聊天 · 朋友圈</div>
+</div>
+</div>
+<div style="font-size:12px;color:rgba(255,255,255,.8);line-height:1.6">模拟手机社交，与 AI 角色聊天、打电话、发朋友圈</div>
+</div>
+
+</div>
+</div>
+
+<!-- 通用游戏容器 -->
+<div id="game-container" style="display:none;width:100%;height:100vh;position:relative;overflow:hidden"></div>
+
 
 <div id="a-msg" class="aps">
 <div class="ap-hd"><button class="ap-bk" onclick="closeApp('a-msg')"><svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><div class="ap-tt" id="msg-app-tt">消息</div><button class="ap-add" onclick="phApp('cb')"><svg viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
@@ -2131,6 +2189,362 @@ $('mi').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){
 function rdrAll(){rdrCards();rdrBgs();rdrWb();rdrBuiltinTpls();rdrTpls();rdrSvs();rdrRp();rdrAutoMem();rdrManMem()}
 async function boot(){function fallback(){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{CACHE[k]=JSON.parse(localStorage.getItem(k))}catch(e){}}}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}try{await openDB();var all=await idbAll();var hasData=Object.keys(all).length>0;if(!hasData){for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k){try{var v=JSON.parse(localStorage.getItem(k));CACHE[k]=v;idbSet(k,v)}catch(e){}}}}else{CACHE=all}loadGlobal();if(GLD('darkMode',false))document.body.classList.add('dark');rdrHome()}catch(e){console.error('boot error:',e);fallback()}}
 setTimeout(function(){var sp=$('splash');if(sp)sp.classList.add('hide');$('app').classList.add('show');setTimeout(function(){if(sp)sp.style.display='none'},800)},3500);
+// ===== 游戏系统框架 =====
+var currentGame = null;
+var GAME_ENGINES = {};
+
+window.showGameHub = function(){
+  $('home').style.display = 'none';
+  $('ph').classList.remove('on');
+  $('game-hub').style.display = 'block';
+};
+
+window.launchGame = function(gameId){
+  $('game-hub').style.display = 'none';
+  $('game-container').style.display = 'block';
+  
+  if(gameId === 'wasteland'){
+    if(!GAME_ENGINES.wasteland){
+      GAME_ENGINES.wasteland = createSurvivalEngine();
+    }
+    currentGame = GAME_ENGINES.wasteland;
+    currentGame.init();
+    currentGame.start();
+  }
+};
+
+window.backToVN = function(){
+  $('game-hub').style.display = 'none';
+  $('home').style.display = 'flex';
+  switchMode('home');
+};
+
+window.backToPhone = function(){
+  $('game-hub').style.display = 'none';
+  switchMode('phone');
+};
+
+window.exitGame = function(){
+  if(currentGame && currentGame.destroy){
+    currentGame.destroy();
+  }
+  currentGame = null;
+  $('game-container').style.display = 'none';
+  $('game-container').innerHTML = '';
+  showGameHub();
+};
+
+// ===== 末世求生引擎 =====
+function createSurvivalEngine(){
+  var game = {
+    player: null,
+    survivors: [],
+    inventory: {},
+    locations: {},
+    currentLocation: null,
+    dayCount: 1,
+    
+    init: function(){
+      this.loadData();
+      if(!this.player){
+        this.player = {
+          name: '幸存者',
+          hp: 100,
+          maxHp: 100,
+          hunger: 80,
+          thirst: 90,
+          stamina: 100,
+          moral: 70
+        };
+      }
+      if(!this.inventory.water) this.inventory = {water: 5, food: 8, medicine: 2, weapon: 1, material: 10};
+      if(!this.currentLocation) this.currentLocation = 'shelter';
+      this.initLocations();
+    },
+    
+    initLocations: function(){
+      this.locations = {
+        shelter: {
+          name: '避难所',
+          desc: '你的临时庇护所，勉强能遮风挡雨',
+          actions: ['rest', 'craft', 'manage']
+        },
+        city: {
+          name: '废弃城区',
+          desc: '曾经繁华的都市，现在只剩残垣断壁',
+          actions: ['scavenge', 'explore'],
+          danger: 0.3,
+          loot: {food: [1,3], water: [1,2], material: [2,5]}
+        },
+        hospital: {
+          name: '医院废墟',
+          desc: '到处散落着医疗用品，但可能有感染者',
+          actions: ['scavenge', 'explore'],
+          danger: 0.5,
+          loot: {medicine: [2,4], material: [1,3]}
+        },
+        market: {
+          name: '超市遗址',
+          desc: '大部分货架已空，或许还能找到些什么',
+          actions: ['scavenge'],
+          danger: 0.2,
+          loot: {food: [3,6], water: [2,4]}
+        }
+      };
+    },
+    
+    start: function(){
+      this.renderUI();
+      this.renderLocation();
+    },
+    
+    renderUI: function(){
+      var h = '<div id="surv-game" style="width:100%;height:100vh;background:#1a1a1d;color:#e8e8ea;font-family:system-ui,sans-serif;display:flex;flex-direction:column">';
+      
+      // 顶栏
+      h += '<div style="background:linear-gradient(135deg,#8B4513,#654321);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid rgba(255,255,255,.1)">';
+      h += '<button onclick="exitGame()" style="background:rgba(0,0,0,.3);border:none;color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer">← 返回</button>';
+      h += '<div style="font-size:14px;font-weight:600;color:#fff">第 <span id="surv-day">1</span> 天</div>';
+      h += '<div style="font-size:11px;color:rgba(255,255,255,.7)">☢️ 末世</div>';
+      h += '</div>';
+      
+      // 玩家状态栏
+      h += '<div id="surv-stats" style="padding:10px 16px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.05)"></div>';
+      
+      // 主内容区
+      h += '<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch">';
+      h += '<div id="surv-content" style="padding:16px"></div>';
+      h += '</div>';
+      
+      // 底部 Tab
+      h += '<div style="background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.08);display:flex;padding:8px 0">';
+      h += '<div class="surv-tab" onclick="game.showTab(\'location\')" style="flex:1;text-align:center;padding:8px;color:#e8e8ea;font-size:11px;cursor:pointer">📍<br>地点</div>';
+      h += '<div class="surv-tab" onclick="game.showTab(\'inventory\')" style="flex:1;text-align:center;padding:8px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer">🎒<br>物资</div>';
+      h += '<div class="surv-tab" onclick="game.showTab(\'survivors\')" style="flex:1;text-align:center;padding:8px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer">👥<br>幸存者</div>';
+      h += '<div class="surv-tab" onclick="game.showTab(\'craft\')" style="flex:1;text-align:center;padding:8px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer">🔧<br>制造</div>';
+      h += '</div>';
+      
+      h += '</div>';
+      $('game-container').innerHTML = h;
+      
+      this.updateStats();
+    },
+    
+    updateStats: function(){
+      var p = this.player;
+      var h = '<div style="display:flex;gap:12px;font-size:11px">';
+      h += '<div style="flex:1"><div style="color:rgba(255,255,255,.5);margin-bottom:2px">生命</div><div style="background:rgba(255,255,255,.1);height:6px;border-radius:3px;overflow:hidden"><div style="width:'+Math.max(0,p.hp/p.maxHp*100)+'%;height:100%;background:#e74c3c"></div></div><div style="margin-top:2px;color:#e74c3c;font-size:10px">'+p.hp+'/'+p.maxHp+'</div></div>';
+      h += '<div style="flex:1"><div style="color:rgba(255,255,255,.5);margin-bottom:2px">饥饿</div><div style="background:rgba(255,255,255,.1);height:6px;border-radius:3px;overflow:hidden"><div style="width:'+Math.max(0,p.hunger)+'%;height:100%;background:#f39c12"></div></div><div style="margin-top:2px;color:#f39c12;font-size:10px">'+p.hunger+'%</div></div>';
+      h += '<div style="flex:1"><div style="color:rgba(255,255,255,.5);margin-bottom:2px">口渴</div><div style="background:rgba(255,255,255,.1);height:6px;border-radius:3px;overflow:hidden"><div style="width:'+Math.max(0,p.thirst)+'%;height:100%;background:#3498db"></div></div><div style="margin-top:2px;color:#3498db;font-size:10px">'+p.thirst+'%</div></div>';
+      h += '<div style="flex:1"><div style="color:rgba(255,255,255,.5);margin-bottom:2px">士气</div><div style="background:rgba(255,255,255,.1);height:6px;border-radius:3px;overflow:hidden"><div style="width:'+Math.max(0,p.moral)+'%;height:100%;background:#2ecc71"></div></div><div style="margin-top:2px;color:#2ecc71;font-size:10px">'+p.moral+'%</div></div>';
+      h += '</div>';
+      $('surv-stats').innerHTML = h;
+    },
+    
+    showTab: function(tab){
+      var tabs = document.querySelectorAll('.surv-tab');
+      tabs.forEach(function(t){ t.style.color = 'rgba(255,255,255,.5)' });
+      event.target.closest('.surv-tab').style.color = '#e8e8ea';
+      
+      if(tab === 'location') this.renderLocation();
+      if(tab === 'inventory') this.renderInventory();
+      if(tab === 'survivors') this.renderSurvivors();
+      if(tab === 'craft') this.renderCraft();
+    },
+    
+    renderLocation: function(){
+      var loc = this.locations[this.currentLocation];
+      var h = '<div style="background:rgba(139,69,19,.1);border:1px solid rgba(139,69,19,.3);border-radius:12px;padding:16px;margin-bottom:16px">';
+      h += '<div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px">'+loc.name+'</div>';
+      h += '<div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6">'+loc.desc+'</div>';
+      h += '</div>';
+      
+      if(this.currentLocation === 'shelter'){
+        h += '<div style="margin-bottom:12px;font-size:13px;color:rgba(255,255,255,.5)">可用行动</div>';
+        h += '<button onclick="game.rest()" style="width:100%;background:rgba(46,204,113,.15);border:1px solid rgba(46,204,113,.3);color:#2ecc71;padding:14px;border-radius:10px;font-size:14px;margin-bottom:8px;cursor:pointer">🛏️ 休息（恢复体力和生命）</button>';
+        h += '<button onclick="game.eat()" style="width:100%;background:rgba(243,156,18,.15);border:1px solid rgba(243,156,18,.3);color:#f39c12;padding:14px;border-radius:10px;font-size:14px;margin-bottom:8px;cursor:pointer">🍞  进食（消耗 1 食物）</button>';
+        h += '<button onclick="game.drink()" style="width:100%;background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.3);color:#3498db;padding:14px;border-radius:10px;font-size:14px;margin-bottom:16px;cursor:pointer">💧 喝水（消耗 1 水）</button>';
+      } else {
+        h += '<button onclick="game.scavenge()" style="width:100%;background:rgba(139,69,19,.2);border:1px solid rgba(139,69,19,.4);color:#D2691E;padding:14px;border-radius:10px;font-size:14px;margin-bottom:8px;cursor:pointer">🔍 搜刮物资（消耗体力）</button>';
+        h += '<button onclick="game.backToShelter()" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);padding:12px;border-radius:10px;font-size:13px;cursor:pointer">← 返回避难所</button>';
+      }
+      
+      if(this.currentLocation === 'shelter'){
+        h += '<div style="margin:20px 0 12px;font-size:13px;color:rgba(255,255,255,.5)">探索地点</div>';
+        h += '<div style="display:flex;flex-direction:column;gap:8px">';
+        for(var k in this.locations){
+          if(k === 'shelter') continue;
+          var l = this.locations[k];
+          var dk = k;
+          h += '<div onclick="game.travelTo(\''+dk+'\')" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:10px;cursor:pointer"><div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:3px">'+l.name+'</div><div style="font-size:11px;color:rgba(255,255,255,.5)">危险度：'+(l.danger*100).toFixed(0)+'%</div></div>';
+        }
+        h += '</div>';
+      }
+      
+      $('surv-content').innerHTML = h;
+    },
+    
+    renderInventory: function(){
+      var h = '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:14px">🎒 物资库存</div>';
+      h += '<div style="display:flex;flex-direction:column;gap:10px">';
+      var items = [
+        {key: 'water', name: '💧 水', unit: '瓶'},
+        {key: 'food', name: '🍞 食物', unit: '份'},
+        {key: 'medicine', name: '💊 医疗包', unit: '个'},
+        {key: 'weapon', name: '🔪 武器', unit: '件'},
+        {key: 'material', name: '🪵 材料', unit: '单位'}
+      ];
+      for(var i = 0; i < items.length; i++){
+        var it = items[i];
+        var count = this.inventory[it.key] || 0;
+        h += '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:12px 14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center">';
+        h += '<span style="font-size:14px;color:#e8e8ea">'+it.name+'</span>';
+        h += '<span style="font-size:14px;font-weight:600;color:'+(count > 5 ? '#2ecc71' : count > 0 ? '#f39c12' : '#e74c3c')+'">'+count+' '+it.unit+'</span>';
+        h += '</div>';
+      }
+      h += '</div>';
+      $('surv-content').innerHTML = h;
+    },
+    
+    renderSurvivors: function(){
+      var h = '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:14px">👥 幸存者团队</div>';
+      if(!this.survivors.length){
+        h += '<div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,.4);font-size:13px">还没有招募到幸存者<br>探索时可能会遇到</div>';
+      } else {
+        for(var i = 0; i < this.survivors.length; i++){
+          var s = this.survivors[i];
+          h += '<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:12px;margin-bottom:10px">';
+          h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">';
+          h += '<div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700">'+s.name.charAt(0)+'</div>';
+          h += '<div style="flex:1"><div style="font-size:14px;font-weight:600;color:#fff">'+s.name+'</div><div style="font-size:11px;color:rgba(255,255,255,.5)">'+s.skill+'</div></div>';
+          h += '</div>';
+          h += '<div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.5">'+s.desc+'</div>';
+          h += '</div>';
+        }
+      }
+      $('surv-content').innerHTML = h;
+    },
+    
+    renderCraft: function(){
+      var h = '<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:14px">🔧 制造系统</div>';
+      h += '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:10px;margin-bottom:10px">';
+      h += '<div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:6px">🔪 简易武器</div>';
+      h += '<div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px">需要：材料 x5</div>';
+      h += '<button onclick="game.craftWeapon()" style="background:rgba(139,69,19,.2);border:1px solid rgba(139,69,19,.4);color:#D2691E;padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer">制造</button>';
+      h += '</div>';
+      h += '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:10px">';
+      h += '<div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:6px">💊 应急医疗包</div>';
+      h += '<div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px">需要：材料 x3</div>';
+      h += '<button onclick="game.craftMedicine()" style="background:rgba(139,69,19,.2);border:1px solid rgba(139,69,19,.4);color:#D2691E;padding:8px 16px;border-radius:8px;font-size:12px;cursor:pointer">制造</button>';
+      h += '</div>';
+      $('surv-content').innerHTML = h;
+    },
+    
+    rest: function(){
+      if(this.player.stamina >= 90){
+        this.showMessage('你还不累');
+        return;
+      }
+      this.player.stamina = Math.min(100, this.player.stamina + 40);
+      this.player.hp = Math.min(this.player.maxHp, this.player.hp + 10);
+      this.passTime();
+      this.showMessage('休息后感觉好多了');
+    },
+    
+    eat: function(){
+      if(!this.inventory.food || this.inventory.food <= 0){
+        this.showMessage('没有食物了！');
+        return;
+      }
+      this.inventory.food--;
+      this.player.hunger = Math.min(100, this.player.hunger + 30);
+      this.updateStats();
+      this.renderInventory();
+      this.showMessage('吃了一份食物，饥饿感缓解');
+    },
+    
+    drink: function(){
+      if(!this.inventory.water || this.inventory.water <= 0){
+        this.showMessage('没有水了！');
+        return;
+      }
+      this.inventory.water--;
+      this.player.thirst = Math.min(100, this.player.thirst + 25);
+      this.updateStats();
+      this.renderInventory();
+      this.showMessage('喝了水，口渴缓解');
+    },
+    
+    travelTo: function(locKey){
+      if(this.player.stamina < 20){
+        this.showMessage('体力不足，先休息吧');
+        return;
+      }
+      this.currentLocation = locKey;
+      this.player.stamina -= 15;
+      this.updateStats();
+      this.renderLocation();
+      this.showMessage('前往 ' + this.locations[locKey].name);
+    },
+    
+    backToShelter: function(){
+      this.currentLocation = 'shelter';
+      this.renderLocation();
+      this.showMessage('返回避难所');
+    },
+    
+    scavenge: function(){
+      if(this.player.stamina < 20){
+        this.showMessage('体力不足');
+        return;
+      }
+      var loc = this.locations[this.currentLocation];
+      this.player.stamina -= 20;
+      
+      // 危险判定
+      if(Math.random() < loc.danger){
+        var dmg = Math.floor(Math.random() * 20) + 10;
+        this.player.hp -= dmg;
+        if(this.player.hp <= 0){
+          this.showMessage('你在搜刮时遭遇危险，受了致命伤...');
+          setTimeout(function(){ game.gameOver() }, 2000);
+          return;
+        }
+        this.showMessage('遭遇危险！生命 -' + dmg);
+      }
+      
+      // 战利品
+      var found = {};
+      for(var k in loc.loot){
+        var range = loc.loot[k];
+        var amount = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+        if(Math.random() > 0.3){
+          found[k] = amount;
+          this.inventory[k] = (this.inventory[k] || 0) + amount;
+        }
+      }
+      
+      // 幸存者遇见
+      if(Math.random() < 0.15 && this.survivors.length < 5){
+        var names = ['陈军', '李娜', '王刚', '张伟', '刘欣', '赵强', '小雨', '老吴'];
+        var skills = ['医疗专家', '前特种兵', '工程师', '厨师', '拾荒老手', '前警察'];
+        var sn = names[Math.floor(Math.random() * names.length)];
+        var sk = skills[Math.floor(Math.random() * skills.length)];
+        this.survivors.push({
+          name: sn,
+          skill: sk,
+          desc: '在 ' + loc.name + ' 遇到的幸存者'
+        });
+        this.showMessage('遇到了幸存者：' + sn + '（' + sk + '）');
+      }
+      
+      this.updateStats();
+      this.saveData();
+      
+      var msg = '搜刮完成！获得：';
+      for(var k in found) msg += k + ' x' + found[k] + ' ';
+      this.showMessage(msg || '
+
 boot();
 })();
 
